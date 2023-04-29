@@ -1,11 +1,20 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {AdminLayoutComponent} from "./views/admin-layout/admin-layout.component";
 
 const routes: Routes = [
-  {path: 'admin', component: AdminLayoutComponent,
-    children:[
-      {path: '', loadChildren: () => import('./views/admin-layout/admin-home/admin-home.module').then(m => m.AdminHomeModule)}
+  {
+    path: 'admin', component: AdminLayoutComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./views/adminViews/admin-home/admin-home.module').then(m => m.AdminHomeModule)
+      },
+      {
+        path: 'company',
+        loadChildren: () => import('./views/adminViews/company/company.module').then(m => m.CompanyModule)
+      },
+      {path: 'office', loadChildren: () => import('./views/adminViews/office/office.module').then(m => m.OfficeModule)}
     ]
   },
   {path: '', loadChildren: () => import('./views/landing/landing.module').then(m => m.LandingModule)},
@@ -18,4 +27,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

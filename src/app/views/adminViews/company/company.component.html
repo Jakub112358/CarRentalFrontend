@@ -1,0 +1,11 @@
+<div class="surface-section">
+  <div class="font-medium text-3xl text-900 mb-3">Company details</div>
+  <ul *ngFor="let element of displayElements" class="list-none p-0 m-0">
+    <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+      <div class="text-500 w-6 md:w-2 font-medium">{{element[0]}} </div>
+      <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">{{element[1]}}</div>
+    </li>
+  </ul>
+</div>
+
+

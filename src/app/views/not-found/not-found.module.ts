@@ -1,18 +1,19 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {RouterModule} from "@angular/router";
-import {LandingComponent} from "../landing/landing.component";
-
+import {NotFoundComponent} from "./not-found.component";
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    NotFoundComponent
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild([
       {
         path: '',
-        component: LandingComponent
+        component: NotFoundComponent
       }
     ]),
   ]
