@@ -4,7 +4,7 @@ import {Address} from "../../../model/Address";
 import {CompanyService} from "../../../service/company.service";
 import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
 import {FormControl} from "@angular/forms";
-import {CompanyUpdate} from "../../../model/CompanyUpdate";
+import {CompanyUpdateDto} from "../../../model/CompanyUpdateDto";
 
 @Component({
   selector: 'app-company',
@@ -73,7 +73,7 @@ export class CompanyComponent {
   }
 
   onSubmit() {
-    let updateCompany: CompanyUpdate = this.createUpdateCompanyInstance()
+    let updateCompany: CompanyUpdateDto = this.createUpdateCompanyInstance()
     this.companyService.updateCompany(this.companyId, updateCompany).subscribe(
       data => {
         this.company = data;
@@ -83,7 +83,7 @@ export class CompanyComponent {
     this.modalVisible = false;
   }
 
-  createUpdateCompanyInstance(): CompanyUpdate {
+  createUpdateCompanyInstance(): CompanyUpdateDto {
     switch (this.activeFieldName) {
       case this.fieldNames[0]:
         return {name: this.inputValue};

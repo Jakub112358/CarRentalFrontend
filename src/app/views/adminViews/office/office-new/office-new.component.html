@@ -1,0 +1,53 @@
+<div class="surface-section md:w-6">
+  <div class="font-medium text-3xl text-900 my-3">Add new branch office</div>
+  <form (ngSubmit)="onSubmit()">
+    <ul class="list-none p-0 m-0">
+
+      <li class="flex align-items-center py-1 px-2 border-top-1 surface-border flex-wrap">
+        <div class="text-500 w-6 md:w-2 font-medium">Zip code</div>
+        <div class="text-900 w-full md:w-10 md:flex-order-0 flex-order-1">
+          <input type="text" [(ngModel)]="newAddress.zipCode" name="zipCode" class="w-12">
+        </div>
+      </li>
+      <p *ngIf="invalidZipCode" class="text-red-500">invalid zip code, please use format xx-xxx</p>
+
+      <li class="flex align-items-center py-1 px-2 border-top-1 surface-border flex-wrap">
+        <div class="text-500 w-6 md:w-2 font-medium">Town</div>
+        <div class="text-900 w-full md:w-10 md:flex-order-0 flex-order-1">
+          <input type="text" [(ngModel)]="newAddress.town" name="town" class="w-12">
+        </div>
+      </li>
+      <p *ngIf="invalidTown" class="text-red-500">invalid town input</p>
+
+      <li class="flex align-items-center py-1 px-2 border-top-1 surface-border flex-wrap">
+        <div class="text-500 w-6 md:w-2 font-medium">Street</div>
+        <div class="text-900 w-full md:w-10 md:flex-order-0 flex-order-1">
+          <input type="text" [(ngModel)]="newAddress.street" name="street" class="w-12">
+        </div>
+      </li>
+      <p *ngIf="invalidStreet" class="text-red-500">invalid street input</p>
+
+      <li class="flex align-items-center py-1 px-2 border-top-1 surface-border flex-wrap">
+        <div class="text-500 w-6 md:w-2 font-medium">House number</div>
+        <div class="text-900 w-full md:w-10 md:flex-order-0 flex-order-1">
+          <input type="text" [(ngModel)]="newAddress.houseNumber" name="houseNumber" class="w-12">
+        </div>
+      </li>
+      <p *ngIf="invalidHouseNumber" class="text-red-500">house number has to begin with number</p>
+
+    </ul>
+    <button type="submit" pButton pRipple label="Add new branch office" class="p-button-success w-5 m-2"></button>
+  </form>
+</div>
+
+<p-dialog header="Success!" [(visible)]="successModalVisible" [style]="{width: '50vw'}">
+  <div class="grid justify-content-center py-2">
+    <button type="button" pButton pRipple label="Add another branch office" class="p-button-success w-5 m-2" (click)="addNextOffice()"></button>
+    <button type="button" pButton pRipple label="Go to added office details" class="p-button-success w-5 m-2" [routerLink]="addedOfficePath"></button>
+  </div>
+
+</p-dialog>
+
+<p-dialog header="Fail" [(visible)]="failModalVisible" [style]="{width: '50vw'}">
+  Adding new office failed, please check if input is correct.
+</p-dialog>

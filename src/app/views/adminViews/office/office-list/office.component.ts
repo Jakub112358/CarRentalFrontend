@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {Office} from "../../../model/Office";
-import {OfficeService} from "../../../service/office.service";
+import {Office} from "../../../../model/Office";
+import {OfficeService} from "../../../../service/office.service";
 
 @Component({
   selector: 'app-office',

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {catchError, Observable, of} from "rxjs";
 import {Company} from "../model/Company";
-import {CompanyUpdate} from "../model/CompanyUpdate";
+import {CompanyUpdateDto} from "../model/CompanyUpdateDto";
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class CompanyService {
       )
   }
 
-  public updateCompany(id: number, update: CompanyUpdate): Observable<Company>{
+  public updateCompany(id: number, update: CompanyUpdateDto): Observable<Company>{
     return this.http.patch<Company>((this.companyUrl + '/' + id), update)
       .pipe(
         catchError(this.handleError<Company>())

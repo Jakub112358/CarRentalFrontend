@@ -16,7 +16,7 @@ export class HeaderComponent {
 
       {label: 'office', icon: 'pi pi-list', items:[
           {label: 'office list', icon: 'pi pi-list', routerLink: 'office'},
-          {label: 'add office', icon: 'pi pi-plus', routerLink: 'office'},
+          {label: 'add office', icon: 'pi pi-plus', routerLink: 'office/new'},
         ]
       }
     ];

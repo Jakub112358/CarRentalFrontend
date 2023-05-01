@@ -1,6 +1,6 @@
 import {Address} from "./Address";
 
-export interface CompanyUpdate{
+export interface CompanyUpdateDto {
   id?: number;
   name?: string;
   domain?: string;

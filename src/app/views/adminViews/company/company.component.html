@@ -33,15 +33,12 @@
 </div>
 
 <p-dialog header="{{modalHeader}}" [(visible)]="modalVisible" [style]="{width: '50vw'}">
-
     <form (ngSubmit)="onSubmit()" class="grid justify-content-center py-2">
       <input class="w-12" type="text" pInputText [(ngModel)]="inputValue" [ngModelOptions]="{standalone: true}"/>
       <button type="submit" pButton pRipple label="Save changes" class="p-button-success w-5 m-2"></button>
       <button type="button" pButton pRipple label="Back" class="p-button-danger w-5 m-2"
               (click)="modalVisible=false"></button>
     </form>
-
-
 </p-dialog>
 
 

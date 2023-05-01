@@ -14,7 +14,14 @@ const routes: Routes = [
         path: 'company',
         loadChildren: () => import('./views/adminViews/company/company.module').then(m => m.CompanyModule)
       },
-      {path: 'office', loadChildren: () => import('./views/adminViews/office/office.module').then(m => m.OfficeModule)}
+      {
+        path: 'office',
+        loadChildren: () => import('./views/adminViews/office/office-list/office.module').then(m => m.OfficeModule)
+      },
+      {
+        path: 'office/new',
+        loadChildren: () => import('./views/adminViews/office/office-new/office-new.module').then(m => m.OfficeNewModule)
+      },
     ]
   },
   {path: '', loadChildren: () => import('./views/landing/landing.module').then(m => m.LandingModule)},

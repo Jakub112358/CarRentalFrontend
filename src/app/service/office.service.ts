@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {catchError, Observable, of} from "rxjs";
 import {Office} from "../model/Office";
 import {HttpClient} from "@angular/common/http";
+import {OfficeCreateDto} from "../model/OfficeCreateDto";
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,13 @@ export class OfficeService {
     return this.http.get<Office[]>(this.officeUrl)
       .pipe(
         catchError(this.handleError<Office[]>())
+      )
+  }
+
+  save(office: OfficeCreateDto): Observable<Office> {
+    return this.http.post<Office>(this.officeUrl,office)
+      .pipe(
+        catchError(this.handleError<Office>())
       )
   }
 
