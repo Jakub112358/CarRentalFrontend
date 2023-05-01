@@ -23,7 +23,7 @@ export class CompanyComponent {
   updateField: FormControl;
   activeFieldName: string;
 
-  //temporal company id. In next version it would be provided from logged user info
+  //TODO: temporal company id. In next version it would be provided from logged user info
   companyId: number;
 
   constructor(private companyService: CompanyService,
@@ -33,15 +33,12 @@ export class CompanyComponent {
 
   ngOnInit() {
     this.modalVisible = false;
-
     this.fieldNames = ['Name', 'Domain', 'Logotype', 'Zip code', 'Town', 'Street', 'House number']
-
     this.companyService.findById(this.companyId)
       .subscribe(data => {
         this.company = data;
         this.refreshDisplay(this.company);
       })
-
   }
 
   showEditModal(fieldName: string) {

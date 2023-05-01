@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { OfficeComponent } from './office.component';
 import {RouterModule} from "@angular/router";
 import {TableModule} from "primeng/table";
+import {ButtonModule} from "primeng/button";
+import {RippleModule} from "primeng/ripple";
 
 
 
@@ -10,15 +12,17 @@ import {TableModule} from "primeng/table";
   declarations: [
     OfficeComponent
   ],
-    imports: [
-        CommonModule,
-        RouterModule.forChild([
-            {
-                path: '',
-                component: OfficeComponent,
-            }
-        ]),
-        TableModule
-    ]
+  imports: [
+    CommonModule,
+    RouterModule.forChild([
+      {
+        path: '',
+        component: OfficeComponent,
+      }
+    ]),
+    TableModule,
+    ButtonModule,
+    RippleModule
+  ]
 })
 export class OfficeModule { }

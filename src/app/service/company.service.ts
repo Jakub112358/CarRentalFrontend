@@ -8,21 +8,21 @@ import {CompanyUpdate} from "../model/CompanyUpdate";
   providedIn: 'root'
 })
 export class CompanyService {
-  private readonly studentUrl: string;
+  private readonly companyUrl: string;
 
   constructor(private readonly http: HttpClient) {
-    this.studentUrl = 'http://localhost:8080/api/v1/companies'
+    this.companyUrl = 'http://localhost:8080/api/v1/companies';
   }
 
   public findById(id: number): Observable<Company> {
-    return this.http.get<Company>(this.studentUrl + '/' + id)
+    return this.http.get<Company>(this.companyUrl + '/' + id)
       .pipe(
         catchError(this.handleError<Company>())
       )
   }
 
   public updateCompany(id: number, update: CompanyUpdate): Observable<Company>{
-    return this.http.patch<Company>((this.studentUrl + '/' + id), update)
+    return this.http.patch<Company>((this.companyUrl + '/' + id), update)
       .pipe(
         catchError(this.handleError<Company>())
       )
