@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OfficeComponent } from './office.component';
 import {RouterModule} from "@angular/router";
+import {TableModule} from "primeng/table";
 
 
 
@@ -9,14 +10,15 @@ import {RouterModule} from "@angular/router";
   declarations: [
     OfficeComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: OfficeComponent,
-      }
-    ])
-  ]
+    imports: [
+        CommonModule,
+        RouterModule.forChild([
+            {
+                path: '',
+                component: OfficeComponent,
+            }
+        ]),
+        TableModule
+    ]
 })
 export class OfficeModule { }
