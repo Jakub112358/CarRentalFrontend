@@ -21,7 +21,7 @@ export class HeaderComponent {
       },
       {label: 'car', icon: 'pi pi-car', items:[
           {label: 'car list', icon: 'pi pi-list', routerLink: 'car'},
-
+          {label: 'add car', icon: 'pi pi-plus', routerLink: 'car/new'},
         ]
       }
     ];

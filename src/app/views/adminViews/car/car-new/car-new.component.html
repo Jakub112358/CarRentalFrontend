@@ -1,0 +1,101 @@
+<div class="surface-section md:w-9 xl:w-6">
+  <div class="font-medium text-3xl text-900 my-3">Add new car</div>
+  <form (ngSubmit)="onSubmit()">
+    <ul class="list-none p-0 m-0">
+
+      <li class="flex align-items-center py-1 px-2 border-top-1 surface-border flex-wrap">
+        <div class="text-500 w-6 md:w-3 font-medium">Make</div>
+        <div class="text-900 w-full md:w-9 md:flex-order-0 flex-order-1">
+          <input type="text" [(ngModel)]="newCar.make" name="make" class="w-12">
+        </div>
+      </li>
+      <p *ngIf="invalidInput[0]" class="text-red-500">{{invalidInputMessage[0]}}</p>
+
+      <li class="flex align-items-center py-1 px-2 border-top-1 surface-border flex-wrap">
+        <div class="text-500 w-6 md:w-3 font-medium">Model</div>
+        <div class="text-900 w-full md:w-9 md:flex-order-0 flex-order-1">
+          <input type="text" [(ngModel)]="newCar.model" name="model" class="w-12">
+        </div>
+      </li>
+      <p *ngIf="invalidInput[1]" class="text-red-500">{{invalidInputMessage[1]}}</p>
+
+      <li class="flex align-items-center py-1 px-2 border-top-1 surface-border flex-wrap">
+        <div class="text-500 w-6 md:w-3 font-medium">Mileage</div>
+        <div class="text-900 w-full md:w-9 md:flex-order-0 flex-order-1">
+          <input type="number" [(ngModel)]="newCar.mileage" name="mileage" class="w-12">
+        </div>
+      </li>
+      <p *ngIf="invalidInput[2]" class="text-red-500">{{invalidInputMessage[2]}}</p>
+
+      <li class="flex align-items-center py-1 px-2 border-top-1 surface-border flex-wrap">
+        <div class="text-500 w-6 md:w-3 font-medium">Min rental time</div>
+        <div class="text-900 w-full md:w-9 md:flex-order-0 flex-order-1">
+          <input type="number" [(ngModel)]="newCar.minRentalTime" name="minRentalTime" class="w-12">
+        </div>
+      </li>
+      <p *ngIf="invalidInput[3]" class="text-red-500">{{invalidInputMessage[3]}}</p>
+
+      <li class="flex align-items-center py-1 px-2 border-top-1 surface-border flex-wrap">
+        <div class="text-500 w-6 md:w-3 font-medium">Year of manufacture</div>
+        <div class="text-900 w-full md:w-9 md:flex-order-0 flex-order-1">
+          <input type="number" [(ngModel)]="newCar.yearOfManufacture" name="yearOfManufacture" class="w-12">
+        </div>
+      </li>
+      <p *ngIf="invalidInput[4]" class="text-red-500">{{invalidInputMessage[4]}}</p>
+
+      <li class="flex align-items-center py-1 px-2 border-top-1 surface-border flex-wrap">
+        <div class="text-500 w-6 md:w-3 font-medium">Body type</div>
+        <div class="text-900 w-full md:w-9 md:flex-order-0 flex-order-1">
+          <select  [(ngModel)]="newCar.bodyType" name="bodyType" class="w-12">
+            <option *ngFor="let type of bodyTypes" value="{{type}}" >{{type}}</option>
+          </select>
+        </div>
+      </li>
+      <p *ngIf="invalidInput[5]" class="text-red-500">{{invalidInputMessage[5]}}</p>
+
+      <li class="flex align-items-center py-1 px-2 border-top-1 surface-border flex-wrap">
+        <div class="text-500 w-6 md:w-3 font-medium">Color</div>
+        <div class="text-900 w-full md:w-9 md:flex-order-0 flex-order-1">
+          <select  [(ngModel)]="newCar.color" name="color" class="w-12">
+            <option *ngFor="let color of colors" value="{{color}}" >{{color}}</option>
+          </select>
+        </div>
+      </li>
+      <p *ngIf="invalidInput[6]" class="text-red-500">{{invalidInputMessage[6]}}</p>
+
+      <li class="flex align-items-center py-1 px-2 border-top-1 surface-border flex-wrap">
+        <div class="text-500 w-6 md:w-3 font-medium">Status</div>
+        <div class="text-900 w-full md:w-9 md:flex-order-0 flex-order-1">
+          <select  [(ngModel)]="newCar.status" name="status" class="w-12">
+            <option *ngFor="let status of statuses" value="{{status}}" >{{status}}</option>
+          </select>
+        </div>
+      </li>
+      <p *ngIf="invalidInput[7]" class="text-red-500">{{invalidInputMessage[7]}}</p>
+
+      <li class="flex align-items-center py-1 px-2 border-top-1 surface-border flex-wrap">
+        <div class="text-500 w-6 md:w-3 font-medium">Current branch office</div>
+        <div class="text-900 w-full md:w-9 md:flex-order-0 flex-order-1">
+          <select  [(ngModel)]="newCar.currentBranchOfficeId" name="currentBranchOfficeId" class="w-12">
+            <option *ngFor="let office of offices" value="{{office.id}}" >{{officeToString(office)}}</option>
+          </select>
+        </div>
+      </li>
+      <p *ngIf="invalidInput[8]" class="text-red-500">{{invalidInputMessage[8]}}</p>
+
+    </ul>
+    <button type="submit" pButton pRipple label="Add car" class="p-button-success w-5 m-2"></button>
+  </form>
+</div>
+
+<p-dialog header="Success!" [(visible)]="successModalVisible" [style]="{width: '50vw'}">
+  <div class="grid justify-content-center py-2">
+    <button type="button" pButton pRipple label="Add another car" class="p-button-success w-5 m-2" (click)="addNextCar()"></button>
+    <button type="button" pButton pRipple label="Go to added car details" class="p-button-success w-5 m-2" [routerLink]="addedCarPath"></button>
+  </div>
+
+</p-dialog>
+
+<p-dialog header="Fail" [(visible)]="failModalVisible" [style]="{width: '50vw'}">
+  Adding new office failed, please check if input is correct.
+</p-dialog>
