@@ -6,22 +6,11 @@ const routes: Routes = [
   {
     path: 'admin', component: AdminLayoutComponent,
     children: [
-      {
-        path: '',
-        loadChildren: () => import('./views/adminViews/admin-home/admin-home.module').then(m => m.AdminHomeModule)
-      },
-      {
-        path: 'company',
-        loadChildren: () => import('./views/adminViews/company/company.module').then(m => m.CompanyModule)
-      },
-      {
-        path: 'office',
-        loadChildren: () => import('./views/adminViews/office/office-list/office.module').then(m => m.OfficeModule)
-      },
-      {
-        path: 'office/new',
-        loadChildren: () => import('./views/adminViews/office/office-new/office-new.module').then(m => m.OfficeNewModule)
-      },
+      {path: '', loadChildren: () => import('./views/adminViews/admin-home/admin-home.module').then(m => m.AdminHomeModule)},
+      {path: 'company', loadChildren: () => import('./views/adminViews/company/company.module').then(m => m.CompanyModule)},
+      {path: 'office', loadChildren: () => import('./views/adminViews/office/office-list/office.module').then(m => m.OfficeModule)},
+      {path: 'office/new', loadChildren: () => import('./views/adminViews/office/office-new/office-new.module').then(m => m.OfficeNewModule)},
+      {path: 'car', loadChildren: () => import('./views/adminViews/car/car-list/car-list.module').then(m => m.CarListModule)},
     ]
   },
   {path: '', loadChildren: () => import('./views/landing/landing.module').then(m => m.LandingModule)},

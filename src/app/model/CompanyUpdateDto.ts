@@ -1,6 +1,7 @@
 import {Address} from "./Address";
+import {UpdateDto} from "./UpdateDto";
 
-export interface CompanyUpdateDto {
+export interface CompanyUpdateDto extends UpdateDto{
   id?: number;
   name?: string;
   domain?: string;

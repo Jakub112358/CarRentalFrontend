@@ -12,11 +12,16 @@ export class HeaderComponent {
     this.items=[
       {label: 'home', icon: 'pi pi-home', routerLink: '/admin'},
 
-      {label: 'company', icon: 'pi pi-pencil', routerLink: 'company'},
+      {label: 'company', icon: 'pi pi-globe', routerLink: 'company'},
 
-      {label: 'office', icon: 'pi pi-list', items:[
+      {label: 'office', icon: 'pi pi-sitemap', items:[
           {label: 'office list', icon: 'pi pi-list', routerLink: 'office'},
           {label: 'add office', icon: 'pi pi-plus', routerLink: 'office/new'},
+        ]
+      },
+      {label: 'car', icon: 'pi pi-car', items:[
+          {label: 'car list', icon: 'pi pi-list', routerLink: 'car'},
+
         ]
       }
     ];

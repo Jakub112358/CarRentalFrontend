@@ -1,38 +1,15 @@
 import {Injectable} from '@angular/core';
-import {catchError, Observable, of} from "rxjs";
 import {Office} from "../model/Office";
 import {HttpClient} from "@angular/common/http";
-import {OfficeCreateDto} from "../model/OfficeCreateDto";
+import {CrudService} from "./CrudService";
 
 @Injectable({
   providedIn: 'root'
 })
-export class OfficeService {
-  private readonly officeUrl: string
+export class OfficeService extends CrudService<Office> {
 
-  constructor(private readonly http: HttpClient) {
-    this.officeUrl = 'http://localhost:8080/api/v1/offices';
-
+  constructor(http: HttpClient) {
+    super('http://localhost:8080/api/v1/offices', http);
   }
 
-  findAll(): Observable<Office[]> {
-    return this.http.get<Office[]>(this.officeUrl)
-      .pipe(
-        catchError(this.handleError<Office[]>())
-      )
-  }
-
-  save(office: OfficeCreateDto): Observable<Office> {
-    return this.http.post<Office>(this.officeUrl,office)
-      .pipe(
-        catchError(this.handleError<Office>())
-      )
-  }
-
-  private handleError<T>(result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      return of(result as T)
-    }
-  }
 }

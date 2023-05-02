@@ -74,7 +74,7 @@ export class CompanyComponent {
 
   onSubmit() {
     let updateCompany: CompanyUpdateDto = this.createUpdateCompanyInstance()
-    this.companyService.updateCompany(this.companyId, updateCompany).subscribe(
+    this.companyService.update(this.companyId, updateCompany).subscribe(
       data => {
         this.company = data;
         this.refreshDisplay(this.company);

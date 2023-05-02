@@ -1,6 +1,6 @@
 <div class="surface-section md:w-8">
 <div class="font-medium text-3xl text-900 my-3" >Offices</div>
-<p-table [value]="offices" [tableStyle]="{'min-width': '60rem'}">
+<p-table styleClass="p-datatable-sm" [value]="offices" [tableStyle]="{'min-width': '30rem'}">
   <ng-template pTemplate="header">
     <tr>
       <th pSortableColumn="id" style="width:10%">Id <p-sortIcon field="id"></p-sortIcon></th>
