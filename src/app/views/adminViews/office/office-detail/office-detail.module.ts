@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {OfficeDetailComponent} from "./office-detail.component";
-
+import {RouterModule} from "@angular/router";
 
 
 @NgModule({
@@ -9,7 +9,13 @@ import {OfficeDetailComponent} from "./office-detail.component";
     OfficeDetailComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule.forChild([
+      {
+        path: '',
+        component: OfficeDetailComponent,
+      }
+    ]),
   ]
 })
 export class OfficeDetailModule { }

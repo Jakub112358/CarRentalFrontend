@@ -18,7 +18,7 @@
         <td>{{car.model}}</td>
         <td>{{car.status}}</td>
         <td>{{car.currentBranchOfficeId}}</td>
-        <td><button pButton pRipple label="Details" icon="pi pi-search" class="p-button-text"></button></td>
+        <td><button pButton pRipple label="Details" icon="pi pi-search" class="p-button-text" routerLink="{{'/admin/car/' + car.id}}"></button></td>
       </tr>
     </ng-template>
   </p-table>

@@ -3,7 +3,6 @@ import {Company} from "../../../model/Company";
 import {Address} from "../../../model/Address";
 import {CompanyService} from "../../../service/company.service";
 import {DomSanitizer, SafeUrl} from '@angular/platform-browser';
-import {FormControl} from "@angular/forms";
 import {CompanyUpdateDto} from "../../../model/CompanyUpdateDto";
 
 @Component({
@@ -20,7 +19,6 @@ export class CompanyComponent {
   modalHeader: string;
   inputValue: any;
   fieldNames: string[];
-  updateField: FormControl;
   activeFieldName: string;
 
   //TODO: temporal company id. In next version it would be provided from logged user info

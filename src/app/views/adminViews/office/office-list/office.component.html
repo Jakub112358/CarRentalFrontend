@@ -16,7 +16,7 @@
       <td>{{office.address.zipCode}}</td>
       <td>{{office.address.town}}</td>
       <td>{{this.office.address.street}} {{office.address.houseNumber}}</td>
-      <td><button pButton pRipple label="Details" icon="pi pi-search" class="p-button-text"></button></td>
+      <td><button pButton pRipple label="Details" icon="pi pi-search" class="p-button-text" routerLink="{{'/admin/office/' + office.id}}"></button></td>
     </tr>
   </ng-template>
 </p-table>

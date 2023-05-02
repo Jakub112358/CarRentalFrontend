@@ -3,6 +3,9 @@ import {CarCreateDto} from "../../../../model/CarCreateDto";
 import {Office} from "../../../../model/Office";
 import {OfficeService} from "../../../../service/office.service";
 import {CarService} from "../../../../service/car.service";
+import {Color} from "../../../../model/enumeration/Color";
+import {BodyType} from "../../../../model/enumeration/BodyType";
+import {Status} from "../../../../model/enumeration/Status";
 
 @Component({
   selector: 'app-car-new',
@@ -21,7 +24,6 @@ export class CarNewComponent {
   statuses: any[]
   offices: Office[];
 
-
   constructor(
     private officeService: OfficeService,
     private carService: CarService) {
@@ -29,62 +31,16 @@ export class CarNewComponent {
 
   ngOnInit() {
     this.resetNewCar()
-    this.invalidInputMessage = [
-      'invalid make',
-      'invalid model',
-      'mileage must be number > 0',
-      'min rental time must be > 0',
-      'year of manufacture must be > 1900 and < 2025',
-      'invalid body type',
-      'invalid color',
-      'invalid status',
-      'invalid current office branch id'
-    ];
-    this.invalidInput = [];
-    for (let i = 0; i < 9; i++) {
-      this.invalidInput.push(false);
-    }
-    this.bodyTypes = [
-      'CITY_CAR',
-      'SUPERMINI',
-      'HATCHBACK',
-      'MPV',
-      'SEDAN',
-      'ESTATE',
-      'COUPE',
-      'CROSSOVER',
-      'SUV',
-      'CABRIOLET'
-    ]
-    this.colors = [
-      'BLACK',
-      'WHITE',
-      'RED',
-      'GRAY',
-      'BLUE',
-      'YELLOW',
-      'GREEN',
-      'PINK',
-      'ORANGE',
-      'OTHER'
-    ]
-    this.statuses = [
-      'AVAILABLE',
-      'UNAVAILABLE',
-      'RENTED'
-    ]
-    this.officeService.findAll()
-      .subscribe(data => {
-        this.offices = data;
-      })
+    this.loadInvalidInputMessages();
+    this.loadInvalidInputFlags();
+    this.loadAllOffices();
+    this.loadEnumValues();
   }
 
   onSubmit() {
-    this.validate(this.newCar)
+    this.validate()
     if (!this.invalidInput.includes(true)) {
-      this.carService.save(this.newCar).subscribe(data => {
-        this.addedCarPath = '/admin/car/' + data.id;
-      })
+      this.saveNewCar();
       this.successModalVisible = true;
     } else {
       this.failModalVisible = true;
@@ -96,35 +52,20 @@ export class CarNewComponent {
     this.successModalVisible = false;
   }
 
-  private resetNewCar() {
-    this.newCar = {
-      make: '',
-      model: '',
-      mileage: 1,
-      minRentalTime: 1,
-      yearOfManufacture: 2000,
-      bodyType: '',
-      color: '',
-      status: 'AVAILABLE',
-      currentBranchOfficeId: 1
-    };
-  }
-
   public officeToString(office: Office): string {
     return ('id: ' + office.id + ', address: ' + office.address.zipCode + ' ' + office.address.town + ', ' + office.address.street + ' ' + office.address.houseNumber);
   }
 
-
-  private validate(car: CarCreateDto) {
-    this.validateMake(car.make);
-    this.validateModel(car.model);
-    this.validateMileage(car.mileage);
-    this.validateMinRentalTime(car.minRentalTime);
-    this.validateYearOfManufacture(car.yearOfManufacture);
-    this.validateBodyType(car.bodyType);
-    this.validateColor(car.color);
-    this.validateStatus(car.status);
-    this.validateOffice(car.currentBranchOfficeId);
+  private validate() {
+    this.validateMake(this.newCar.make);
+    this.validateModel(this.newCar.model);
+    this.validateMileage(this.newCar.mileage);
+    this.validateMinRentalTime(this.newCar.minRentalTime);
+    this.validateYearOfManufacture(this.newCar.yearOfManufacture);
+    this.validateBodyType(this.newCar.bodyType);
+    this.validateColor(this.newCar.color);
+    this.validateStatus(this.newCar.status);
+    this.validateOffice(this.newCar.currentBranchOfficeId);
   }
 
   private validateMake(make: string) {
@@ -144,7 +85,7 @@ export class CarNewComponent {
   }
 
   private validateYearOfManufacture(yearOfManufacture: number) {
-    this.invalidInput[4] = yearOfManufacture<=1900 || yearOfManufacture >= 2025;
+    this.invalidInput[4] = yearOfManufacture <= 1900 || yearOfManufacture >= 2025;
   }
 
   private validateBodyType(bodyType: string) {
@@ -165,4 +106,57 @@ export class CarNewComponent {
   }
 
 
+  private loadInvalidInputMessages() {
+    this.invalidInputMessage = [
+      'invalid make',
+      'invalid model',
+      'mileage must be number > 0',
+      'min rental time must be > 0',
+      'year of manufacture must be > 1900 and < 2025',
+      'invalid body type',
+      'invalid color',
+      'invalid status',
+      'invalid current office branch id'
+    ];
+  }
+
+  private loadInvalidInputFlags() {
+    this.invalidInput = [];
+    for (let i = 0; i < 9; i++) {
+      this.invalidInput.push(false);
+    }
+  }
+
+  private loadAllOffices() {
+    this.officeService.findAll()
+      .subscribe(data => {
+        this.offices = data;
+      })
+  }
+
+  private loadEnumValues() {
+    this.bodyTypes = Object.values(BodyType)
+    this.colors = Object.values(Color);
+    this.statuses = Object.values(Status)
+  }
+
+  private resetNewCar() {
+    this.newCar = {
+      make: '',
+      model: '',
+      mileage: 1,
+      minRentalTime: 1,
+      yearOfManufacture: 2000,
+      bodyType: '',
+      color: '',
+      status: 'AVAILABLE',
+      currentBranchOfficeId: 1
+    };
+  }
+
+  private saveNewCar() {
+    this.carService.save(this.newCar).subscribe(data => {
+      this.addedCarPath = '/admin/car/' + data.id;
+    })
+  }
 }

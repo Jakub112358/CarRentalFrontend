@@ -10,8 +10,10 @@ const routes: Routes = [
       {path: 'company', loadChildren: () => import('./views/adminViews/company/company.module').then(m => m.CompanyModule)},
       {path: 'office', loadChildren: () => import('./views/adminViews/office/office-list/office.module').then(m => m.OfficeModule)},
       {path: 'office/new', loadChildren: () => import('./views/adminViews/office/office-new/office-new.module').then(m => m.OfficeNewModule)},
+      {path: 'office/:id', loadChildren: () => import('./views/adminViews/office/office-detail/office-detail.module').then(m => m.OfficeDetailModule)},
       {path: 'car', loadChildren: () => import('./views/adminViews/car/car-list/car-list.module').then(m => m.CarListModule)},
       {path: 'car/new', loadChildren: () => import('./views/adminViews/car/car-new/car-new.module').then(m => m.CarNewModule)},
+      {path: 'car/:id', loadChildren: () => import('./views/adminViews/car/car-detail/car-detail.module').then(m => m.CarDetailModule)},
     ]
   },
   {path: '', loadChildren: () => import('./views/landing/landing.module').then(m => m.LandingModule)},
