@@ -6,6 +6,7 @@ import {CarService} from "../../../../service/car.service";
 import {Color} from "../../../../model/enumeration/Color";
 import {BodyType} from "../../../../model/enumeration/BodyType";
 import {Status} from "../../../../model/enumeration/Status";
+import {CarValidator} from "../../../../util/validator/CarValidator";
 
 @Component({
   selector: 'app-car-new',
@@ -26,7 +27,9 @@ export class CarNewComponent {
 
   constructor(
     private officeService: OfficeService,
-    private carService: CarService) {
+    private carService: CarService,
+    private carValidator: CarValidator,
+  ) {
   }
 
   ngOnInit() {
@@ -38,7 +41,7 @@ export class CarNewComponent {
   }
 
   onSubmit() {
-    this.validate()
+    this.invalidInput = this.carValidator.validateCarWithPartialResults(this.newCar).map(v => !v);
     if (!this.invalidInput.includes(true)) {
       this.saveNewCar();
       this.successModalVisible = true;
@@ -55,56 +58,6 @@ export class CarNewComponent {
   public officeToString(office: Office): string {
     return ('id: ' + office.id + ', address: ' + office.address.zipCode + ' ' + office.address.town + ', ' + office.address.street + ' ' + office.address.houseNumber);
   }
-
-  private validate() {
-    this.validateMake(this.newCar.make);
-    this.validateModel(this.newCar.model);
-    this.validateMileage(this.newCar.mileage);
-    this.validateMinRentalTime(this.newCar.minRentalTime);
-    this.validateYearOfManufacture(this.newCar.yearOfManufacture);
-    this.validateBodyType(this.newCar.bodyType);
-    this.validateColor(this.newCar.color);
-    this.validateStatus(this.newCar.status);
-    this.validateOffice(this.newCar.currentBranchOfficeId);
-  }
-
-  private validateMake(make: string) {
-    this.invalidInput[0] = make.length <= 0;
-  }
-
-  private validateModel(model: string) {
-    this.invalidInput[1] = model.length <= 0;
-  }
-
-  private validateMileage(mileage: number) {
-    this.invalidInput[2] = mileage <= 0;
-  }
-
-  private validateMinRentalTime(minRentalTime: number) {
-    this.invalidInput[3] = minRentalTime <= 0;
-  }
-
-  private validateYearOfManufacture(yearOfManufacture: number) {
-    this.invalidInput[4] = yearOfManufacture <= 1900 || yearOfManufacture >= 2025;
-  }
-
-  private validateBodyType(bodyType: string) {
-    this.invalidInput[5] = !this.bodyTypes.includes(bodyType);
-
-  }
-
-  private validateColor(color: string) {
-    this.invalidInput[6] = !this.colors.includes(color);
-  }
-
-  private validateStatus(status: string) {
-    this.invalidInput[7] = !this.statuses.includes(status);
-  }
-
-  private validateOffice(currentBranchOfficeId: number) {
-    this.invalidInput[8] = !this.offices.map(o => o.id).includes(currentBranchOfficeId);
-  }
-
 
   private loadInvalidInputMessages() {
     this.invalidInputMessage = [
