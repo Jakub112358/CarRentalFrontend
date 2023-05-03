@@ -14,6 +14,9 @@ const routes: Routes = [
       {path: 'car', loadChildren: () => import('./views/adminViews/car/car-list/car-list.module').then(m => m.CarListModule)},
       {path: 'car/new', loadChildren: () => import('./views/adminViews/car/car-new/car-new.module').then(m => m.CarNewModule)},
       {path: 'car/:id', loadChildren: () => import('./views/adminViews/car/car-detail/car-detail.module').then(m => m.CarDetailModule)},
+      {path: 'employee', loadChildren: () => import('./views/adminViews/employee/employee-list/employee-list.module').then(m => m.EmployeeListModule)},
+      {path: 'employee/new', loadChildren: () => import('./views/adminViews/employee/employee-new/employee-new.module').then(m => m.EmployeeNewModule)},
+      {path: 'employee/:id', loadChildren: () => import('./views/adminViews/employee/employee-detail/employee-detail.module').then(m => m.EmployeeDetailModule)},
     ]
   },
   {path: '', loadChildren: () => import('./views/landing/landing.module').then(m => m.LandingModule)},

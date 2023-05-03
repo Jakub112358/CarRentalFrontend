@@ -1,4 +1,4 @@
-import {CreateDto} from "./CreateDto";
+import {CreateDto} from "./interfaces/CreateDto";
 
 export interface CarCreateDto extends CreateDto {
   make: string;

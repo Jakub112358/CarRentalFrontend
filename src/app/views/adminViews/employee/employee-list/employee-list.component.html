@@ -1,0 +1,27 @@
+<div class="surface-section md:w-8">
+  <div class="font-medium text-3xl text-900 my-3" >Employees</div>
+  <p-table styleClass="p-datatable-sm" [value]="employees" [tableStyle]="{'min-width': '50rem'}">
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="id" style="width:10%">Id <p-sortIcon field="id"></p-sortIcon></th>
+        <th pSortableColumn="firstName" style="width:20%">First name  <p-sortIcon field="firstName"></p-sortIcon></th>
+        <th pSortableColumn="lastName" style="width:20%">Last name <p-sortIcon field="lastName"></p-sortIcon></th>
+        <th pSortableColumn="jobPosition" style="width:20%">Job position <p-sortIcon field="jobPosition"></p-sortIcon></th>
+        <th pSortableColumn="branchOfficeId" style="width:20%">Office id <p-sortIcon field="branchOfficeId"></p-sortIcon></th>
+        <th style="width: 10%">Details</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-employee>
+      <tr>
+        <td>{{employee.id}}</td>
+        <td>{{employee.firstName}}</td>
+        <td>{{employee.lastName}}</td>
+        <td>{{employee.jobPosition}}</td>
+        <td>{{employee.branchOfficeId}}</td>
+        <td><button pButton pRipple label="Details" icon="pi pi-search" class="p-button-text" routerLink="{{'/admin/employee/' + employee.id}}"></button></td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <button pButton pRipple label="add new employee" class="p-button-success m-2" icon="pi pi-plus" routerLink='/admin/employee/new'></button>
+</div>
+

@@ -1,4 +1,4 @@
-import {UpdateDto} from "./UpdateDto";
+import {UpdateDto} from "./interfaces/UpdateDto";
 
 export interface CarUpdateDto extends UpdateDto {
   id?: number;

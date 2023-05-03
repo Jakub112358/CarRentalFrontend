@@ -1,7 +1,7 @@
 import {catchError, Observable, of} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {CreateDto} from "../model/CreateDto";
-import {UpdateDto} from "../model/UpdateDto";
+import {CreateDto} from "../model/interfaces/CreateDto";
+import {UpdateDto} from "../model/interfaces/UpdateDto";
 
 export abstract class CrudService<T> {
   protected constructor(

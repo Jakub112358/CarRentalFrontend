@@ -4,7 +4,6 @@ import {Color} from "../../model/enumeration/Color";
 import {Status} from "../../model/enumeration/Status";
 import {OfficeService} from "../../service/office.service";
 import {Office} from "../../model/Office";
-import {CarCreateDto} from "../../model/CarCreateDto";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +16,7 @@ export class CarValidator {
   }
 
 
-  public validateCarWithPartialResults(car: CarCreateDto): boolean[] {
+  public validateCarWithPartialResults(car: any): boolean[] {
     return [
       this.validateMake(car.make),
       this.validateModel(car.model),
