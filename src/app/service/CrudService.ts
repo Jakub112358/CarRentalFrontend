@@ -5,8 +5,8 @@ import {UpdateDto} from "../model/interfaces/UpdateDto";
 
 export abstract class CrudService<T> {
   protected constructor(
-    private url: string,
-    private http: HttpClient
+    protected url: string,
+    protected http: HttpClient
   ) {
   }
 
@@ -38,7 +38,7 @@ export abstract class CrudService<T> {
       )
   }
 
-  private handleError<T>(result?: T) {
+  protected handleError<T>(result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
       return of(result as T)

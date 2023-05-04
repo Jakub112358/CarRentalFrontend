@@ -10,7 +10,6 @@ import {CarService} from "../../../../service/car.service";
 export class CarListComponent {
   cars: Car[];
 
-
   constructor(
     private carService: CarService
   ) {

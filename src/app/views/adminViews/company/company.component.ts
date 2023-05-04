@@ -74,7 +74,8 @@ export class CompanyComponent {
   }
 
   private createUpdateDto() {
-    if (this.updateElement.name === 'zipCode' || this.updateElement.name === 'town' || this.updateElement.name === 'street' || this.updateElement.name === 'houseNumber') {
+    let addressFieldNames = ['zipCode', 'town', 'street', 'houseNumber']
+    if (addressFieldNames.includes(this.updateElement.name)) {
       return this.createUpdateDtoWithAddress();
     } else {
       return this.createUpdateDtoWithBasicField();
@@ -95,12 +96,16 @@ export class CompanyComponent {
     return {
       address:
         {
-          zipCode: this.updateElement.name === 'zipCode' ? this.updateElement.value : this.elements.find(e => e.name === 'zipCode')?.value,
-          town: this.updateElement.name === 'town' ? this.updateElement.value : this.elements.find(e => e.name === 'town')?.value,
-          street: this.updateElement.name === 'street' ? this.updateElement.value : this.elements.find(e => e.name === 'street')?.value,
-          houseNumber: this.updateElement.name === 'houseNumber' ? this.updateElement.value : this.elements.find(e => e.name === 'houseNumber')?.value,
+          zipCode: this.getAddressAfterModification('zipCode'),
+          town: this.getAddressAfterModification('town'),
+          street: this.getAddressAfterModification('street'),
+          houseNumber: this.getAddressAfterModification('houseNumber'),
         }
     };
+  }
+
+  getAddressAfterModification(name: string){
+   return this.updateElement.name === name ? this.updateElement.value : this.elements.find(e => e.name === name)?.value;
   }
 
   private updateCompanyAndRefreshDisplay(dto: CompanyUpdateDto) {

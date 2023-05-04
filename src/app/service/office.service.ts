@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Office} from "../model/Office";
 import {HttpClient} from "@angular/common/http";
 import {CrudService} from "./CrudService";
+import {Constraints} from "./Constraints";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import {CrudService} from "./CrudService";
 export class OfficeService extends CrudService<Office> {
 
   constructor(http: HttpClient) {
-    super('http://localhost:8080/api/v1/offices', http);
+    super(Constraints.OFFICE_URL, http);
   }
 
 }

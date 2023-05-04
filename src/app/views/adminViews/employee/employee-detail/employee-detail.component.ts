@@ -4,7 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {EmployeeService} from "../../../../service/employee.service";
 import {Employee} from "../../../../model/Employee";
 import {UpdateFormElement} from "../../../../model/templateElements/UpdateFormElement";
-import {EmployeeUpdateDto} from "../../../../model/EmployeeUpdateDto";
+import {UpdateDto} from "../../../../model/interfaces/UpdateDto";
 
 @Component({
   selector: 'app-employee-detail',
@@ -33,7 +33,7 @@ export class EmployeeDetailComponent {
   }
 
   onSubmit() {
-    let employeeUpdateDto: EmployeeUpdateDto = this.createUpdateDto();
+    let employeeUpdateDto: UpdateDto = this.createUpdateDto();
     this.updateEmployeeAndRefreshDisplay(employeeUpdateDto);
     this.modalVisible = false;
   }
@@ -70,10 +70,10 @@ export class EmployeeDetailComponent {
       enumerable: true,
       configurable: true,
     });
-    return (o as EmployeeUpdateDto)
+    return (o as UpdateDto)
   }
 
-  private updateEmployeeAndRefreshDisplay(dto: EmployeeUpdateDto) {
+  private updateEmployeeAndRefreshDisplay(dto: UpdateDto) {
     let id = this.getEmployeeId()
     this.employeeService.update(id, dto).subscribe(
       data => {
