@@ -19,8 +19,7 @@ export class OfficeComponent {
   }
 
   ngOnInit() {
-    this.officeService.findAll()
-      .subscribe(data => {
+    this.officeService.findAll().subscribe(data => {
         this.offices = data;
       })
   }
