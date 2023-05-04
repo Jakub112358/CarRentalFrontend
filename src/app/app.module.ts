@@ -10,7 +10,6 @@ import {RippleModule} from "primeng/ripple";
 import {FormsModule} from "@angular/forms";
 import {DialogModule} from "primeng/dialog";
 
-
 @NgModule({
   declarations: [
     AppComponent,

@@ -14,21 +14,28 @@ export class HeaderComponent {
 
       {label: 'company', icon: 'pi pi-globe', routerLink: 'company'},
 
-      {label: 'office', icon: 'pi pi-sitemap', items:[
+      {label: 'offices', icon: 'pi pi-sitemap', items:[
           {label: 'office list', icon: 'pi pi-list', routerLink: 'office'},
           {label: 'add office', icon: 'pi pi-plus', routerLink: 'office/new'},
         ]
       },
-      {label: 'car', icon: 'pi pi-car', items:[
+
+      {label: 'cars', icon: 'pi pi-car', items:[
           {label: 'car list', icon: 'pi pi-list', routerLink: 'car'},
           {label: 'add car', icon: 'pi pi-plus', routerLink: 'car/new'},
         ]
       },
-      {label: 'employee', icon: 'pi pi-users', items:[
+
+      {label: 'employees', icon: 'pi pi-users', items:[
           {label: 'employee list', icon: 'pi pi-list', routerLink: 'employee'},
           {label: 'add employee', icon: 'pi pi-plus', routerLink: 'employee/new'},
         ]
-      }
+      },
+
+      {label: 'clients', icon: 'pi pi-users', items:[
+          {label: 'client list', icon: 'pi pi-list', routerLink: 'client'},
+        ]
+      },
     ];
   }
 

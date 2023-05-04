@@ -1,7 +1,6 @@
 <div *ngFor="let element of elements">
   <p-panel header="{{element.header}}" [toggleable]="true" >
-    <p *ngIf="!element.warning">{{element.correctContent}}</p>
-    <p *ngIf="element.warning">{{element.warningContent}}</p>
+    <p >{{element.warningContent}}</p>
   </p-panel>
 </div>
 

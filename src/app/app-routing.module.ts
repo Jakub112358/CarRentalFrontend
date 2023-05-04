@@ -17,6 +17,8 @@ const routes: Routes = [
       {path: 'employee', loadChildren: () => import('./views/adminViews/employee/employee-list/employee-list.module').then(m => m.EmployeeListModule)},
       {path: 'employee/new', loadChildren: () => import('./views/adminViews/employee/employee-new/employee-new.module').then(m => m.EmployeeNewModule)},
       {path: 'employee/:id', loadChildren: () => import('./views/adminViews/employee/employee-detail/employee-detail.module').then(m => m.EmployeeDetailModule)},
+      {path: 'client', loadChildren: () => import('./views/adminViews/client/client-list/client-list.module').then(m => m.ClientListModule)},
+      {path: 'client/:id', loadChildren: () => import('./views/adminViews/client/client-detail/client-detail.module').then(m => m.ClientDetailModule)},
     ]
   },
   {path: '', loadChildren: () => import('./views/landing/landing.module').then(m => m.LandingModule)},
