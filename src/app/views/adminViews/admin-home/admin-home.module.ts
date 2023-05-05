@@ -4,8 +4,6 @@ import {AdminHomeComponent} from "./admin-home.component";
 import {RouterModule} from "@angular/router";
 import {PanelModule} from "primeng/panel";
 
-
-
 @NgModule({
   declarations: [
     AdminHomeComponent

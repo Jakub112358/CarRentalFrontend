@@ -1,10 +1,10 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AdminLayoutComponent} from "./views/admin-layout/admin-layout.component";
+import {ClientLayoutComponent} from "./views/client-layout/client-layout.component";
 
 const routes: Routes = [
-  {
-    path: 'admin', component: AdminLayoutComponent,
+  {path: 'admin', component: AdminLayoutComponent,
     children: [
       {path: '', loadChildren: () => import('./views/adminViews/admin-home/admin-home.module').then(m => m.AdminHomeModule)},
       {path: 'company', loadChildren: () => import('./views/adminViews/company/company.module').then(m => m.CompanyModule)},
@@ -19,6 +19,11 @@ const routes: Routes = [
       {path: 'employee/:id', loadChildren: () => import('./views/adminViews/employee/employee-detail/employee-detail.module').then(m => m.EmployeeDetailModule)},
       {path: 'client', loadChildren: () => import('./views/adminViews/client/client-list/client-list.module').then(m => m.ClientListModule)},
       {path: 'client/:id', loadChildren: () => import('./views/adminViews/client/client-detail/client-detail.module').then(m => m.ClientDetailModule)},
+    ]
+  },
+  {path: 'client', component: ClientLayoutComponent,
+    children: [
+      {path: '', loadChildren: () => import('./views/clientViews/client-home/client-home.module').then(m => m.ClientHomeModule)},
     ]
   },
   {path: '', loadChildren: () => import('./views/landing/landing.module').then(m => m.LandingModule)},

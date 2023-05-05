@@ -9,15 +9,18 @@ import {ButtonModule} from "primeng/button";
 import {RippleModule} from "primeng/ripple";
 import {FormsModule} from "@angular/forms";
 import {DialogModule} from "primeng/dialog";
+import {ClientLayoutModule} from "./views/client-layout/client-layout.module";
 
 @NgModule({
   declarations: [
     AppComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AdminLayoutModule,
+    ClientLayoutModule,
     HttpClientModule,
     BrowserAnimationsModule,
     ButtonModule,
