@@ -38,6 +38,13 @@ export abstract class CrudService<T> {
       )
   }
 
+  public delete(id:number){
+    return this.http.delete((this.url + '/' + id))
+      .pipe(
+        catchError(this.handleError<T>())
+      )
+  }
+
   protected handleError<T>(result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);

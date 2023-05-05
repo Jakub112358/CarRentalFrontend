@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {DetailElement} from "../../../../model/templateElements/DetailElement";
 import {UpdateFormElement} from "../../../../model/templateElements/UpdateFormElement";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {EmployeeService} from "../../../../service/employee.service";
 import {Employee} from "../../../../model/Employee";
 import {OfficeService} from "../../../../service/office.service";
@@ -19,34 +19,48 @@ import {CarService} from "../../../../service/car.service";
 export class OfficeDetailComponent {
   elements: DetailElement[];
   updateElement: UpdateFormElement;
-  modalVisible: boolean;
-  modalHeader: string;
+  editModalVisible: boolean;
+  editModalHeader: string;
+  deleteModalVisible: boolean;
   cars: Car[];
   employees: Employee[];
 
   constructor(private activatedRoute: ActivatedRoute,
               private service: OfficeService,
               private carService: CarService,
-              private employeeService: EmployeeService) {
+              private employeeService: EmployeeService,
+              private router: Router) {
   }
 
   ngOnInit() {
-    this.modalVisible = false;
+    this.editModalVisible = false;
+    this.deleteModalVisible = false;
     this.loadElements();
     this.loadCars();
     this.loadEmployees();
   }
 
   showEditModal(element: DetailElement) {
-    this.modalHeader = 'edit: ' + element.title;
+    this.editModalHeader = 'edit: ' + element.title;
     this.updateElement = new UpdateFormElement(element.value, element.name);
-    this.modalVisible = true;
+    this.editModalVisible = true;
+  }
+
+  showDeleteModal() {
+    this.deleteModalVisible = true;
   }
 
   onSubmit() {
     let updateDto: UpdateDto = this.createUpdateDto();
     this.updateObjectAndRefreshDisplay(updateDto);
-    this.modalVisible = false;
+    this.editModalVisible = false;
+  }
+
+  deleteOffice() {
+    this.service.delete(this.getObjectId()).subscribe(() =>
+      this.router.navigateByUrl('/admin/office')
+    );
+
   }
 
   private loadElements() {

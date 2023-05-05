@@ -13,18 +13,38 @@
       </div>
     </li>
   </ul>
+  <button pButton pRipple label="delete office" class="p-button-danger m-2" icon="pi pi-trash" (click)="showDeleteModal()"></button>
 </div>
 
-<p-dialog *ngIf="updateElement" header="{{modalHeader}}" [(visible)]="modalVisible" [style]="{width: '50vw'}">
+
+<!--edit modal-->
+
+
+<p-dialog *ngIf="updateElement" header="{{editModalHeader}}" [(visible)]="editModalVisible" [style]="{width: '50vw'}">
   <form (ngSubmit)="onSubmit()" class="grid justify-content-center py-2">
     <input class="w-12" type="text" pInputText [(ngModel)]="updateElement.value" [ngModelOptions]="{standalone: true}"/>
     <button type="submit" pButton pRipple label="Save changes" class="p-button-success w-5 m-2"></button>
     <button type="button" pButton pRipple label="Back" class="p-button-danger w-5 m-2"
-            (click)="modalVisible=false"></button>
+            (click)="editModalVisible=false"></button>
   </form>
 </p-dialog>
 
-<!--office employees-->
+
+<!--delete modal-->
+
+
+<p-dialog header="delete office" [(visible)]="deleteModalVisible" [style]="{width: '50vw'}">
+  <div class="grid justify-content-center py-2">
+
+
+    <h3 class="w-12">Are you sure? Delete action is irreversible.</h3>
+    <button type="button" pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger w-5 m-2" (click)="deleteOffice()"></button>
+    <button type="button" pButton pRipple label="Back" icon="pi pi-arrow-left" class="p-button-success w-5 m-2"
+            (click)="deleteModalVisible=false"></button>
+  </div>
+</p-dialog>
+
+<!--employees-->
 
 <div class="surface-section md:w-8">
   <div class="font-medium text-3xl text-900 my-3" >Employees</div>
