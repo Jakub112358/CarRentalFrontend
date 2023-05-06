@@ -36,6 +36,8 @@ export class HeaderComponent {
           {label: 'client list', icon: 'pi pi-list', routerLink: 'client'},
         ]
       },
+
+      {label: 'logout', icon: 'pi pi-sign-out', routerLink: '/'}
     ];
   }
 

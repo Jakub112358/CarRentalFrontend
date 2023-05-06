@@ -30,7 +30,6 @@ export class EmployeeNewComponent {
     this.loadFormElements();
   }
 
-//TODO implement
   addNextEmployee() {
     this.loadFormElements();
     this.successModalVisible = false;

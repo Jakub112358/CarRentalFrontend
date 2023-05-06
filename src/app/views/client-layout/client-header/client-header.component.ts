@@ -17,6 +17,7 @@ export class ClientHeaderComponent {
           {label: 'new reservation', icon: 'pi pi-plus', routerLink: 'reservation/new'},
         ]
       },
+      {label: 'logout', icon: 'pi pi-sign-out', routerLink: '/'},
     ];
   }
 }

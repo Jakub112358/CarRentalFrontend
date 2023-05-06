@@ -7,7 +7,7 @@ import {ClientHeaderComponent} from './client-header/client-header.component';
 @NgModule({
   declarations: [
     ClientLayoutComponent,
-    ClientHeaderComponent
+    ClientHeaderComponent,
   ],
   exports: [
     ClientLayoutComponent

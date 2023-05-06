@@ -19,11 +19,16 @@ const routes: Routes = [
       {path: 'employee/:id', loadChildren: () => import('./views/adminViews/employee/employee-detail/employee-detail.module').then(m => m.EmployeeDetailModule)},
       {path: 'client', loadChildren: () => import('./views/adminViews/client/client-list/client-list.module').then(m => m.ClientListModule)},
       {path: 'client/:id', loadChildren: () => import('./views/adminViews/client/client-detail/client-detail.module').then(m => m.ClientDetailModule)},
+      {path: 'notfound', loadChildren: () => import('./views/not-found/not-found.module').then(m => m.NotFoundModule)},
+      {path: '**', redirectTo: 'notfound'}
     ]
   },
   {path: 'client', component: ClientLayoutComponent,
     children: [
       {path: '', loadChildren: () => import('./views/clientViews/client-home/client-home.module').then(m => m.ClientHomeModule)},
+      {path: 'reservation/new', loadChildren: () => import('./views/clientViews/reservation/reservation-new/reservation-new.module').then(m => m.ReservationNewModule)},
+      {path: 'notfound', loadChildren: () => import('./views/not-found/not-found.module').then(m => m.NotFoundModule)},
+      {path: '**', redirectTo: 'notfound'}
     ]
   },
   {path: '', loadChildren: () => import('./views/landing/landing.module').then(m => m.LandingModule)},
