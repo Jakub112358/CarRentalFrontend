@@ -6,11 +6,13 @@
         <li class="flex align-items-center py-1 px-2 border-top-1 surface-border flex-wrap">
           <div class="text-500 w-6 md:w-3 font-medium">{{element.title}}</div>
           <div class="text-900 w-full md:w-9 md:flex-order-0 flex-order-1">
-            <input *ngIf="element.type==='text' || element.type==='number'" type="{{element.type}}" [(ngModel)]="element.model" name="{{element.name}}" class="w-12">
-            <select *ngIf="element.type==='select'"  [(ngModel)]="element.model" name="{{element.name}}" class="w-12">
-              <option *ngFor="let option of element.options" value="{{option[0]}}" >{{option[1]}}</option>
+            <input *ngIf="element.type==='text' || element.type==='number'" type="{{element.type}}"
+                   [(ngModel)]="element.model" name="{{element.name}}" class="w-12">
+            <select *ngIf="element.type==='select'" [(ngModel)]="element.model" name="{{element.name}}" class="w-12">
+              <option *ngFor="let option of element.options" value="{{option[0]}}">{{option[1]}}</option>
             </select>
-            <p-calendar [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" *ngIf="element.type==='date'" [(ngModel)]="element.model"
+            <p-calendar [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" *ngIf="element.type==='date'"
+                        [(ngModel)]="element.model"
                         [showIcon]="true" name="{{element.name}}" [minDate]="element.minDate"></p-calendar>
           </div>
         </li>
@@ -21,15 +23,39 @@
   </form>
 </div>
 
-<!--<p-dialog header="Success!" [(visible)]="successModalVisible" [style]="{width: '50vw'}">-->
-<!--  <div class="grid justify-content-center py-2">-->
-<!--    <button type="button" pButton pRipple label="Add another employee" class="p-button-success w-5 m-2"-->
-<!--            (click)="addNextEmployee()"></button>-->
-<!--    <button type="button" pButton pRipple label="Go to added employee details" class="p-button-success w-5 m-2"-->
-<!--            [routerLink]="addedEmployeePath"></button>-->
-<!--  </div>-->
-<!--</p-dialog>-->
 
-<!--<p-dialog header="Fail" [(visible)]="failModalVisible" [style]="{width: '50vw'}">-->
-<!--  Adding new employee failed, please check if input is correct.-->
-<!--</p-dialog>-->
+<div *ngIf="showCars" class="surface-section w-12">
+  <div class="font-medium text-3xl text-900 my-3">Cars</div>
+  <p-table styleClass="p-datatable-sm" [value]="cars" [tableStyle]="{'min-width': '30rem'}">
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="id" style="width:5%">Id<p-sortIcon field="id"></p-sortIcon></th>
+        <th pSortableColumn="make" style="width:10%">Make<p-sortIcon field="make"></p-sortIcon></th>
+        <th pSortableColumn="model" style="width:10%">Model<p-sortIcon field="model"></p-sortIcon></th>
+        <th pSortableColumn="mileage" style="width:10%">Mileage<p-sortIcon field="mileage"></p-sortIcon></th>
+        <th pSortableColumn="yearOfManufacture" style="width:15%">Year of manufacture<p-sortIcon field="yearOfManufacture"></p-sortIcon></th>
+        <th pSortableColumn="bodyType" style="width:10%">Body type<p-sortIcon field="bodyType"></p-sortIcon></th>
+        <th pSortableColumn="color" style="width:10%">Color<p-sortIcon field="color"></p-sortIcon></th>
+        <th pSortableColumn="price" style="width:10%">Price<p-sortIcon field="price"></p-sortIcon></th>
+        <th style="width: 10%">Select</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-car>
+      <tr>
+        <td>{{car.id}}</td>
+        <td>{{car.make}}</td>
+        <td>{{car.model}}</td>
+        <td>{{car.mileage}}</td>
+        <td>{{car.yearOfManufacture}}</td>
+        <td>{{car.bodyType}}</td>
+        <td>{{car.color}}</td>
+        <td>miliony $</td>
+        <td>
+          <button pButton pRipple label="Select" icon="pi pi-check" class="p-button-success"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+

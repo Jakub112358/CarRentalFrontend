@@ -6,6 +6,7 @@ import {FormsModule} from "@angular/forms";
 import {ButtonModule} from "primeng/button";
 import {RippleModule} from "primeng/ripple";
 import {CalendarModule} from "primeng/calendar";
+import {TableModule} from "primeng/table";
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import {CalendarModule} from "primeng/calendar";
     FormsModule,
     ButtonModule,
     RippleModule,
-    CalendarModule
+    CalendarModule,
+    TableModule
   ]
 })
 export class ReservationNewModule {

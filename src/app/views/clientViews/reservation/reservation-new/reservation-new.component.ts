@@ -14,6 +14,7 @@ import {ReservationValidator} from "../../../../util/validator/ReservationValida
 export class ReservationNewComponent {
   dateAndOfficeElements: CreateFormElement[];
   cars: Car[];
+  showCars: boolean;
 
 
   constructor(private officeService: OfficeService,
@@ -26,7 +27,10 @@ export class ReservationNewComponent {
   }
 
   onSubmitFindCars() {
-    this.validateDateAndOfficeForm()
+    if(this.validateDateAndOfficeForm()){
+      this.showCars = true;
+      this.loadCars();
+    }
   }
 
   private createFormElements(branchOfficeOptions: any[][]) {
@@ -58,5 +62,11 @@ export class ReservationNewComponent {
     this.reservationValidator.validateDateAndOfficeForm(this.dateAndOfficeElements);
 
     return this.dateAndOfficeElements.every(e => e.valid);
+  }
+
+  private loadCars() {
+    this.carService.findByAvailableInDatesAndCriteria(this.dateAndOfficeElements).subscribe(data => {
+      this.cars = data
+    })
   }
 }
