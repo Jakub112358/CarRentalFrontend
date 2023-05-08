@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {Office} from "../model/Office";
+import {Office} from "../model/office";
 import {HttpClient} from "@angular/common/http";
-import {CrudService} from "./CrudService";
-import {Constraints} from "./Constraints";
+import {CrudService} from "./crud-service";
+import {Constraints} from "./constraints";
 
 @Injectable({
   providedIn: 'root'

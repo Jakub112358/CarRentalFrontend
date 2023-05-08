@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {CrudService} from "./CrudService";
-import {Car} from "../model/Car";
+import {CrudService} from "./crud-service";
+import {Car} from "../model/car";
 import {catchError, Observable} from "rxjs";
-import {Constraints} from "./Constraints";
-import {CreateFormElement} from "../model/templateElements/CreateFormElement";
-import {CarRentDto} from "../model/dto/CarRentDto";
+import {Constraints} from "./constraints";
+import {CreateFormElement} from "../model/template-elements/create-form-element";
+import {CarRentDto} from "../model/dto/car-rent-dto";
 
 @Injectable({
   providedIn: 'root'

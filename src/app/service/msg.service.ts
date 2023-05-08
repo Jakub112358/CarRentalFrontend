@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {CrudService} from "./CrudService";
-import {Msg} from "../model/Msg";
+import {CrudService} from "./crud-service";
+import {Msg} from "../model/msg";
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {Constraints} from "./Constraints";
+import {Constraints} from "./constraints";
 import {catchError, Observable} from "rxjs";
 
 @Injectable({

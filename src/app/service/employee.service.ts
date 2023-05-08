@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {CrudService} from "./CrudService";
-import {Employee} from "../model/Employee";
-import {Constraints} from "./Constraints";
+import {CrudService} from "./crud-service";
+import {Employee} from "../model/employee";
+import {Constraints} from "./constraints";
 import {catchError, Observable} from "rxjs";
 
 @Injectable({
