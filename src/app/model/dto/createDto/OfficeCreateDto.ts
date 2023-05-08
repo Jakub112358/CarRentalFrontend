@@ -1,5 +1,5 @@
-import {Address} from "./Address";
-import {CreateDto} from "./interfaces/CreateDto";
+import {Address} from "../../Address";
+import {CreateDto} from "./CreateDto";
 
 export interface OfficeCreateDto extends CreateDto{
 

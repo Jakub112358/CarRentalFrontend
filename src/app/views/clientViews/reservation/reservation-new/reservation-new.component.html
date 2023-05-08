@@ -1,3 +1,5 @@
+<!--date and office selection form-->
+
 <div class="surface-section md:w-9 xl:w-6">
   <div class="font-medium text-3xl text-900 my-3">New reservation</div>
   <form (ngSubmit)="onSubmitFindCars()">
@@ -24,19 +26,38 @@
 </div>
 
 
+<!--available cars list-->
+
+
 <div *ngIf="showCars" class="surface-section w-12">
   <div class="font-medium text-3xl text-900 my-3">Cars</div>
   <p-table styleClass="p-datatable-sm" [value]="cars" [tableStyle]="{'min-width': '30rem'}">
     <ng-template pTemplate="header">
       <tr>
-        <th pSortableColumn="id" style="width:5%">Id<p-sortIcon field="id"></p-sortIcon></th>
-        <th pSortableColumn="make" style="width:10%">Make<p-sortIcon field="make"></p-sortIcon></th>
-        <th pSortableColumn="model" style="width:10%">Model<p-sortIcon field="model"></p-sortIcon></th>
-        <th pSortableColumn="mileage" style="width:10%">Mileage<p-sortIcon field="mileage"></p-sortIcon></th>
-        <th pSortableColumn="yearOfManufacture" style="width:15%">Year of manufacture<p-sortIcon field="yearOfManufacture"></p-sortIcon></th>
-        <th pSortableColumn="bodyType" style="width:10%">Body type<p-sortIcon field="bodyType"></p-sortIcon></th>
-        <th pSortableColumn="color" style="width:10%">Color<p-sortIcon field="color"></p-sortIcon></th>
-        <th pSortableColumn="price" style="width:10%">Price<p-sortIcon field="price"></p-sortIcon></th>
+        <th pSortableColumn="id" style="width:5%">Id
+          <p-sortIcon field="id"></p-sortIcon>
+        </th>
+        <th pSortableColumn="make" style="width:10%">Make
+          <p-sortIcon field="make"></p-sortIcon>
+        </th>
+        <th pSortableColumn="model" style="width:10%">Model
+          <p-sortIcon field="model"></p-sortIcon>
+        </th>
+        <th pSortableColumn="mileage" style="width:10%">Mileage
+          <p-sortIcon field="mileage"></p-sortIcon>
+        </th>
+        <th pSortableColumn="yearOfManufacture" style="width:15%">Year of manufacture
+          <p-sortIcon field="yearOfManufacture"></p-sortIcon>
+        </th>
+        <th pSortableColumn="bodyType" style="width:10%">Body type
+          <p-sortIcon field="bodyType"></p-sortIcon>
+        </th>
+        <th pSortableColumn="color" style="width:10%">Color
+          <p-sortIcon field="color"></p-sortIcon>
+        </th>
+        <th pSortableColumn="price" style="width:10%">Price
+          <p-sortIcon field="price"></p-sortIcon>
+        </th>
         <th style="width: 10%">Select</th>
       </tr>
     </ng-template>
@@ -49,13 +70,31 @@
         <td>{{car.yearOfManufacture}}</td>
         <td>{{car.bodyType}}</td>
         <td>{{car.color}}</td>
-        <td>miliony $</td>
+        <td>{{car.price}}</td>
         <td>
-          <button pButton pRipple label="Select" icon="pi pi-check" class="p-button-success"></button>
+          <button type="button" pButton pRipple label="Select" icon="pi pi-check" class="p-button-success"
+                  (click)="selectCar(car)"></button>
         </td>
       </tr>
     </ng-template>
   </p-table>
 </div>
 
+
+<!--reservation confirm-->
+
+
+<p-dialog *ngIf="reservationCreateDto" header="Confirm Reservation" [(visible)]="showConfirmReservation"
+          [style]="{width: '50vw'}">
+
+  <ul class="list-none p-1 m-1">
+    <li *ngFor="let confirmElement of confirmReservationElements" class="flex align-items-center py-1 px-2 border-top-1 surface-border flex-wrap">
+      <div class="text-500 w-6 md:w-3 font-medium">{{confirmElement.title}} </div>
+      <div class="text-900 w-full md:w-9 md:flex-order-0 flex-order-1">{{confirmElement.value}}</div>
+    </li>
+  </ul>
+  <button type="button" pButton pRipple label="Confirm reservation" class="p-button-success w-5 m-2" (click)="onSubmitReservation()"></button>
+  <button type="button" pButton pRipple label="Cancel" class="p-button-danger w-5 m-2" (click)="showConfirmReservation=false"></button>
+
+</p-dialog>
 

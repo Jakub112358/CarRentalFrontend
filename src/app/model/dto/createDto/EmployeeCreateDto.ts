@@ -1,4 +1,4 @@
-import {CreateDto} from "./interfaces/CreateDto";
+import {CreateDto} from "./CreateDto";
 
 export interface EmployeeCreateDto extends CreateDto{
   firstName: string;

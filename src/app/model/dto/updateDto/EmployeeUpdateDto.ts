@@ -1,4 +1,4 @@
-import {UpdateDto} from "./interfaces/UpdateDto";
+import {UpdateDto} from "./UpdateDto";
 
 export interface EmployeeUpdateDto extends UpdateDto {
   firstName?: string;

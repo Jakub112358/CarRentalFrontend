@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {CarCreateDto} from "../../../../model/CarCreateDto";
+import {CarCreateDto} from "../../../../model/dto/createDto/CarCreateDto";
 import {Office} from "../../../../model/Office";
 import {OfficeService} from "../../../../service/office.service";
 import {CarService} from "../../../../service/car.service";
@@ -7,7 +7,8 @@ import {Color} from "../../../../model/enumeration/Color";
 import {BodyType} from "../../../../model/enumeration/BodyType";
 import {Status} from "../../../../model/enumeration/Status";
 import {CarValidator} from "../../../../util/validator/CarValidator";
-
+//TODO add pricelist!
+//TODO refactor like other components
 @Component({
   selector: 'app-car-new',
   templateUrl: './car-new.component.html',
@@ -103,6 +104,7 @@ export class CarNewComponent {
       bodyType: '',
       color: '',
       status: 'AVAILABLE',
+      pricelistId: 1,
       currentBranchOfficeId: 1
     };
   }

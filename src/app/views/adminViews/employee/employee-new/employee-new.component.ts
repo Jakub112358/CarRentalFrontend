@@ -5,7 +5,7 @@ import {EmployeeValidator} from "../../../../util/validator/EmployeeValidator";
 import {Office} from "../../../../model/Office";
 import {OfficeService} from "../../../../service/office.service";
 import {EmployeeService} from "../../../../service/employee.service";
-import {EmployeeCreateDto} from "../../../../model/EmployeeCreateDto";
+import {EmployeeCreateDto} from "../../../../model/dto/createDto/EmployeeCreateDto";
 
 @Component({
   selector: 'app-employee-new',

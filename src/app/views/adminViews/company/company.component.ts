@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {Company} from "../../../model/Company";
 import {CompanyService} from "../../../service/company.service";
 import {DomSanitizer} from '@angular/platform-browser';
-import {CompanyUpdateDto} from "../../../model/CompanyUpdateDto";
+import {CompanyUpdateDto} from "../../../model/dto/updateDto/CompanyUpdateDto";
 import {DetailElement} from "../../../model/templateElements/DetailElement";
 import {UpdateFormElement} from "../../../model/templateElements/UpdateFormElement";
 

@@ -7,6 +7,8 @@ import {ButtonModule} from "primeng/button";
 import {RippleModule} from "primeng/ripple";
 import {CalendarModule} from "primeng/calendar";
 import {TableModule} from "primeng/table";
+import {DialogModule} from "primeng/dialog";
+import {InputTextModule} from "primeng/inputtext";
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import {TableModule} from "primeng/table";
     ButtonModule,
     RippleModule,
     CalendarModule,
-    TableModule
+    TableModule,
+    DialogModule,
+    InputTextModule
   ]
 })
 export class ReservationNewModule {

@@ -5,9 +5,9 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {EmployeeService} from "../../../../service/employee.service";
 import {Employee} from "../../../../model/Employee";
 import {OfficeService} from "../../../../service/office.service";
-import {UpdateDto} from "../../../../model/interfaces/UpdateDto";
+import {UpdateDto} from "../../../../model/dto/updateDto/UpdateDto";
 import {Office} from "../../../../model/Office";
-import {CompanyUpdateDto} from "../../../../model/CompanyUpdateDto";
+import {CompanyUpdateDto} from "../../../../model/dto/updateDto/CompanyUpdateDto";
 import {Car} from "../../../../model/Car";
 import {CarService} from "../../../../service/car.service";
 

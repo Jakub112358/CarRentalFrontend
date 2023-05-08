@@ -1,4 +1,4 @@
-import {UpdateDto} from "./interfaces/UpdateDto";
+import {UpdateDto} from "./UpdateDto";
 
 export interface CarUpdateDto extends UpdateDto {
   id?: number;
@@ -10,5 +10,6 @@ export interface CarUpdateDto extends UpdateDto {
   bodyType?: string;
   color?: string;
   status?: string;
+  pricelistId?: number;
   currentBranchOfficeId?: number;
 }

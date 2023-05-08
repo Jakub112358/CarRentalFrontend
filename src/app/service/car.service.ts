@@ -5,6 +5,7 @@ import {Car} from "../model/Car";
 import {catchError, Observable} from "rxjs";
 import {Constraints} from "./Constraints";
 import {CreateFormElement} from "../model/templateElements/CreateFormElement";
+import {CarRentDto} from "../model/dto/CarRentDto";
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +17,12 @@ export class CarService extends CrudService<Car> {
     super(Constraints.CAR_URL, http);
   }
 
-  findByCurrentBranchOfficeId(officeId: number): Observable<Car[]> {
+  findByCurrentBranchOfficeId(officeId: number): Observable<CarRentDto[]> {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('branchOfficeId', officeId);
-    return this.http.get<Car[]>(Constraints.CAR_URL, {params: queryParams})
+    return this.http.get<CarRentDto[]>(Constraints.CAR_URL, {params: queryParams})
       .pipe(
-        catchError(this.handleError<Car[]>())
+        catchError(this.handleError<CarRentDto[]>())
       )
   }
 
@@ -29,7 +30,7 @@ export class CarService extends CrudService<Car> {
   findByAvailableInDatesAndCriteria(elements: CreateFormElement[]) {
     let queryParams = new HttpParams();
     let dateFromValue: Date = elements.find(e => e.name == 'dateFrom')?.model
-    let dateToValue = elements.find(e => e.name == 'dateTo')?.model
+    let dateToValue: Date = elements.find(e => e.name == 'dateTo')?.model
     let pickUpOfficeId = elements.find(e => e.name == 'pickUpOfficeId')?.model
 
     queryParams = queryParams

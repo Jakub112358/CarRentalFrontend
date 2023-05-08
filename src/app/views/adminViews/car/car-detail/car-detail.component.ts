@@ -2,8 +2,10 @@ import {Component} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Car} from "../../../../model/Car";
 import {CarService} from "../../../../service/car.service";
-import {CarUpdateDto} from "../../../../model/CarUpdateDto";
+import {CarUpdateDto} from "../../../../model/dto/updateDto/CarUpdateDto";
 
+//TODO add pricelist!
+//TODO refactor this component
 @Component({
   selector: 'app-car-detail',
   templateUrl: './car-detail.component.html',

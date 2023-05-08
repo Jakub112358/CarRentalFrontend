@@ -1,4 +1,4 @@
-import {CreateDto} from "./interfaces/CreateDto";
+import {CreateDto} from "./CreateDto";
 
 export interface CarCreateDto extends CreateDto {
   make: string;
@@ -9,5 +9,6 @@ export interface CarCreateDto extends CreateDto {
   bodyType: string;
   color: string;
   status: string;
+  pricelistId: number;
   currentBranchOfficeId: number;
 }

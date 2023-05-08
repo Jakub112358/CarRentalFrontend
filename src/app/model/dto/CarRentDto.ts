@@ -1,4 +1,4 @@
-export interface Car{
+export interface CarRentDto {
   id: number;
   make: string;
   model: string;
@@ -10,4 +10,5 @@ export interface Car{
   status: string;
   priceListId: number;
   currentBranchOfficeId: number;
+  price: number;
 }
