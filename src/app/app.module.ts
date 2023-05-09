@@ -10,6 +10,7 @@ import {RippleModule} from "primeng/ripple";
 import {FormsModule} from "@angular/forms";
 import {DialogModule} from "primeng/dialog";
 import {ClientLayoutModule} from "./views/client-layout/client-layout.module";
+import {EmployeeLayoutModule} from "./views/employee-layout/employee-layout.module";
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import {ClientLayoutModule} from "./views/client-layout/client-layout.module";
     AppRoutingModule,
     AdminLayoutModule,
     ClientLayoutModule,
+    EmployeeLayoutModule,
     HttpClientModule,
     BrowserAnimationsModule,
     ButtonModule,

@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AdminLayoutComponent} from "./views/admin-layout/admin-layout.component";
 import {ClientLayoutComponent} from "./views/client-layout/client-layout.component";
+import {EmployeeLayoutComponent} from "./views/employee-layout/employee-layout.component";
 
 const routes: Routes = [
   {path: 'admin', component: AdminLayoutComponent,
@@ -28,6 +29,15 @@ const routes: Routes = [
       {path: '', loadChildren: () => import('./views/client-views/client-home/client-home.module').then(m => m.ClientHomeModule)},
       {path: 'reservation', loadChildren: () => import('./views/client-views/reservation/reservation-list/reservation-list.module').then(m => m.ReservationListModule)},
       {path: 'reservation/new', loadChildren: () => import('./views/client-views/reservation/reservation-new/reservation-new.module').then(m => m.ReservationNewModule)},
+      {path: 'notfound', loadChildren: () => import('./views/not-found/not-found.module').then(m => m.NotFoundModule)},
+      {path: '**', redirectTo: 'notfound'}
+    ]
+  },
+  {path: 'employee', component: EmployeeLayoutComponent,
+    children: [
+      {path: '', loadChildren: () => import('./views/employee-views/employee-home/employee-home.module').then(m => m.EmployeeHomeModule)},
+      {path: 'pickup', loadChildren: () => import('./views/employee-views/pick-up/pick-up.module').then(m => m.PickUpModule)},
+      {path: 'return', loadChildren: () => import('./views/employee-views/return/return.module').then(m => m.ReturnModule)},
       {path: 'notfound', loadChildren: () => import('./views/not-found/not-found.module').then(m => m.NotFoundModule)},
       {path: '**', redirectTo: 'notfound'}
     ]
