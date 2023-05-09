@@ -4,6 +4,7 @@ import {Reservation} from "../model/reservation";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Constraints} from "./constraints";
 import {catchError, Observable} from "rxjs";
+import {ReservationClientResponse} from "../model/rest/response/reservation-client-response";
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +15,12 @@ export class ReservationService extends CrudService<Reservation>{
     super(Constraints.RESERVATION_URL, http)
   }
 
-  findByClientId(clientId: number):Observable<Reservation[]> {
+  findByClientId(clientId: number):Observable<ReservationClientResponse[]> {
     let queryParam = new HttpParams();
     queryParam = queryParam.append('clientId', clientId);
-    return this.http.get<Reservation[]>(Constraints.RESERVATION_URL,{params: queryParam})
+    return this.http.get<ReservationClientResponse[]>(Constraints.RESERVATION_URL,{params: queryParam})
       .pipe(
-        catchError(this.handleError<Reservation[]>())
+        catchError(this.handleError<ReservationClientResponse[]>())
       )
   }
 }

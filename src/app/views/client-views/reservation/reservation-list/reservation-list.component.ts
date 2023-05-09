@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import {Reservation} from "../../../../model/reservation";
+import {Component} from '@angular/core';
 import {ReservationService} from "../../../../service/reservation.service";
+import {ReservationClientResponse} from "../../../../model/rest/response/reservation-client-response";
+import {Car} from "../../../../model/car";
+import {Office} from "../../../../model/office";
 
 @Component({
   selector: 'app-reservation-list',
@@ -8,12 +10,13 @@ import {ReservationService} from "../../../../service/reservation.service";
   styleUrls: ['./reservation-list.component.scss']
 })
 export class ReservationListComponent {
-  reservations: Reservation[]
+  reservations: ReservationClientResponse[]
 
 
   constructor(private reservationService: ReservationService) {
   }
-  ngOnInit(){
+
+  ngOnInit() {
     this.loadReservations();
   }
 
@@ -23,8 +26,17 @@ export class ReservationListComponent {
       this.reservations = data;
     })
   }
+
 //TODO should provide clientId from logged client
   private getClientId() {
     return 1;
+  }
+
+  carToString(car: Car) {
+    return car.make + ' ' + car.model;
+  }
+
+  officeToString(office: Office) {
+    return office.address.town + ', ' + office.address.street + ' ' + office.address.houseNumber;
   }
 }
