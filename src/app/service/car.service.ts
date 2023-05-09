@@ -32,11 +32,13 @@ export class CarService extends CrudService<Car> {
     let dateFromValue: Date = elements.find(e => e.name == 'dateFrom')?.model
     let dateToValue: Date = elements.find(e => e.name == 'dateTo')?.model
     let pickUpOfficeId = elements.find(e => e.name == 'pickUpOfficeId')?.model
+    let returnOfficeId = elements.find(e => e.name == 'returnOfficeId')?.model
 
     queryParams = queryParams
       .append('dateFrom', this.dateFromString(dateFromValue))
       .append('dateTo', this.dateFromString(dateToValue))
-      .append('pickUpOfficeId', pickUpOfficeId);
+      .append('pickUpOfficeId', pickUpOfficeId)
+      .append('returnOfficeId', returnOfficeId);
 
     return this.http.post<Car[]>(Constraints.CAR_SEARCH_URL, {}, {params: queryParams})
       .pipe(

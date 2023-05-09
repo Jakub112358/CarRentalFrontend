@@ -1,0 +1,27 @@
+<div class="surface-section md:w-8">
+  <div class="font-medium text-3xl text-900 my-3" >Your reservations: </div>
+  <p-table styleClass="p-datatable-sm" [value]="reservations" [tableStyle]="{'min-width': '50rem'}">
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="dateFrom" style="width:20%">Date from <p-sortIcon field="lastName"></p-sortIcon></th>
+        <th pSortableColumn="dateTo" style="width:20%">Date to <p-sortIcon field="jobPosition"></p-sortIcon></th>
+        <th pSortableColumn="pickUpOfficeId" style="width:20%">Pick up office <p-sortIcon field="jobPosition"></p-sortIcon></th>
+        <th pSortableColumn="returnOfficeId" style="width:20%">Return office <p-sortIcon field="jobPosition"></p-sortIcon></th>
+        <th pSortableColumn="carId" style="width:20%">Car <p-sortIcon field="branchOfficeId"></p-sortIcon></th>
+        <th pSortableColumn="status" style="width:20%">Status <p-sortIcon field="branchOfficeId"></p-sortIcon></th>
+        <th style="width: 10%">Details</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-reservation>
+      <tr>
+        <td>{{reservation.dateFrom}}</td>
+        <td>{{reservation.dateTo}}</td>
+        <td>{{reservation.pickUpOfficeId}}</td>
+        <td>{{reservation.returnOfficeId}}</td>
+        <td>{{reservation.carId}}</td>
+        <td>{{reservation.status}}</td>
+        <td><button pButton pRipple label="Details" icon="pi pi-search" class="p-button-text" routerLink="{{'/client/reservation/' + reservation.id}}"></button></td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

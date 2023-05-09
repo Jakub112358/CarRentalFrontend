@@ -26,6 +26,7 @@ const routes: Routes = [
   {path: 'client', component: ClientLayoutComponent,
     children: [
       {path: '', loadChildren: () => import('./views/client-views/client-home/client-home.module').then(m => m.ClientHomeModule)},
+      {path: 'reservation', loadChildren: () => import('./views/client-views/reservation/reservation-list/reservation-list.module').then(m => m.ReservationListModule)},
       {path: 'reservation/new', loadChildren: () => import('./views/client-views/reservation/reservation-new/reservation-new.module').then(m => m.ReservationNewModule)},
       {path: 'notfound', loadChildren: () => import('./views/not-found/not-found.module').then(m => m.NotFoundModule)},
       {path: '**', redirectTo: 'notfound'}

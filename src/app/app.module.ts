@@ -14,7 +14,6 @@ import {ClientLayoutModule} from "./views/client-layout/client-layout.module";
 @NgModule({
   declarations: [
     AppComponent,
-
   ],
   imports: [
     BrowserModule,
