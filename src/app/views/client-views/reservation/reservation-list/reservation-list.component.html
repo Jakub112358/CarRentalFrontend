@@ -1,3 +1,8 @@
+<app-reservation-detail
+  *ngIf="selectedReservation"
+  [reservation]="selectedReservation"
+  (cancelReservationEvent)="setStatusCancelled($event)"
+></app-reservation-detail>
 <div class="surface-section xl:w-10">
   <div class="font-medium text-3xl text-900 my-3" >Reservations </div>
   <p-table styleClass="p-datatable-sm" [value]="reservations" [tableStyle]="{'min-width': '50rem'}">
@@ -20,9 +25,8 @@
         <td>{{officeToString(reservation.returnOffice)}}</td>
         <td>{{carToString(reservation.car)}}</td>
         <td>{{reservation.status}}</td>
-        <td><button pButton pRipple label="Details" icon="pi pi-search" class="p-button-text" routerLink="{{'/client/reservation/' + reservation.id}}"></button></td>
+        <td><button pButton pRipple label="Details" icon="pi pi-search" class="p-button-text" (click)="loadDetailsComponent(reservation)"></button></td>
       </tr>
     </ng-template>
   </p-table>
-  <button pButton pRipple label="add new employee" class="p-button-success m-2" icon="pi pi-plus" routerLink='/admin/employee/new'></button>
 </div>

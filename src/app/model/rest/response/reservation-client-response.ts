@@ -13,6 +13,6 @@ export interface ReservationClientResponse {
   car: Car;
   pickUpOffice: Office;
   returnOffice: Office;
-  incomes: IncomeResponse;
+  incomes: IncomeResponse[];
 
 }

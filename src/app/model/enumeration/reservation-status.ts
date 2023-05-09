@@ -1,5 +1,6 @@
 export enum ReservationStatus {
   Planned = "PLANNED",
   InProgress = "IN_PROGRESS",
-  Realized = "REALIZED"
+  Realized = "REALIZED",
+  Cancelled = "CANCELLED"
 }
