@@ -7,4 +7,5 @@ export class Constraints {
   public static readonly MSG_URL = 'http://localhost:8080/api/v1/messages';
   public static readonly CLIENT_URL = 'http://localhost:8080/api/v1/clients';
   public static readonly RESERVATION_URL = 'http://localhost:8080/api/v1/reservations';
+  public static readonly PICK_UP_URL = 'http://localhost:8080/api/v1/pick-ups';
 }

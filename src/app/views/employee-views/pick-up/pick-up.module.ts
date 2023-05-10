@@ -2,6 +2,9 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from "@angular/router";
 import {PickUpComponent} from "./pick-up.component";
+import {TableModule} from "primeng/table";
+import {ButtonModule} from "primeng/button";
+import {RippleModule} from "primeng/ripple";
 
 
 @NgModule({
@@ -16,6 +19,9 @@ import {PickUpComponent} from "./pick-up.component";
         component: PickUpComponent,
       }
     ]),
+    TableModule,
+    ButtonModule,
+    RippleModule,
   ]
 })
 export class PickUpModule {
