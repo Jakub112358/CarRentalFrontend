@@ -5,11 +5,15 @@ import {PickUpComponent} from "./pick-up.component";
 import {TableModule} from "primeng/table";
 import {ButtonModule} from "primeng/button";
 import {RippleModule} from "primeng/ripple";
+import { PickUpEditComponent } from './pick-up-edit/pick-up-edit.component';
+import {FormsModule} from "@angular/forms";
+import {CalendarModule} from "primeng/calendar";
 
 
 @NgModule({
   declarations: [
-    PickUpComponent
+    PickUpComponent,
+    PickUpEditComponent
   ],
   imports: [
     CommonModule,
@@ -22,6 +26,8 @@ import {RippleModule} from "primeng/ripple";
     TableModule,
     ButtonModule,
     RippleModule,
+    FormsModule,
+    CalendarModule,
   ]
 })
 export class PickUpModule {

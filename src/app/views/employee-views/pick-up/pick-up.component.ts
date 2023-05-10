@@ -9,6 +9,7 @@ import {PickUpService} from "../../../service/pick-up.service";
 })
 export class PickUpComponent {
   pickUps: PickUp[];
+  selectedPickUp: PickUp;
 
   constructor(private pickUpService: PickUpService) {
   }
@@ -19,5 +20,14 @@ export class PickUpComponent {
     this.pickUpService.findAllByOffice_Id(1).subscribe(data => {
       this.pickUps = data;
     })
+  }
+
+  onSelectEdit(pickUp: PickUp) {
+    this.selectedPickUp = pickUp;
+  }
+
+  updatePickUp($event: PickUp) {
+    let index = this.pickUps.findIndex(p => p.id === $event.id)
+    this.pickUps[index] = $event;
   }
 }
