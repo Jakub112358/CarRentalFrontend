@@ -1,1 +1,57 @@
-<p>return works!</p>
+<div class="surface-section w-12">
+  <div class="font-medium text-3xl text-900 my-3">Returns</div>
+  <p-table styleClass="p-datatable-sm" [value]="carReturns" [tableStyle]="{'min-width': '50rem'}">
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="id" style="width:5%; text-align:center"><p>Id</p>
+          <p-sortIcon field="id"></p-sortIcon>
+        </th>
+        <th pSortableColumn="comments" style="width:15%; text-align:center"><p>Comments</p>
+          <p-sortIcon field="comments"></p-sortIcon>
+        </th>
+        <th pSortableColumn="returnDate" style="width:10%; text-align:center"><p>CarReturn date</p>
+          <p-sortIcon field="returnDate"></p-sortIcon>
+        </th>
+        <th pSortableColumn="plannedReturnDate" style="width:10%; text-align:center"><p>Planned return date</p>
+          <p-sortIcon field="plannedReturnDate"></p-sortIcon>
+        </th>
+        <th pSortableColumn="status" style="width:10%; text-align:center"><p>Status</p>
+          <p-sortIcon field="status"></p-sortIcon>
+        </th>
+        <th pSortableColumn="employeeId" style="width:10%; text-align:center"><p>Employee id</p>
+          <p-sortIcon field="employeeId"></p-sortIcon>
+        </th>
+        <th pSortableColumn="reservationId" style="width:10%; text-align:center"><p>Reservation id</p>
+          <p-sortIcon field="reservationId"></p-sortIcon>
+        </th>
+        <th pSortableColumn="carId" style="width:10%; text-align:center"><p>Car id</p>
+          <p-sortIcon field="carId"></p-sortIcon>
+        </th>
+        <th pSortableColumn="branchOfficeId" style="width:10%; text-align:center"><p>Branch office id</p>
+          <p-sortIcon field="branchOfficeId"></p-sortIcon>
+        </th>
+        <th pSortableColumn="extraCharge" style="width:10%; text-align:center"><p>Extra charge</p>
+          <p-sortIcon field="extraCharge"></p-sortIcon>
+        </th>
+        <th style="width: 5%; text-align:center">Edit</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-carReturn>
+      <tr>
+        <td style="text-align: center">{{carReturn.id}}</td>
+        <td style="text-align: center">{{carReturn.comments}}</td>
+        <td style="text-align: center">{{carReturn.returnDate}}</td>
+        <td style="text-align: center">{{carReturn.plannedReturnDate}}</td>
+        <td style="text-align: center">{{carReturn.status}}</td>
+        <td style="text-align: center">{{carReturn.employeeId}}</td>
+        <td style="text-align: center">{{carReturn.reservationId}}</td>
+        <td style="text-align: center">{{carReturn.carId}}</td>
+        <td style="text-align: center">{{carReturn.branchOfficeId}}</td>
+        <td style="text-align: center">{{carReturn.extraCharge}}</td>
+        <td style="text-align:center">
+          <button pButton pRipple label="Edit" icon="pi pi-pencil" class="p-button-text" (click)="onSelectEdit(carReturn)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

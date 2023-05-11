@@ -36,7 +36,7 @@ export class ReservationDetailComponent {
       new BasicListElement('Status', this.reservation.status),
       new BasicListElement('Car', this.carToString(this.reservation.car)),
       new BasicListElement('Pick-up office', this.officeToString(this.reservation.pickUpOffice)),
-      new BasicListElement('Return office', this.officeToString(this.reservation.returnOffice)),
+      new BasicListElement('CarReturn office', this.officeToString(this.reservation.returnOffice)),
     ];
   }
 

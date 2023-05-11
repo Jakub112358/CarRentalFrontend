@@ -2,6 +2,9 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from "@angular/router";
 import {ReturnComponent} from "./return.component";
+import {TableModule} from "primeng/table";
+import {ButtonModule} from "primeng/button";
+import {RippleModule} from "primeng/ripple";
 
 
 @NgModule({
@@ -16,6 +19,9 @@ import {ReturnComponent} from "./return.component";
         component: ReturnComponent,
       }
     ]),
+    TableModule,
+    ButtonModule,
+    RippleModule,
   ]
 })
 export class ReturnModule {

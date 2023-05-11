@@ -49,7 +49,7 @@ export class ReservationNewComponent {
       new CreateFormElement('Date From', 'date', '', 'dateFrom', true, 'invalid date', undefined, new Date()),
       new CreateFormElement('Date To', 'date', '', 'dateTo', true, 'invalid date', undefined, new Date()),
       new CreateFormElement('Pick-up Office', 'select', '', 'pickUpOfficeId', true, 'invalid office', branchOfficeOptions),
-      new CreateFormElement('Return Office', 'select', '', 'returnOfficeId', true, 'invalid office', branchOfficeOptions),
+      new CreateFormElement('CarReturn Office', 'select', '', 'returnOfficeId', true, 'invalid office', branchOfficeOptions),
     ]
   }
 
@@ -120,7 +120,7 @@ export class ReservationNewComponent {
       new BasicListElement('Date from', this.reservationCreateDto.dateFrom.toDateString()),
       new BasicListElement('Date to', this.reservationCreateDto.dateTo.toDateString()),
       new BasicListElement('Pick-up office', pickUpOfficeString),
-      new BasicListElement('Return office', returnOfficeString),
+      new BasicListElement('CarReturn office', returnOfficeString),
       new BasicListElement('Price', this.reservationCreateDto.price),
     ]
   }

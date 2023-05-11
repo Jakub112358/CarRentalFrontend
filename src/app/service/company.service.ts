@@ -9,7 +9,6 @@ import {Constraints} from "./constraints";
 })
 export class CompanyService extends CrudService<Company> {
 
-
   constructor(http: HttpClient) {
     super(Constraints.COMPANY_URL, http)
   }
