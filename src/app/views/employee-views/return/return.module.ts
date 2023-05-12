@@ -5,11 +5,15 @@ import {ReturnComponent} from "./return.component";
 import {TableModule} from "primeng/table";
 import {ButtonModule} from "primeng/button";
 import {RippleModule} from "primeng/ripple";
+import { ReturnEditComponent } from './return-edit/return-edit.component';
+import {FormsModule} from "@angular/forms";
+import {CalendarModule} from "primeng/calendar";
 
 
 @NgModule({
   declarations: [
-    ReturnComponent
+    ReturnComponent,
+    ReturnEditComponent
   ],
   imports: [
     CommonModule,
@@ -22,6 +26,8 @@ import {RippleModule} from "primeng/ripple";
     TableModule,
     ButtonModule,
     RippleModule,
+    FormsModule,
+    CalendarModule,
   ]
 })
 export class ReturnModule {

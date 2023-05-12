@@ -1,3 +1,9 @@
+<app-return-edit
+  *ngIf="selectedReturn"
+  [carReturn]= "selectedReturn"
+  (editedCarReturnEvent)="updateReturn($event)"
+></app-return-edit>
+
 <div class="surface-section w-12">
   <div class="font-medium text-3xl text-900 my-3">Returns</div>
   <p-table styleClass="p-datatable-sm" [value]="carReturns" [tableStyle]="{'min-width': '50rem'}">
