@@ -3,7 +3,7 @@ export interface Employee {
   firstName: string;
   lastName: string;
   jobPosition: string;
-  branchOfficeId: number;
+  officeId: number;
 
 
 }

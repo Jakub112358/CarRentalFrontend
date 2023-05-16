@@ -16,7 +16,7 @@ export class EmployeeService extends CrudService<Employee> {
 
   findByBranchOfficeId(id: number): Observable<Employee[]> {
     let queryParams = new HttpParams();
-    queryParams = queryParams.append("branchOfficeId", id)
+    queryParams = queryParams.append("officeId", id)
     return this.http.get<Employee[]>(Constraints.EMPLOYEE_URL, {params: queryParams})
       .pipe(
         catchError(this.handleError<Employee[]>())

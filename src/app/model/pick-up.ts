@@ -9,5 +9,5 @@ export interface PickUp {
   employeeId: number;
   reservationId: number;
   carId: number;
-  branchOfficeId: number;
+  officeId: number;
 }

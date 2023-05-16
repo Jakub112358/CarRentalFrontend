@@ -19,7 +19,7 @@ export class CarService extends CrudService<Car> {
 
   findByCurrentBranchOfficeId(officeId: number): Observable<CarRentDto[]> {
     let queryParams = new HttpParams();
-    queryParams = queryParams.append('branchOfficeId', officeId);
+    queryParams = queryParams.append('officeId', officeId);
     return this.http.get<CarRentDto[]>(Constraints.CAR_URL, {params: queryParams})
       .pipe(
         catchError(this.handleError<CarRentDto[]>())

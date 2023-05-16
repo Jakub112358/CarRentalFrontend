@@ -59,7 +59,7 @@ export class EmployeeDetailComponent {
       new DetailElement('first name', employee.firstName, true, 'firstName'),
       new DetailElement('last name', employee.lastName, true, 'lastName'),
       new DetailElement('job position', employee.jobPosition, true, 'jobPosition'),
-      new DetailElement('branch office id', employee.branchOfficeId, true, 'branchOfficeId')
+      new DetailElement('branch office id', employee.officeId, true, 'officeId')
     ]
   }
 
