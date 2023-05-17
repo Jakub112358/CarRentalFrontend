@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {MenuItem} from "primeng/api";
+import {JwtTokenService} from "../../../service/auth/jwt-token.service";
 
 @Component({
   selector: 'app-header',
@@ -8,6 +9,10 @@ import {MenuItem} from "primeng/api";
 })
 export class HeaderComponent {
   items:MenuItem[];
+
+  constructor(private tokenService: JwtTokenService) {
+  }
+
   ngOnInit(){
     this.items=[
       {label: 'home', icon: 'pi pi-home', routerLink: '/admin'},
@@ -37,8 +42,12 @@ export class HeaderComponent {
         ]
       },
 
-      {label: 'logout', icon: 'pi pi-sign-out', routerLink: '/'}
+      {label: 'logout', icon: 'pi pi-sign-out', command: () => this.resetToken(), routerLink: '/'}
     ];
+  }
+
+  resetToken(){
+    this.tokenService.setTokenUndefined();
   }
 
 }
