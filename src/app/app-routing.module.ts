@@ -3,9 +3,12 @@ import {RouterModule, Routes} from '@angular/router';
 import {AdminLayoutComponent} from "./views/admin-layout/admin-layout.component";
 import {ClientLayoutComponent} from "./views/client-layout/client-layout.component";
 import {EmployeeLayoutComponent} from "./views/employee-layout/employee-layout.component";
+import {AuthAdminGuard} from "./service/auth/guards/auth-admin.guard";
+import {AuthClientGuard} from "./service/auth/guards/auth-client.guard";
+import {AuthEmployeeGuard} from "./service/auth/guards/auth-employee.guard";
 
 const routes: Routes = [
-  {path: 'admin', component: AdminLayoutComponent,
+  {path: 'admin', component: AdminLayoutComponent, canActivate: [AuthAdminGuard],
     children: [
       {path: '', loadChildren: () => import('./views/admin-views/admin-home/admin-home.module').then(m => m.AdminHomeModule)},
       {path: 'company', loadChildren: () => import('./views/admin-views/company/company.module').then(m => m.CompanyModule)},
@@ -24,7 +27,7 @@ const routes: Routes = [
       {path: '**', redirectTo: 'notfound'}
     ]
   },
-  {path: 'client', component: ClientLayoutComponent,
+  {path: 'client', component: ClientLayoutComponent, canActivate: [AuthClientGuard],
     children: [
       {path: '', loadChildren: () => import('./views/client-views/client-home/client-home.module').then(m => m.ClientHomeModule)},
       {path: 'reservation', loadChildren: () => import('./views/client-views/reservation/reservation-list/reservation-list.module').then(m => m.ReservationListModule)},
@@ -33,7 +36,7 @@ const routes: Routes = [
       {path: '**', redirectTo: 'notfound'}
     ]
   },
-  {path: 'employee', component: EmployeeLayoutComponent,
+  {path: 'employee', component: EmployeeLayoutComponent, canActivate: [AuthEmployeeGuard],
     children: [
       {path: '', loadChildren: () => import('./views/employee-views/employee-home/employee-home.module').then(m => m.EmployeeHomeModule)},
       {path: 'pickup', loadChildren: () => import('./views/employee-views/pick-up/pick-up.module').then(m => m.PickUpModule)},
