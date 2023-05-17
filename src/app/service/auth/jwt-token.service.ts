@@ -7,19 +7,25 @@ import jwt_decode from "jwt-decode";
 export class JwtTokenService {
 
   decodedToken: any;
+  token: any;
 
   constructor() { }
 
   setToken(token: string | undefined){
     if(token){
+      this.token = token;
       this.decodeToken(token);
     } else {
       this.setTokenUndefined();
     }
   }
+  getToken(){
+    return this.token;
+  }
 
   setTokenUndefined(){
     this.decodedToken = undefined;
+    this.token = undefined;
   }
 
   private decodeToken(token: string){
