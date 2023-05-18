@@ -34,7 +34,7 @@ export class ReturnEditComponent {
       new BasicListElement('planned return date', this.carReturn.plannedReturnDate),
       new BasicListElement('reservation id', this.carReturn.reservationId),
       new BasicListElement('car id', this.carReturn.carId),
-      new BasicListElement('office id', this.carReturn.branchOfficeId),
+      new BasicListElement('office id', this.carReturn.officeId),
     ]
   }
 

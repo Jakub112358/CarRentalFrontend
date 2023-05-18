@@ -9,5 +9,5 @@ export interface Car{
   color: string;
   status: string;
   priceListId: number;
-  currentBranchOfficeId: number;
+  currentOfficeId: number;
 }

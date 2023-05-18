@@ -34,7 +34,7 @@ export class PickUpEditComponent {
       new BasicListElement('planned pick-up date', this.pickUp.plannedPickUpDate),
       new BasicListElement('reservation id', this.pickUp.reservationId),
       new BasicListElement('car id', this.pickUp.carId),
-      new BasicListElement('office id', this.pickUp.branchOfficeId),
+      new BasicListElement('office id', this.pickUp.officeId),
     ]
   }
 

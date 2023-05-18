@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Car} from "../../../../model/car";
 import {CarService} from "../../../../service/car.service";
-import {CarUpdateDto} from "../../../../model/dto/update-dto/CarUpdateDto";
+import {CarUpdateDto} from "../../../../model/rest/request/update-dto/CarUpdateDto";
 
 //TODO add pricelist!
 //TODO refactor this component
@@ -74,7 +74,7 @@ export class CarDetailComponent {
       [fieldNames[6], this.car.bodyType],
       [fieldNames[7], this.car.color],
       [fieldNames[8], this.car.status],
-      [fieldNames[9], this.car.currentBranchOfficeId]
+      [fieldNames[9], this.car.currentOfficeId]
     ]
   }
 
@@ -108,7 +108,7 @@ export class CarDetailComponent {
         this.inputValue = this.car.status;
         break;
       case CarFields.Office:
-        this.inputValue = this.car.currentBranchOfficeId;
+        this.inputValue = this.car.currentOfficeId;
         break;
     }
   }

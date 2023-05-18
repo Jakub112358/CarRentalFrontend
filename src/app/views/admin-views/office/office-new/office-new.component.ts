@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {Address} from "../../../../model/address";
 import {OfficeService} from "../../../../service/office.service";
-import {OfficeCreateDto} from "../../../../model/dto/create-dto/office-create-dto";
+import {OfficeCreateDto} from "../../../../model/rest/request/create/office-create-dto";
 
 @Component({
   selector: 'app-office-new',

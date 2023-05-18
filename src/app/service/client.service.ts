@@ -1,15 +1,15 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {CrudService} from "./crud-service";
 import {Client} from "../model/client";
 import {HttpClient} from "@angular/common/http";
-import {Constraints} from "./constraints";
+import {ApiConstraints} from "../config/apiConstraints";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ClientService extends CrudService<Client>{
+export class ClientService extends CrudService<Client> {
 
   constructor(http: HttpClient) {
-    super(Constraints.CLIENT_URL, http);
+    super(ApiConstraints.CLIENT_URL, http);
   }
 }

@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {CarCreateDto} from "../../../../model/dto/create-dto/car-create-dto";
+import {CarCreateDto} from "../../../../model/rest/request/create/car-create-dto";
 import {Office} from "../../../../model/office";
 import {OfficeService} from "../../../../service/office.service";
 import {CarService} from "../../../../service/car.service";

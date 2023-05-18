@@ -9,6 +9,6 @@ export interface CarRentDto {
   color: string;
   status: string;
   priceListId: number;
-  currentBranchOfficeId: number;
+  currentOfficeId: number;
   price: number;
 }

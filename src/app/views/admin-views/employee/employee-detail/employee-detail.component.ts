@@ -4,7 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {EmployeeService} from "../../../../service/employee.service";
 import {Employee} from "../../../../model/employee";
 import {UpdateFormElement} from "../../../../model/template-elements/update-form-element";
-import {UpdateDto} from "../../../../model/dto/update-dto/UpdateDto";
+import {UpdateDto} from "../../../../model/rest/request/update-dto/UpdateDto";
 
 @Component({
   selector: 'app-employee-detail',
@@ -59,7 +59,7 @@ export class EmployeeDetailComponent {
       new DetailElement('first name', employee.firstName, true, 'firstName'),
       new DetailElement('last name', employee.lastName, true, 'lastName'),
       new DetailElement('job position', employee.jobPosition, true, 'jobPosition'),
-      new DetailElement('branch office id', employee.branchOfficeId, true, 'branchOfficeId')
+      new DetailElement('branch office id', employee.officeId, true, 'officeId')
     ]
   }
 
