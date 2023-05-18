@@ -3,9 +3,9 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {CrudService} from "./crud-service";
 import {Car} from "../model/car";
 import {catchError, Observable} from "rxjs";
-import {Constraints} from "./constraints";
 import {CreateFormElement} from "../model/template-elements/create-form-element";
-import {CarRentDto} from "../model/dto/car-rent-dto";
+import {CarRentDto} from "../model/rest/request/car-rent-dto";
+import {ApiConstraints} from "../config/apiConstraints";
 
 @Injectable({
   providedIn: 'root'
@@ -14,13 +14,13 @@ export class CarService extends CrudService<Car> {
 
 
   constructor(http: HttpClient) {
-    super(Constraints.CAR_URL, http);
+    super(ApiConstraints.CAR_URL, http);
   }
 
   findByCurrentBranchOfficeId(officeId: number): Observable<CarRentDto[]> {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('officeId', officeId);
-    return this.http.get<CarRentDto[]>(Constraints.CAR_URL, {params: queryParams})
+    return this.http.get<CarRentDto[]>(ApiConstraints.CAR_URL, {params: queryParams})
       .pipe(
         catchError(this.handleError<CarRentDto[]>())
       )
@@ -40,7 +40,7 @@ export class CarService extends CrudService<Car> {
       .append('pickUpOfficeId', pickUpOfficeId)
       .append('returnOfficeId', returnOfficeId);
 
-    return this.http.post<Car[]>(Constraints.CAR_SEARCH_URL, {}, {params: queryParams})
+    return this.http.post<Car[]>(ApiConstraints.CAR_SEARCH_URL, {}, {params: queryParams})
       .pipe(
         catchError(this.handleError<Car[]>())
       )

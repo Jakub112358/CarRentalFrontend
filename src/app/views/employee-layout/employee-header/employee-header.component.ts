@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {MenuItem} from "primeng/api";
-import {JwtTokenService} from "../../../service/auth/jwt-token.service";
+import {JwtTokenService} from "../../../auth/jwt-token.service";
 
 @Component({
   selector: 'app-employee-header',

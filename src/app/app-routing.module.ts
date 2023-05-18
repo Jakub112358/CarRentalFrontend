@@ -3,9 +3,12 @@ import {RouterModule, Routes} from '@angular/router';
 import {AdminLayoutComponent} from "./views/admin-layout/admin-layout.component";
 import {ClientLayoutComponent} from "./views/client-layout/client-layout.component";
 import {EmployeeLayoutComponent} from "./views/employee-layout/employee-layout.component";
-import {AuthAdminGuard} from "./service/auth/guards/auth-admin.guard";
-import {AuthClientGuard} from "./service/auth/guards/auth-client.guard";
-import {AuthEmployeeGuard} from "./service/auth/guards/auth-employee.guard";
+import {AuthAdminGuard} from "./auth/guards/auth-admin.guard";
+import {AuthClientGuard} from "./auth/guards/auth-client.guard";
+import {AuthEmployeeGuard} from "./auth/guards/auth-employee.guard";
+import {RegisterComponent} from "./views/register/register.component";
+import {LoginComponent} from "./views/login/login.component";
+import {NotFoundComponent} from "./views/not-found/not-found.component";
 
 const routes: Routes = [
   {path: 'admin', component: AdminLayoutComponent, canActivate: [AuthAdminGuard],
@@ -23,7 +26,7 @@ const routes: Routes = [
       {path: 'employee/:id', loadChildren: () => import('./views/admin-views/employee/employee-detail/employee-detail.module').then(m => m.EmployeeDetailModule)},
       {path: 'client', loadChildren: () => import('./views/admin-views/client/client-list/client-list.module').then(m => m.ClientListModule)},
       {path: 'client/:id', loadChildren: () => import('./views/admin-views/client/client-detail/client-detail.module').then(m => m.ClientDetailModule)},
-      {path: 'notfound', loadChildren: () => import('./views/not-found/not-found.module').then(m => m.NotFoundModule)},
+      {path: 'notfound', component: NotFoundComponent},
       {path: '**', redirectTo: 'notfound'}
     ]
   },
@@ -32,7 +35,7 @@ const routes: Routes = [
       {path: '', loadChildren: () => import('./views/client-views/client-home/client-home.module').then(m => m.ClientHomeModule)},
       {path: 'reservation', loadChildren: () => import('./views/client-views/reservation/reservation-list/reservation-list.module').then(m => m.ReservationListModule)},
       {path: 'reservation/new', loadChildren: () => import('./views/client-views/reservation/reservation-new/reservation-new.module').then(m => m.ReservationNewModule)},
-      {path: 'notfound', loadChildren: () => import('./views/not-found/not-found.module').then(m => m.NotFoundModule)},
+      {path: 'notfound', component: NotFoundComponent},
       {path: '**', redirectTo: 'notfound'}
     ]
   },
@@ -41,13 +44,14 @@ const routes: Routes = [
       {path: '', loadChildren: () => import('./views/employee-views/employee-home/employee-home.module').then(m => m.EmployeeHomeModule)},
       {path: 'pickup', loadChildren: () => import('./views/employee-views/pick-up/pick-up.module').then(m => m.PickUpModule)},
       {path: 'return', loadChildren: () => import('./views/employee-views/return/return.module').then(m => m.ReturnModule)},
-      {path: 'notfound', loadChildren: () => import('./views/not-found/not-found.module').then(m => m.NotFoundModule)},
+      {path: 'notfound', component: NotFoundComponent},
       {path: '**', redirectTo: 'notfound'}
     ]
   },
-  {path: '', loadChildren: () => import('./views/landing/landing.module').then(m => m.LandingModule)},
-  {path: 'login', loadChildren: () => import('./views/login/login.module').then(m => m.LoginModule)},
-  {path: 'notfound', loadChildren: () => import('./views/not-found/not-found.module').then(m => m.NotFoundModule)},
+  {path: '', pathMatch: "full", redirectTo: '/login'},
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
+  {path: 'notfound', component: NotFoundComponent},
   {path: '**', redirectTo: '/notfound'}
 ];
 

@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {AuthRequest} from "../../model/rest/request/auth-request";
+import {AuthRequest} from "../model/rest/request/auth-request";
 import {catchError, Observable, of} from "rxjs";
-import {Constraints} from "../constraints";
+import {ApiConstraints} from "../config/apiConstraints";
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +11,10 @@ export class AuthService {
   constructor(private http: HttpClient) {
   }
 
-  post(authRequest: AuthRequest): Observable<{token: string}> {
-    return this.http.post<{token: string}>(Constraints.AUTH_URL + '/authenticate', authRequest)
+  post(authRequest: AuthRequest): Observable<{ token: string }> {
+    return this.http.post<{ token: string }>(ApiConstraints.AUTH_URL, authRequest)
       .pipe(
-        catchError(this.handleError<{token: string}>())
+        catchError(this.handleError<{ token: string }>())
       )
   }
 

@@ -11,12 +11,19 @@ import {FormsModule} from "@angular/forms";
 import {DialogModule} from "primeng/dialog";
 import {ClientLayoutModule} from "./views/client-layout/client-layout.module";
 import {EmployeeLayoutModule} from "./views/employee-layout/employee-layout.module";
-import {TokenInterceptor} from "./service/auth/token-interceptor.service";
+import {TokenInterceptor} from "./auth/token-interceptor.service";
+import { RegisterComponent } from './views/register/register.component';
+import {LoginComponent} from "./views/login/login.component";
+import {InputTextModule} from "primeng/inputtext";
+import {NotFoundComponent} from "./views/not-found/not-found.component";
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    RegisterComponent,
+    LoginComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +36,8 @@ import {TokenInterceptor} from "./service/auth/token-interceptor.service";
     ButtonModule,
     RippleModule,
     FormsModule,
-    DialogModule
+    DialogModule,
+    InputTextModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {AuthRequest} from "../../model/rest/request/auth-request";
-import {AuthService} from "../../service/auth/auth.service";
-import {JwtTokenService} from "../../service/auth/jwt-token.service";
+import {AuthService} from "../../auth/auth.service";
+import {JwtTokenService} from "../../auth/jwt-token.service";
 import {Role} from "../../model/enumeration/Role";
 import {Router} from "@angular/router";
 

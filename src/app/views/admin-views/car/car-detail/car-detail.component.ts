@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Car} from "../../../../model/car";
 import {CarService} from "../../../../service/car.service";
-import {CarUpdateDto} from "../../../../model/dto/update-dto/CarUpdateDto";
+import {CarUpdateDto} from "../../../../model/rest/request/update-dto/CarUpdateDto";
 
 //TODO add pricelist!
 //TODO refactor this component

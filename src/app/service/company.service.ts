@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Company} from "../model/company";
 import {CrudService} from "./crud-service";
-import {Constraints} from "./constraints";
+import {ApiConstraints} from "../config/apiConstraints";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ import {Constraints} from "./constraints";
 export class CompanyService extends CrudService<Company> {
 
   constructor(http: HttpClient) {
-    super(Constraints.COMPANY_URL, http)
+    super(ApiConstraints.COMPANY_URL, http)
   }
 
 }

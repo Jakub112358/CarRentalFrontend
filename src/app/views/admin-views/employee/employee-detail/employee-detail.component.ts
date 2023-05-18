@@ -4,7 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {EmployeeService} from "../../../../service/employee.service";
 import {Employee} from "../../../../model/employee";
 import {UpdateFormElement} from "../../../../model/template-elements/update-form-element";
-import {UpdateDto} from "../../../../model/dto/update-dto/UpdateDto";
+import {UpdateDto} from "../../../../model/rest/request/update-dto/UpdateDto";
 
 @Component({
   selector: 'app-employee-detail',
