@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ClientCreateRequest} from "../../model/rest/request/create/client-create-request";
+import {ClientRequestDto} from "../../model/rest/request/client-request-dto";
 import {ClientService} from "../../service/client/client.service";
 import {AuthService} from "../../auth/auth.service";
 import {AuthRequest} from "../../model/rest/request/auth-request";
@@ -12,7 +12,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
-  client: ClientCreateRequest;
+  client: ClientRequestDto;
   incorrectRegister: boolean;
 
 
@@ -24,7 +24,7 @@ export class RegisterComponent {
 
   ngOnInit() {
     this.incorrectRegister = false;
-    this.client = new ClientCreateRequest();
+
   }
 
   onSubmit() {
