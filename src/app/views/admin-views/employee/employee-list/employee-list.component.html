@@ -7,7 +7,8 @@
         <th pSortableColumn="firstName" style="width:20%">First name  <p-sortIcon field="firstName"></p-sortIcon></th>
         <th pSortableColumn="lastName" style="width:20%">Last name <p-sortIcon field="lastName"></p-sortIcon></th>
         <th pSortableColumn="jobPosition" style="width:20%">Job position <p-sortIcon field="jobPosition"></p-sortIcon></th>
-        <th pSortableColumn="branchOfficeId" style="width:20%">Office id <p-sortIcon field="branchOfficeId"></p-sortIcon></th>
+        <th pSortableColumn="officeId" style="width:20%">Office id <p-sortIcon field="officeId"></p-sortIcon></th>
+        <th pSortableColumn="email" style="width:20%">Email <p-sortIcon field="email"></p-sortIcon></th>
         <th style="width: 10%">Details</th>
       </tr>
     </ng-template>
@@ -17,7 +18,8 @@
         <td>{{employee.firstName}}</td>
         <td>{{employee.lastName}}</td>
         <td>{{employee.jobPosition}}</td>
-        <td>{{employee.branchOfficeId}}</td>
+        <td>{{employee.officeId}}</td>
+        <td>{{employee.email}}</td>
         <td><button pButton pRipple label="Details" icon="pi pi-search" class="p-button-text" routerLink="{{'/admin/employee/' + employee.id}}"></button></td>
       </tr>
     </ng-template>

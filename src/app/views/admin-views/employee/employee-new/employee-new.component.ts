@@ -5,7 +5,7 @@ import {EmployeeValidator} from "../../../../util/validator/employee-validator";
 import {Office} from "../../../../model/office";
 import {OfficeService} from "../../../../service/office/office.service";
 import {EmployeeService} from "../../../../service/employee/employee.service";
-import {EmployeeCreateDto} from "../../../../model/rest/request/create/employee-create-dto";
+import {EmployeeRequestDto} from "../../../../model/rest/request/employee-request-dto";
 
 @Component({
   selector: 'app-employee-new',
@@ -65,12 +65,14 @@ export class EmployeeNewComponent {
     return data.map(o => [o.id, this.officeToString(o)]);
   }
 
-  private createFormElements(jobPositionOptions: any[][], branchOfficeOptions: any[][]) {
+  private createFormElements(jobPositionOptions: any[][], officeOptions: any[][]) {
     this.elements = [
       new CreateFormElement('First name', 'text', '', 'firstName', true, 'invalid name'),
       new CreateFormElement('Last name', 'text', '', 'lastName', true, 'invalid last name'),
       new CreateFormElement('Job position', 'select', '', 'jobPosition', true, 'invalid job position', jobPositionOptions),
-      new CreateFormElement('Branch office', 'select', 0, 'branchOfficeId', true, 'invalid branch office id', branchOfficeOptions)
+      new CreateFormElement('Branch office', 'select', 0, 'officeId', true, 'invalid branch office id', officeOptions),
+      new CreateFormElement('email', 'text', '', 'email', true, 'invalid email'),
+      new CreateFormElement('password', 'text', '', 'password', true, 'invalid password')
     ]
   }
 
@@ -83,23 +85,20 @@ export class EmployeeNewComponent {
   }
 
   private saveNewEmployee() {
-    let employee: EmployeeCreateDto = this.mapFormElementsToEmployeeDto();
+    let employee: EmployeeRequestDto = this.mapFormElementsToEmployeeDto();
     this.employeeService.save(employee).subscribe(data => {
       this.addedEmployeePath = '/admin/employee/' + data.id;
     })
   }
 
   private mapFormElementsToEmployeeDto() {
-    let firstNameElement = this.elements.find(e=> e.name === 'firstName');
-    let lastNameElement = this.elements.find(e=> e.name === 'lastName');
-    let jobPositionElement = this.elements.find(e=> e.name === 'jobPosition');
-    let branchOfficeIdElement = this.elements.find(e=> e.name === 'branchOfficeId');
+    let firstName = this.elements.find(e => e.name === 'firstName')?.model;
+    let lastName = this.elements.find(e => e.name === 'lastName')?.model;
+    let jobPosition = this.elements.find(e => e.name === 'jobPosition')?.model;
+    let officeId = this.elements.find(e => e.name === 'officeId')?.model;
+    let email = this.elements.find(e => e.name === 'email')?.model;
+    let password = this.elements.find(e => e.name === 'password')?.model;
 
-    return {
-      firstName: firstNameElement !== undefined ? firstNameElement.model : '',
-      lastName: lastNameElement !== undefined ? lastNameElement.model : '',
-      jobPosition:jobPositionElement !== undefined ? jobPositionElement.model : '',
-      branchOfficeId: branchOfficeIdElement !== undefined ? branchOfficeIdElement.model : 0,
-    }
+    return new EmployeeRequestDto(firstName, lastName, jobPosition, officeId, email, password);
   }
 }

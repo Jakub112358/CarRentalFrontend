@@ -31,6 +31,12 @@ export class HeaderComponent {
         ]
       },
 
+      {label: 'price lists', icon: 'pi pi-list', items:[
+          {label: 'price lists', icon: 'pi pi-list', routerLink: 'price-list'},
+          {label: 'add price list', icon: 'pi pi-plus', routerLink: 'price-list/new'},
+        ]
+      },
+
       {label: 'employees', icon: 'pi pi-users', items:[
           {label: 'employee list', icon: 'pi pi-list', routerLink: 'employee'},
           {label: 'add employee', icon: 'pi pi-plus', routerLink: 'employee/new'},

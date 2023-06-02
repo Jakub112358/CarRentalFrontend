@@ -10,7 +10,6 @@ import {EmployeeService} from "../../../../service/employee/employee.service";
 export class EmployeeListComponent {
   employees: Employee[];
 
-
   constructor(private employeeService: EmployeeService) {
   }
 

@@ -1,0 +1,24 @@
+<div class="surface-section md:w-8">
+  <div class="font-medium text-3xl text-900 my-3" >Price lists</div>
+  <p-table styleClass="p-datatable-sm" [value]="priceLists" [tableStyle]="{'min-width': '30rem'}">
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="id" style="width:10%">Id <p-sortIcon field="id"></p-sortIcon></th>
+        <th pSortableColumn="shortTermPrice" style="width:20%">Short term price  <p-sortIcon field="shortTermPrice"></p-sortIcon></th>
+        <th pSortableColumn="mediumTermPrice" style="width:20%">Medium term price <p-sortIcon field="mediumTermPrice"></p-sortIcon></th>
+        <th pSortableColumn="longTermPrice" style="width:20%">Long term price <p-sortIcon field="longTermPrice"></p-sortIcon></th>
+        <th style="width: 15%">Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-plist>
+      <tr>
+        <td>{{plist.id}}</td>
+        <td>{{plist.shortTermPrice}}</td>
+        <td>{{plist.mediumTermPrice}}</td>
+        <td>{{plist.longTermPrice}}</td>
+        <td><button pButton pRipple label="Details" icon="pi pi-search" class="p-button-text" routerLink="{{'/admin/price-list/' + plist.id}}"></button></td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <button pButton pRipple label="add new price list" class="p-button-success m-2" icon="pi pi-plus" routerLink='/admin/price-list/new'></button>
+</div>
