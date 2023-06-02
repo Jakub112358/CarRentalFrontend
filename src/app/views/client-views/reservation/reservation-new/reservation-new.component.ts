@@ -1,14 +1,14 @@
 import {Component} from '@angular/core';
 import {CreateFormElement} from "../../../../model/template-elements/create-form-element";
-import {OfficeService} from "../../../../service/office.service";
+import {OfficeService} from "../../../../service/office/office.service";
 import {Office} from "../../../../model/office";
 import {Car} from "../../../../model/car";
-import {CarService} from "../../../../service/car.service";
+import {CarService} from "../../../../service/car/car.service";
 import {ReservationValidator} from "../../../../util/validator/reservation-validator";
 import {CarRentDto} from "../../../../model/rest/request/car-rent-dto";
 import {ReservationCreateDto} from "../../../../model/rest/request/create/reservation-create-dto";
 import {BasicListElement} from "../../../../model/template-elements/basic-list-element";
-import {ReservationService} from "../../../../service/reservation.service";
+import {ReservationService} from "../../../../service/reservation/reservation.service";
 import {Reservation} from "../../../../model/reservation";
 
 @Component({

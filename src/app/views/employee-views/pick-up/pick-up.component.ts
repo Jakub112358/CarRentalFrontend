@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {PickUp} from "../../../model/pick-up";
-import {PickUpService} from "../../../service/pick-up.service";
+import {PickUpService} from "../../../service/pick-up/pick-up.service";
 
 @Component({
   selector: 'app-pick-up',

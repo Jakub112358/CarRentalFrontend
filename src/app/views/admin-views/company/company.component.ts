@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Company} from "../../../model/company";
-import {CompanyService} from "../../../service/company.service";
+import {CompanyService} from "../../../service/company/company.service";
 import {DomSanitizer} from '@angular/platform-browser';
 import {CompanyUpdateDto} from "../../../model/rest/request/update-dto/CompanyUpdateDto";
 import {DetailElement} from "../../../model/template-elements/detail-element";
@@ -16,6 +16,7 @@ export class CompanyComponent {
   updateElement: UpdateFormElement;
   modalVisible: boolean;
   modalHeader: string;
+  company: Company;
 
   constructor(private companyService: CompanyService,
               private sanitizer: DomSanitizer) {
@@ -40,17 +41,12 @@ export class CompanyComponent {
 
 
   private loadElements() {
-    let id = this.getCompanyId();
-    this.getCompanyAndCreateElements(id);
+    this.getCompanyAndCreateElements();
   }
 
-  //TODO: temporal company id. In next version it would be provided from logged user info
-  private getCompanyId() {
-    return 1;
-  }
-
-  private getCompanyAndCreateElements(id: number) {
-    this.companyService.findById(id).subscribe(data => {
+  private getCompanyAndCreateElements() {
+    this.companyService.findCompany().subscribe(data => {
+      this.company = data;
       this.createElements(data);
     })
   }
@@ -65,6 +61,9 @@ export class CompanyComponent {
       new DetailElement('Town', company.address.town, true, 'town'),
       new DetailElement('Street', company.address.street, true, 'street'),
       new DetailElement('HouseNumber', company.address.houseNumber, true, 'houseNumber'),
+      new DetailElement('Different offices extra charge', company.differentOfficesExtraCharge, true, 'differentOfficesExtraCharge'),
+      new DetailElement('medium term rent min days', company.mediumTermRentMinDays, true, 'mediumTermRentMinDays'),
+      new DetailElement('long term rent min days', company.longTermRentMinDays, true, 'longTermRentMinDays'),
     ]
   }
 
@@ -74,43 +73,27 @@ export class CompanyComponent {
   }
 
   private createUpdateDto() {
-    let addressFieldNames = ['zipCode', 'town', 'street', 'houseNumber']
-    if (addressFieldNames.includes(this.updateElement.name)) {
-      return this.createUpdateDtoWithAddress();
-    } else {
-      return this.createUpdateDtoWithBasicField();
-    }
-  }
-
-  private createUpdateDtoWithBasicField() {
-    let o = Object.defineProperty({}, this.updateElement.name, {
+    let updateDto = this.company as CompanyUpdateDto;
+    let changedField = Object.defineProperty({}, this.updateElement.name, {
       value: this.updateElement.value,
       writable: true,
       enumerable: true,
       configurable: true,
     });
-    return (o as CompanyUpdateDto)
-  }
-
-  private createUpdateDtoWithAddress() {
-    return {
-      address:
-        {
-          zipCode: this.getAddressAfterModification('zipCode'),
-          town: this.getAddressAfterModification('town'),
-          street: this.getAddressAfterModification('street'),
-          houseNumber: this.getAddressAfterModification('houseNumber'),
-        }
-    };
-  }
-
-  getAddressAfterModification(name: string){
-   return this.updateElement.name === name ? this.updateElement.value : this.elements.find(e => e.name === name)?.value;
+    updateDto.address.id = 0;
+    if (this.updateElement.name === 'zipCode' ||
+      this.updateElement.name === 'town' ||
+      this.updateElement.name === 'street' ||
+      this.updateElement.name === 'houseNumber') {
+      updateDto.address = Object.assign(updateDto.address, changedField);
+    } else {
+      updateDto = Object.assign(updateDto, changedField);
+    }
+    return updateDto;
   }
 
   private updateCompanyAndRefreshDisplay(dto: CompanyUpdateDto) {
-    let id = this.getCompanyId();
-    this.companyService.update(id, dto).subscribe(
+    this.companyService.update(dto).subscribe(
       data => {
         this.createElements(data);
       }

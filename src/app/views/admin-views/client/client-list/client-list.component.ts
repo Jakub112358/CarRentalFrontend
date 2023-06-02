@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {Client} from "../../../../model/client";
-import {ClientService} from "../../../../service/client.service";
+import {ClientService} from "../../../../service/client/client.service";
 import {Address} from "../../../../model/address";
 
 @Component({

@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {ClientCreateRequest} from "../../model/rest/request/create/client-create-request";
-import {ClientService} from "../../service/client.service";
+import {ClientService} from "../../service/client/client.service";
 import {AuthService} from "../../auth/auth.service";
 import {AuthRequest} from "../../model/rest/request/auth-request";
 import {JwtTokenService} from "../../auth/jwt-token.service";

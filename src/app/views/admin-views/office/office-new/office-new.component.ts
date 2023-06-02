@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Address} from "../../../../model/address";
-import {OfficeService} from "../../../../service/office.service";
+import {OfficeService} from "../../../../service/office/office.service";
 import {OfficeCreateDto} from "../../../../model/rest/request/create/office-create-dto";
 
 @Component({

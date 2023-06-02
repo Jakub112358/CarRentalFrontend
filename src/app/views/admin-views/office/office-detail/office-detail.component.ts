@@ -2,13 +2,13 @@ import {Component} from '@angular/core';
 import {DetailElement} from "../../../../model/template-elements/detail-element";
 import {UpdateFormElement} from "../../../../model/template-elements/update-form-element";
 import {ActivatedRoute, Router} from "@angular/router";
-import {EmployeeService} from "../../../../service/employee.service";
+import {EmployeeService} from "../../../../service/employee/employee.service";
 import {Employee} from "../../../../model/employee";
-import {OfficeService} from "../../../../service/office.service";
+import {OfficeService} from "../../../../service/office/office.service";
 import {UpdateDto} from "../../../../model/rest/request/update-dto/UpdateDto";
 import {Office} from "../../../../model/office";
 import {Car} from "../../../../model/car";
-import {CarService} from "../../../../service/car.service";
+import {CarService} from "../../../../service/car/car.service";
 import {OfficeRequestDto} from "../../../../model/rest/request/office-request-dto";
 
 @Component({

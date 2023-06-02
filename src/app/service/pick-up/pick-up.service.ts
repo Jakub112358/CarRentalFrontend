@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {CrudService} from "./crud-service";
-import {PickUp} from "../model/pick-up";
+import {CrudService} from "../crud-service";
+import {PickUp} from "../../model/pick-up";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {catchError, Observable} from "rxjs";
-import {ApiConstraints} from "../config/apiConstraints";
+import {ApiConstraints} from "../../config/apiConstraints";
 
 @Injectable({
   providedIn: 'root'

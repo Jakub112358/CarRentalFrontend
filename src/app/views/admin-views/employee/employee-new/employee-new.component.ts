@@ -3,8 +3,8 @@ import {CreateFormElement} from "../../../../model/template-elements/create-form
 import {JobPosition} from "../../../../model/enumeration/job-position";
 import {EmployeeValidator} from "../../../../util/validator/employee-validator";
 import {Office} from "../../../../model/office";
-import {OfficeService} from "../../../../service/office.service";
-import {EmployeeService} from "../../../../service/employee.service";
+import {OfficeService} from "../../../../service/office/office.service";
+import {EmployeeService} from "../../../../service/employee/employee.service";
 import {EmployeeCreateDto} from "../../../../model/rest/request/create/employee-create-dto";
 
 @Component({

@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
-import {CrudService} from "./crud-service";
-import {Reservation} from "../model/reservation";
+import {CrudService} from "../crud-service";
+import {Reservation} from "../../model/reservation";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {catchError, Observable} from "rxjs";
-import {ReservationClientResponse} from "../model/rest/response/reservation-client-response";
-import {ApiConstraints} from "../config/apiConstraints";
+import {ReservationClientResponse} from "../../model/rest/response/reservation-client-response";
+import {ApiConstraints} from "../../config/apiConstraints";
 
 @Injectable({
   providedIn: 'root'

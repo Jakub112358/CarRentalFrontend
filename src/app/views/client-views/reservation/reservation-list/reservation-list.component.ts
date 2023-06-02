@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ReservationService} from "../../../../service/reservation.service";
+import {ReservationService} from "../../../../service/reservation/reservation.service";
 import {ReservationClientResponse} from "../../../../model/rest/response/reservation-client-response";
 import {Car} from "../../../../model/car";
 import {Office} from "../../../../model/office";

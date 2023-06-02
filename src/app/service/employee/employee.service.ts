@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {CrudService} from "./crud-service";
-import {Employee} from "../model/employee";
+import {CrudService} from "../crud-service";
+import {Employee} from "../../model/employee";
 import {catchError, Observable} from "rxjs";
-import {ApiConstraints} from "../config/apiConstraints";
+import {ApiConstraints} from "../../config/apiConstraints";
 
 @Injectable({
   providedIn: 'root'

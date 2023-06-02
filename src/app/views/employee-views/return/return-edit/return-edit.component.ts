@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {BasicListElement} from "../../../../model/template-elements/basic-list-element";
 import {CreateFormElement} from "../../../../model/template-elements/create-form-element";
 import {CarReturn} from "../../../../model/car-return";
-import {ReturnService} from "../../../../service/return.service";
+import {ReturnService} from "../../../../service/return/return.service";
 import {CarReturnUpdateEmployeeRequest} from "../../../../model/rest/request/car-return-update-employee-request";
 import {RentalActionStatus} from "../../../../model/enumeration/rental-action-status";
 

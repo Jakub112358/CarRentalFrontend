@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {CarReturn} from "../../../model/car-return";
-import {ReturnService} from "../../../service/return.service";
+import {ReturnService} from "../../../service/return/return.service";
 
 @Component({
   selector: 'app-return',

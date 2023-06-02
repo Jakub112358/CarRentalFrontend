@@ -4,7 +4,7 @@ import {ReservationClientResponse} from "../../../../../model/rest/response/rese
 import {Car} from "../../../../../model/car";
 import {Office} from "../../../../../model/office";
 import {ReservationStatus} from "../../../../../model/enumeration/reservation-status";
-import {ReservationService} from "../../../../../service/reservation.service";
+import {ReservationService} from "../../../../../service/reservation/reservation.service";
 
 @Component({
   selector: 'app-reservation-detail',

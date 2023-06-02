@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {CrudService} from "./crud-service";
-import {Client} from "../model/client";
+import {CrudService} from "../crud-service";
+import {Client} from "../../model/client";
 import {HttpClient} from "@angular/common/http";
-import {ApiConstraints} from "../config/apiConstraints";
+import {ApiConstraints} from "../../config/apiConstraints";
 
 @Injectable({
   providedIn: 'root'

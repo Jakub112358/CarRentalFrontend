@@ -4,7 +4,7 @@ import {BasicListElement} from "../../../../model/template-elements/basic-list-e
 import {PickUpUpdateEmployeeRequest} from "../../../../model/rest/request/pick-up-update-employee-request";
 import {CreateFormElement} from "../../../../model/template-elements/create-form-element";
 import {RentalActionStatus} from "../../../../model/enumeration/rental-action-status";
-import {PickUpService} from "../../../../service/pick-up.service";
+import {PickUpService} from "../../../../service/pick-up/pick-up.service";
 
 //TODO: validate employee id and pick up date
 @Component({

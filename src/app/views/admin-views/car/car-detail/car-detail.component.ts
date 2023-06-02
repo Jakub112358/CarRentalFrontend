@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Car} from "../../../../model/car";
-import {CarService} from "../../../../service/car.service";
+import {CarService} from "../../../../service/car/car.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {DetailElement} from "../../../../model/template-elements/detail-element";
 import {UpdateFormElement} from "../../../../model/template-elements/update-form-element";
