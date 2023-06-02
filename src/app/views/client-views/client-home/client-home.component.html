@@ -1,1 +1,5 @@
-<p>client-home works!</p>
+<div *ngFor="let element of elements">
+  <p-panel header="{{element.header}}" [toggleable]="true" >
+    <p >{{element.warningContent}}</p>
+  </p-panel>
+</div>

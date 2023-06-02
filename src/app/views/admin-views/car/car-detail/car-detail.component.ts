@@ -1,156 +1,109 @@
 import {Component} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
 import {Car} from "../../../../model/car";
 import {CarService} from "../../../../service/car.service";
-import {CarUpdateDto} from "../../../../model/rest/request/update-dto/CarUpdateDto";
+import {ActivatedRoute, Router} from "@angular/router";
+import {DetailElement} from "../../../../model/template-elements/detail-element";
+import {UpdateFormElement} from "../../../../model/template-elements/update-form-element";
+import {CarRequestDto} from "../../../../model/rest/request/car-request-dto";
+import {UpdateDto} from "../../../../model/rest/request/update-dto/UpdateDto";
 
-//TODO add pricelist!
-//TODO refactor this component
 @Component({
   selector: 'app-car-detail',
   templateUrl: './car-detail.component.html',
   styleUrls: ['./car-detail.component.scss']
 })
 export class CarDetailComponent {
-  carId: number;
-  displayElements: any[][];
+
   car: Car;
-  modalVisible: boolean;
+  updateElement: UpdateFormElement;
+  updateModalVisible: boolean;
+  deleteModalVisible: boolean;
   modalHeader: string;
-  inputValue: any;
-  activeField: string;
+  elements: DetailElement[];
 
   constructor(private activatedRoute: ActivatedRoute,
-              private carService: CarService) {
+              private carService: CarService,
+              private router: Router) {
   }
 
   ngOnInit() {
-    this.modalVisible = false;
-    this.getCarId();
-    this.getCarAndRefreshDisplay();
+    this.updateModalVisible = false;
+    this.loadElements();
   }
 
-  showEditModal(fieldName: string) {
-    this.modalHeader = 'edit: ' + fieldName;
-    this.modalVisible = true;
-    this.activeField = fieldName;
-    this.getInitialFormInputValue(fieldName);
+  showEditModal(element: DetailElement) {
+    this.modalHeader = 'edit: ' + element.title;
+    this.updateElement = new UpdateFormElement(element.value, element.name);
+    this.updateModalVisible = true;
+  }
+
+  showDeleteModal() {
+    this.deleteModalVisible = true;
   }
 
   onSubmit() {
-    let updateCar: CarUpdateDto = this.createUpdateCarInstance()
-    this.carService.update(this.carId, updateCar).subscribe(
-      data => {
-        this.car = data;
-        this.refreshDisplay();
-      }
+    let carUpdateDto: CarRequestDto = this.createUpdateDto();
+    this.updateCarAndRefreshDisplay(carUpdateDto);
+    this.updateModalVisible = false;
+  }
+
+  deleteCar() {
+    this.carService.delete(this.getId()).subscribe(() =>
+      this.router.navigateByUrl('/admin/car')
     );
-    this.modalVisible = false;
   }
 
 
-  private getCarId() {
-    this.carId = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+  private loadElements() {
+    let id = this.getId();
+    this.getCarAndCreateElements(id);
   }
 
-
-  private getCarAndRefreshDisplay() {
-    this.carService.findById(this.carId)
-      .subscribe(data => {
-        this.car = data;
-        this.refreshDisplay();
-      })
+  private getId() {
+    return Number(this.activatedRoute.snapshot.paramMap.get('id'));
   }
 
-  private refreshDisplay() {
-    let fieldNames: any[] = Object.values(CarFields);
-    this.displayElements = [
-      [fieldNames[0], this.car.id],
-      [fieldNames[1], this.car.make],
-      [fieldNames[2], this.car.model],
-      [fieldNames[3], this.car.mileage],
-      [fieldNames[4], this.car.minRentalTime],
-      [fieldNames[5], this.car.yearOfManufacture],
-      [fieldNames[6], this.car.bodyType],
-      [fieldNames[7], this.car.color],
-      [fieldNames[8], this.car.status],
-      [fieldNames[9], this.car.currentOfficeId]
+  private getCarAndCreateElements(id: number) {
+    this.carService.findById(id).subscribe(data => {
+      this.car = data;
+      this.createElements(data);
+    })
+  }
+
+  private createElements(car: Car) {
+    this.elements = [
+      new DetailElement('id', car.id, false, 'id'),
+      new DetailElement('make', car.make, true, 'make'),
+      new DetailElement('model', car.model, true, 'model'),
+      new DetailElement('mileage', car.mileage, true, 'mileage'),
+      new DetailElement('min rental time', car.minRentalTime, true, 'minRentalTime'),
+      new DetailElement('year of manufacture', car.yearOfManufacture, true, 'yearOfManufacture'),
+      new DetailElement('body type', car.bodyType, true, 'bodyType'),
+      new DetailElement('color', car.color, true, 'color'),
+      new DetailElement('status', car.status, true, 'status'),
+      new DetailElement('price list id', car.priceListId, true, 'priceListId'),
+      new DetailElement('current office id', car.currentOfficeId, true, 'officeId'),
     ]
   }
 
-  private getInitialFormInputValue(field: string) {
-    switch (field) {
-      case CarFields.Id:
-        this.inputValue = this.car.id;
-        break;
-      case CarFields.Make:
-        this.inputValue = this.car.make;
-        break;
-      case CarFields.Model:
-        this.inputValue = this.car.model;
-        break;
-      case CarFields.Mileage:
-        this.inputValue = this.car.mileage;
-        break;
-      case CarFields.MinRentalTime:
-        this.inputValue = this.car.minRentalTime;
-        break;
-      case CarFields.YearOfManufacture:
-        this.inputValue = this.car.yearOfManufacture;
-        break;
-      case CarFields.BodyType:
-        this.inputValue = this.car.bodyType;
-        break;
-      case CarFields.Color:
-        this.inputValue = this.car.color;
-        break;
-      case CarFields.Status:
-        this.inputValue = this.car.status;
-        break;
-      case CarFields.Office:
-        this.inputValue = this.car.currentOfficeId;
-        break;
-    }
+  private createUpdateDto() {
+    let updateDto = this.car as CarRequestDto;
+    let changedField = Object.defineProperty({}, this.updateElement.name, {
+      value: this.updateElement.value,
+      writable: true,
+      enumerable: true,
+      configurable: true,
+    });
+    return Object.assign(updateDto, changedField);
   }
 
-  private createUpdateCarInstance() {
-    switch (this.activeField) {
-      case CarFields.Id:
-        return {id: this.inputValue};
-      case CarFields.Make:
-        return {make: this.inputValue};
-      case CarFields.Model:
-        return {model: this.inputValue};
-      case CarFields.Mileage:
-        return {mileage: this.inputValue};
-      case CarFields.MinRentalTime:
-        return {minRentalTime: this.inputValue};
-      case CarFields.YearOfManufacture:
-        return {yearOfManufacture: this.inputValue};
-      case CarFields.BodyType:
-        return {bodyType: this.inputValue};
-      case CarFields.Color:
-        return {color: this.inputValue};
-      case CarFields.Status:
-        return {status: this.inputValue};
-      case CarFields.Office:
-        return {currentBranchOfficeId: this.inputValue};
-      default:
-        throw new Error('internal error')
-    }
+  private updateCarAndRefreshDisplay(dto: UpdateDto) {
+    let id = this.getId()
+    this.carService.update(id, dto).subscribe(
+      data => {
+        this.createElements(data);
+      }
+    );
   }
-}
-
-enum CarFields {
-  Id = 'id',
-  Make = 'make',
-  Model = 'model',
-  Mileage = 'mileage',
-  MinRentalTime = 'min rental time',
-  YearOfManufacture = 'year of manufacture',
-  BodyType = 'body type',
-  Color = 'color',
-  Status = 'status',
-  Office = 'current branch office'
 
 }

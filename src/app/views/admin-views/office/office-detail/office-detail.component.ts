@@ -7,9 +7,9 @@ import {Employee} from "../../../../model/employee";
 import {OfficeService} from "../../../../service/office.service";
 import {UpdateDto} from "../../../../model/rest/request/update-dto/UpdateDto";
 import {Office} from "../../../../model/office";
-import {CompanyUpdateDto} from "../../../../model/rest/request/update-dto/CompanyUpdateDto";
 import {Car} from "../../../../model/car";
 import {CarService} from "../../../../service/car.service";
+import {OfficeRequestDto} from "../../../../model/rest/request/office-request-dto";
 
 @Component({
   selector: 'app-office-detail',
@@ -17,6 +17,7 @@ import {CarService} from "../../../../service/car.service";
   styleUrls: ['./office-detail.component.scss']
 })
 export class OfficeDetailComponent {
+  office: Office;
   elements: DetailElement[];
   updateElement: UpdateFormElement;
   editModalVisible: boolean;
@@ -51,7 +52,7 @@ export class OfficeDetailComponent {
   }
 
   onSubmit() {
-    let updateDto: UpdateDto = this.createUpdateDto();
+    let updateDto: OfficeRequestDto = this.createUpdateDto();
     this.updateObjectAndRefreshDisplay(updateDto);
     this.editModalVisible = false;
   }
@@ -60,7 +61,6 @@ export class OfficeDetailComponent {
     this.service.delete(this.getObjectId()).subscribe(() =>
       this.router.navigateByUrl('/admin/office')
     );
-
   }
 
   private loadElements() {
@@ -74,6 +74,7 @@ export class OfficeDetailComponent {
 
   private getObjectAndCreateElements(id: number) {
     this.service.findById(id).subscribe(data => {
+      this.office = data;
       this.createElements(data);
     })
   }
@@ -89,38 +90,16 @@ export class OfficeDetailComponent {
   }
 
   private createUpdateDto() {
-    let addressFieldNames = ['zipCode', 'town', 'street', 'houseNumber']
-    if (addressFieldNames.includes(this.updateElement.name)) {
-      return this.createUpdateDtoWithAddress();
-    } else {
-      return this.createUpdateDtoWithBasicField();
-    }
-  }
-
-  private createUpdateDtoWithBasicField() {
-    let o = Object.defineProperty({}, this.updateElement.name, {
+    let updateDto = this.office as OfficeRequestDto;
+    let changedField = Object.defineProperty({}, this.updateElement.name, {
       value: this.updateElement.value,
       writable: true,
       enumerable: true,
       configurable: true,
     });
-    return (o as CompanyUpdateDto)
-  }
-
-  private createUpdateDtoWithAddress() {
-    return {
-      address:
-        {
-          zipCode: this.getAddressAfterModification('zipCode'),
-          town: this.getAddressAfterModification('town'),
-          street: this.getAddressAfterModification('street'),
-          houseNumber: this.getAddressAfterModification('houseNumber'),
-        }
-    };
-  }
-
-  getAddressAfterModification(name: string) {
-    return this.updateElement.name === name ? this.updateElement.value : this.elements.find(e => e.name === name)?.value;
+    updateDto.address.id = 0;
+    updateDto.address = Object.assign(updateDto.address, changedField);
+    return updateDto;
   }
 
   private updateObjectAndRefreshDisplay(dto: UpdateDto) {

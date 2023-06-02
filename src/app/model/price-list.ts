@@ -1,6 +1,6 @@
 export interface PriceList {
   id: number;
-  pricePerDay: number;
-  pricePerWeek: number;
-  pricePerMonth: number;
+  shortTermPrice: number;
+  mediumTermPrice: number;
+  longTermPrice: number;
 }

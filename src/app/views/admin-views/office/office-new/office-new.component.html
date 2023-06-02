@@ -40,7 +40,7 @@
   </form>
 </div>
 
-<p-dialog header="Success!" [(visible)]="successModalVisible" [style]="{width: '50vw'}">
+<p-dialog header="Success!" [(visible)]="successModalVisible" [style]="{width: '50vw'}" [modal]="true">
   <div class="grid justify-content-center py-2">
     <button type="button" pButton pRipple label="Add another branch office" class="p-button-success w-5 m-2" (click)="addNextOffice()"></button>
     <button type="button" pButton pRipple label="Go to added office details" class="p-button-success w-5 m-2" [routerLink]="addedOfficePath"></button>
@@ -48,6 +48,6 @@
 
 </p-dialog>
 
-<p-dialog header="Fail" [(visible)]="failModalVisible" [style]="{width: '50vw'}">
+<p-dialog header="Fail" [(visible)]="failModalVisible" [style]="{width: '50vw'}" [modal]="true">
   Adding new office failed, please check if input is correct.
 </p-dialog>

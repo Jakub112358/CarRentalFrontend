@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {PanelElement} from "../../../model/template-elements/panel-element";
-import {MsgService} from "../../../service/msg.service";
+import {NotificationService} from "../../../service/notification/notification.service";
 
 @Component({
   selector: 'app-admin-home',
@@ -10,7 +10,7 @@ import {MsgService} from "../../../service/msg.service";
 export class AdminHomeComponent {
   elements: PanelElement[];
 
-  constructor(private msgService: MsgService) {
+  constructor(private msgService: NotificationService) {
   }
 
   ngOnInit() {
@@ -19,7 +19,7 @@ export class AdminHomeComponent {
 
 
   private loadDataAndCreatePanels() {
-    this.msgService.findAllByRecipient('ADMIN').subscribe(data => {
+    this.msgService.findAllByRecipient().subscribe(data => {
       this.elements = data.map(msg => new PanelElement(msg.title, msg.content));
     })
   }
