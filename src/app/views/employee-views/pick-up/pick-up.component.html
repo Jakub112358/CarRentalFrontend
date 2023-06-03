@@ -32,8 +32,8 @@
         <th pSortableColumn="carId" style="width:10%; text-align:center"><p>Car id</p>
           <p-sortIcon field="carId"></p-sortIcon>
         </th>
-        <th pSortableColumn="branchOfficeId" style="width:10%; text-align:center"><p>Branch office id</p>
-          <p-sortIcon field="branchOfficeId"></p-sortIcon>
+        <th pSortableColumn="officeId" style="width:10%; text-align:center"><p>Office id</p>
+          <p-sortIcon field="officeId"></p-sortIcon>
         </th>
         <th style="width: 5%; text-align:center">Edit</th>
       </tr>
@@ -48,7 +48,7 @@
         <td style="text-align: center">{{pickUp.employeeId}}</td>
         <td style="text-align: center">{{pickUp.reservationId}}</td>
         <td style="text-align: center">{{pickUp.carId}}</td>
-        <td style="text-align: center">{{pickUp.branchOfficeId}}</td>
+        <td style="text-align: center">{{pickUp.officeId}}</td>
         <td style="text-align:center">
           <button pButton pRipple label="Edit" icon="pi pi-pencil" class="p-button-text" (click)="onSelectEdit(pickUp)"></button>
         </td>

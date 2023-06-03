@@ -8,6 +8,7 @@ import {RippleModule} from "primeng/ripple";
 import { PickUpEditComponent } from './pick-up-edit/pick-up-edit.component';
 import {FormsModule} from "@angular/forms";
 import {CalendarModule} from "primeng/calendar";
+import {DialogModule} from "primeng/dialog";
 
 
 @NgModule({
@@ -15,20 +16,21 @@ import {CalendarModule} from "primeng/calendar";
     PickUpComponent,
     PickUpEditComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: PickUpComponent,
-      }
-    ]),
-    TableModule,
-    ButtonModule,
-    RippleModule,
-    FormsModule,
-    CalendarModule,
-  ]
+    imports: [
+        CommonModule,
+        RouterModule.forChild([
+            {
+                path: '',
+                component: PickUpComponent,
+            }
+        ]),
+        TableModule,
+        ButtonModule,
+        RippleModule,
+        FormsModule,
+        CalendarModule,
+        DialogModule,
+    ]
 })
 export class PickUpModule {
 }

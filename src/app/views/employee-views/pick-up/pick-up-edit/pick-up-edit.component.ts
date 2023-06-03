@@ -1,12 +1,11 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {PickUp} from "../../../../model/pick-up";
 import {BasicListElement} from "../../../../model/template-elements/basic-list-element";
-import {PickUpUpdateEmployeeRequest} from "../../../../model/rest/request/pick-up-update-employee-request";
+import {PickUpUpdateRequest} from "../../../../model/rest/request/pick-up-update-request";
 import {CreateFormElement} from "../../../../model/template-elements/create-form-element";
 import {RentalActionStatus} from "../../../../model/enumeration/rental-action-status";
 import {PickUpService} from "../../../../service/pick-up/pick-up.service";
 
-//TODO: validate employee id and pick up date
 @Component({
   selector: 'app-pick-up-edit',
   templateUrl: './pick-up-edit.component.html',
@@ -16,9 +15,9 @@ export class PickUpEditComponent {
   @Input() pickUp: PickUp;
   @Output() editedPickUpEvent = new EventEmitter<PickUp>();
   unchangeableElements: BasicListElement[];
-  updateRequest: PickUpUpdateEmployeeRequest;
+  updateRequest: PickUpUpdateRequest;
   formElements: CreateFormElement[];
-
+  failModalVisible: boolean;
 
   constructor(private pickUpService: PickUpService) {
   }
@@ -53,20 +52,32 @@ export class PickUpEditComponent {
   onSubmitUpdate() {
     this.createUpdateRequest();
     this.pickUpService.update(this.pickUp.id, this.updateRequest).subscribe(data => {
-      this.editedPickUpEvent.emit(data)
+      if(data){
+        this.editedPickUpEvent.emit(data)
+      } else {
+        this.failModalVisible = true;
+      }
     });
   }
 
   private createUpdateRequest() {
     let comments = this.formElements.find(e => e.name === 'comments')?.model;
     let pickUpDate;
-    let pickUpFormElement = this.formElements.find(e => e.name === 'pickUpDate');
-    if (pickUpFormElement != null) {
-      pickUpDate = this.dateToString(pickUpFormElement.model);
+    let pickUpDateFormElement = this.formElements.find(e => e.name === 'pickUpDate');
+    if (pickUpDateFormElement != null && pickUpDateFormElement.model != null) {
+      pickUpDate = this.dateToString(pickUpDateFormElement.model);
     }
     let status = this.formElements.find(e => e.name === 'status')?.model;
     let employeeId = this.formElements.find(e => e.name === 'employeeId')?.model;
-    this.updateRequest = new PickUpUpdateEmployeeRequest(comments, pickUpDate, status, employeeId);
+
+    this.updateRequest = new PickUpUpdateRequest(
+      comments,
+      pickUpDate,
+      this.pickUp.plannedPickUpDate,
+      status,
+      employeeId,
+      this.pickUp.carId,
+      this.pickUp.officeId);
   }
 
   private dateToString(d: Date): string {

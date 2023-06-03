@@ -14,10 +14,8 @@ export class PickUpComponent {
   constructor(private pickUpService: PickUpService) {
   }
 
-  //TODO: branch office id should be provided by logged employee
-  //TODO: how to refactor this style to css?
   ngOnInit() {
-    this.pickUpService.findAllByOffice_Id(1).subscribe(data => {
+    this.pickUpService.findAll().subscribe(data => {
       this.pickUps = data;
     })
   }

@@ -8,6 +8,7 @@ import {RippleModule} from "primeng/ripple";
 import { ReturnEditComponent } from './return-edit/return-edit.component';
 import {FormsModule} from "@angular/forms";
 import {CalendarModule} from "primeng/calendar";
+import {DialogModule} from "primeng/dialog";
 
 
 @NgModule({
@@ -15,20 +16,21 @@ import {CalendarModule} from "primeng/calendar";
     ReturnComponent,
     ReturnEditComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: ReturnComponent,
-      }
-    ]),
-    TableModule,
-    ButtonModule,
-    RippleModule,
-    FormsModule,
-    CalendarModule,
-  ]
+    imports: [
+        CommonModule,
+        RouterModule.forChild([
+            {
+                path: '',
+                component: ReturnComponent,
+            }
+        ]),
+        TableModule,
+        ButtonModule,
+        RippleModule,
+        FormsModule,
+        CalendarModule,
+        DialogModule,
+    ]
 })
 export class ReturnModule {
 }

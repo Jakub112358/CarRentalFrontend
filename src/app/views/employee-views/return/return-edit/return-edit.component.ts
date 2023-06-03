@@ -3,7 +3,7 @@ import {BasicListElement} from "../../../../model/template-elements/basic-list-e
 import {CreateFormElement} from "../../../../model/template-elements/create-form-element";
 import {CarReturn} from "../../../../model/car-return";
 import {ReturnService} from "../../../../service/return/return.service";
-import {CarReturnUpdateEmployeeRequest} from "../../../../model/rest/request/car-return-update-employee-request";
+import {CarReturnUpdateRequest} from "../../../../model/rest/request/car-return-update-request";
 import {RentalActionStatus} from "../../../../model/enumeration/rental-action-status";
 
 //TODO: validate!
@@ -17,8 +17,9 @@ export class ReturnEditComponent {
   @Input() carReturn: CarReturn;
   @Output() editedCarReturnEvent = new EventEmitter<CarReturn>();
   unchangeableElements: BasicListElement[];
-  updateRequest: CarReturnUpdateEmployeeRequest;
+  updateRequest: CarReturnUpdateRequest;
   formElements: CreateFormElement[];
+  failModalVisible: boolean;
 
   constructor(private carReturnService: ReturnService) {
   }
@@ -47,14 +48,17 @@ export class ReturnEditComponent {
       new CreateFormElement('Status', 'select', this.carReturn.status, 'status', true, '', Object.values(RentalActionStatus).map(s => [s, s])),
       new CreateFormElement('Employee id', 'number', this.carReturn.employeeId, 'employeeId', true, ''),
       new CreateFormElement('Extra charge', 'number', 0, 'extraCharge', true, ''),
-      new CreateFormElement('Mileage', 'number', 0, 'mileage', true, ''),
     ]
   }
 
   onSubmitUpdate() {
     this.createUpdateRequest();
     this.carReturnService.update(this.carReturn.id, this.updateRequest).subscribe(data => {
-      this.editedCarReturnEvent.emit(data)
+      if(data){
+        this.editedCarReturnEvent.emit(data)
+      } else {
+        this.failModalVisible = true;
+      }
     });
   }
 
@@ -62,14 +66,22 @@ export class ReturnEditComponent {
     let comments = this.formElements.find(e => e.name === 'comments')?.model;
     let returnDate;
     let returnDateFormElement = this.formElements.find(e => e.name === 'returnDate');
-    if (returnDateFormElement != null) {
+    if (returnDateFormElement != null && returnDateFormElement.model != null) {
       returnDate = this.dateToString(returnDateFormElement.model);
     }
     let status = this.formElements.find(e => e.name === 'status')?.model;
     let employeeId = this.formElements.find(e => e.name === 'employeeId')?.model;
     let extraCharge = this.formElements.find(e => e.name === 'extraCharge')?.model;
-    let mileage = this.formElements.find(e => e.name === 'mileage')?.model;
-    this.updateRequest = new CarReturnUpdateEmployeeRequest(comments, extraCharge, returnDate, status, employeeId, mileage);
+
+    this.updateRequest = new CarReturnUpdateRequest(
+      comments,
+      extraCharge,
+      returnDate,
+      this.carReturn.plannedReturnDate,
+      status,
+      employeeId,
+      this.carReturn.carId,
+      this.carReturn.officeId);
   }
 
   private dateToString(d: Date): string {
