@@ -5,6 +5,7 @@ import {AuthService} from "../../auth/auth.service";
 import {AuthRequest} from "../../model/rest/request/auth-request";
 import {JwtTokenService} from "../../auth/jwt-token.service";
 import {Router} from "@angular/router";
+import {Address} from "../../model/address";
 
 @Component({
   selector: 'app-register',
@@ -20,6 +21,7 @@ export class RegisterComponent {
               private authService: AuthService,
               private tokenService: JwtTokenService,
               private router: Router) {
+    this.client = new ClientRequestDto('','','','',new Address());
   }
 
   ngOnInit() {

@@ -32,6 +32,10 @@ export class JwtTokenService {
       this.decodedToken = jwt_decode(token);
   }
 
+  getUserId() {
+    return this.decodedToken ? this.decodedToken.id : null;
+  }
+
 
   getEmail() {
     return this.decodedToken ? this.decodedToken.sub : null;

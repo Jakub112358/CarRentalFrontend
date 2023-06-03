@@ -4,6 +4,7 @@ import {ReservationClientResponse} from "../../../../model/rest/response/reserva
 import {Car} from "../../../../model/car";
 import {Office} from "../../../../model/office";
 import {ReservationStatus} from "../../../../model/enumeration/reservation-status";
+import {JwtTokenService} from "../../../../auth/jwt-token.service";
 
 @Component({
   selector: 'app-reservation-list',
@@ -16,7 +17,8 @@ export class ReservationListComponent {
   selectedReservation: ReservationClientResponse;
 
 
-  constructor(private reservationService: ReservationService) {
+  constructor(private reservationService: ReservationService,
+              private tokenService: JwtTokenService) {
   }
 
   ngOnInit() {
@@ -31,9 +33,8 @@ export class ReservationListComponent {
     })
   }
 
-//TODO should provide clientId from logged client
   private getClientId() {
-    return 1;
+    return this.tokenService.getUserId();
   }
 
   carToString(car: Car) {
