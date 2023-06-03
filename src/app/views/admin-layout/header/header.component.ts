@@ -43,8 +43,13 @@ export class HeaderComponent {
         ]
       },
 
-      {label: 'clients', icon: 'pi pi-users', items:[
+      {label: 'clients', icon: 'pi pi-id-card', items:[
           {label: 'client list', icon: 'pi pi-list', routerLink: 'client'},
+        ]
+      },
+
+      {label: 'reservations', icon: 'pi pi-compass', items:[
+          {label: 'reservation list', icon: 'pi pi-list', routerLink: 'reservation'},
         ]
       },
 

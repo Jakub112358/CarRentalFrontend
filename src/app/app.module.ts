@@ -17,7 +17,6 @@ import {LoginComponent} from "./views/login/login.component";
 import {InputTextModule} from "primeng/inputtext";
 import {NotFoundComponent} from "./views/not-found/not-found.component";
 
-
 @NgModule({
   declarations: [
     AppComponent,
