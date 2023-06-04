@@ -1,10 +1,11 @@
 import {Component} from '@angular/core';
-import {ClientCreateRequest} from "../../model/rest/request/create/client-create-request";
-import {ClientService} from "../../service/client.service";
+import {ClientRequest} from "../../model/rest/request/client-request";
+import {ClientService} from "../../service/client/client.service";
 import {AuthService} from "../../auth/auth.service";
 import {AuthRequest} from "../../model/rest/request/auth-request";
 import {JwtTokenService} from "../../auth/jwt-token.service";
 import {Router} from "@angular/router";
+import {Address} from "../../model/address";
 
 @Component({
   selector: 'app-register',
@@ -12,7 +13,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
-  client: ClientCreateRequest;
+  client: ClientRequest;
   incorrectRegister: boolean;
 
 
@@ -20,11 +21,12 @@ export class RegisterComponent {
               private authService: AuthService,
               private tokenService: JwtTokenService,
               private router: Router) {
+    this.client = new ClientRequest('','','','',new Address());
   }
 
   ngOnInit() {
     this.incorrectRegister = false;
-    this.client = new ClientCreateRequest();
+
   }
 
   onSubmit() {

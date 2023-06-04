@@ -7,9 +7,9 @@
         <th pSortableColumn="make" style="width:20%">Make  <p-sortIcon field="make"></p-sortIcon></th>
         <th pSortableColumn="model" style="width:20%">Model <p-sortIcon field="model"></p-sortIcon></th>
         <th pSortableColumn="status" style="width:20%">Status <p-sortIcon field="status"></p-sortIcon></th>
-        <th pSortableColumn="currentBranchOfficeId" style="width:20%">Current office id <p-sortIcon field="currentBranchOfficeId"></p-sortIcon></th>
+        <th pSortableColumn="currentOfficeId" style="width:20%">Current office id <p-sortIcon field="currentOfficeId"></p-sortIcon></th>
         <th pSortableColumn="priceListId" style="width:20%">Price list id <p-sortIcon field="priceListId"></p-sortIcon></th>
-        <th style="width: 10%">Details</th>
+        <th style="width: 15%">Actions</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-car>
@@ -18,7 +18,7 @@
         <td>{{car.make}}</td>
         <td>{{car.model}}</td>
         <td>{{car.status}}</td>
-        <td>{{car.currentBranchOfficeId}}</td>
+        <td>{{car.currentOfficeId}}</td>
         <td>{{car.priceListId}}</td>
         <td><button pButton pRipple label="Details" icon="pi pi-search" class="p-button-text" routerLink="{{'/admin/car/' + car.id}}"></button></td>
       </tr>

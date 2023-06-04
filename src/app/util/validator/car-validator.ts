@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {BodyType} from "../../model/enumeration/body-type";
 import {Color} from "../../model/enumeration/color";
 import {Status} from "../../model/enumeration/status";
-import {OfficeService} from "../../service/office.service";
+import {OfficeService} from "../../service/office/office.service";
 import {Office} from "../../model/office";
 
 @Injectable({

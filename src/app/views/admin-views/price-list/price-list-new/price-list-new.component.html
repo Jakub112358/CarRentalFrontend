@@ -1,0 +1,34 @@
+<div class="surface-section md:w-9 xl:w-6">
+  <div class="font-medium text-3xl text-900 my-3">Add price list</div>
+  <form (ngSubmit)="onSubmit()">
+    <ul class="list-none p-0 m-0">
+      <div *ngFor="let element of elements">
+        <li class="flex align-items-center py-1 px-2 border-top-1 surface-border flex-wrap">
+          <div class="text-500 w-6 md:w-3 font-medium">{{element.title}}</div>
+          <div class="text-900 w-full md:w-9 md:flex-order-0 flex-order-1">
+            <input *ngIf="element.type==='text' || element.type==='number'" type="{{element.type}}"
+                   [(ngModel)]="element.model" name="{{element.name}}" class="w-12">
+            <select *ngIf="element.type==='select'" [(ngModel)]="element.model" name="{{element.name}}" class="w-12">
+              <option *ngFor="let option of element.options" value="{{option[0]}}">{{option[1]}}</option>
+            </select>
+          </div>
+        </li>
+        <p *ngIf="!element.valid" class="text-red-500">{{element.invalidMessage}}</p>
+      </div>
+    </ul>
+    <button type="submit" pButton pRipple label="Add price list" class="p-button-success w-5 m-2"></button>
+  </form>
+</div>
+
+<p-dialog header="Success!" [(visible)]="successModalVisible" [style]="{width: '50vw'}" [modal]="true">
+  <div class="grid justify-content-center py-2">
+    <button type="button" pButton pRipple label="Add another price list" class="p-button-success w-5 m-2"
+            (click)="addNextPriceList()"></button>
+    <button type="button" pButton pRipple label="Go to added price list details" class="p-button-success w-5 m-2"
+            [routerLink]="addedPriceListPath"></button>
+  </div>
+</p-dialog>
+
+<p-dialog header="Fail" [(visible)]="failModalVisible" [style]="{width: '50vw'}" [modal]="true">
+  Adding new price list failed, please check if input is correct.
+</p-dialog>

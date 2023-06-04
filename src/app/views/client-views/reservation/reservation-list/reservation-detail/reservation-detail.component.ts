@@ -1,10 +1,11 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {BasicListElement} from "../../../../../model/template-elements/basic-list-element";
-import {ReservationClientResponse} from "../../../../../model/rest/response/reservation-client-response";
+
 import {Car} from "../../../../../model/car";
 import {Office} from "../../../../../model/office";
 import {ReservationStatus} from "../../../../../model/enumeration/reservation-status";
-import {ReservationService} from "../../../../../service/reservation.service";
+import {ReservationService} from "../../../../../service/reservation/reservation.service";
+import {Reservation} from "../../../../../model/reservation";
 
 @Component({
   selector: 'app-reservation-detail',
@@ -15,8 +16,9 @@ export class ReservationDetailComponent {
   reservationElements: BasicListElement[];
   deleteButtonVisible: boolean;
   deletePopUpVisible: boolean;
-  @Input() reservation: ReservationClientResponse;
+  @Input() reservation: Reservation;
   @Output() cancelReservationEvent = new EventEmitter<number>()
+  failModalVisible: boolean;
 
 
   constructor(private reservationService: ReservationService) {
@@ -41,11 +43,11 @@ export class ReservationDetailComponent {
   }
 
   private carToString(car: Car) {
-    return car.make + ' ' + car.model;
+    return car?.make + ' ' + car?.model;
   }
 
   private officeToString(office: Office) {
-    return office.address.town + ', ' + office.address.street + ' ' + office.address.houseNumber;
+    return office?.address.town + ', ' + office?.address.street + ' ' + office?.address.houseNumber;
   }
 
   private isStatusPlanned() {
@@ -60,9 +62,13 @@ export class ReservationDetailComponent {
   cancelReservation() {
     let updateDto = this.getCancelledStatusDto();
     this.reservationService.update(this.reservation.id, updateDto).subscribe(data => {
-      this.cancelReservationEvent.emit(data.id);
-      this.deletePopUpVisible = false;
-      this.refreshView();
+      if (data) {
+        this.cancelReservationEvent.emit(data.id);
+        this.deletePopUpVisible = false;
+        this.refreshView();
+      } else {
+        this.failModalVisible = true;
+      }
     })
   }
 

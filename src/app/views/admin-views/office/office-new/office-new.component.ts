@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {Address} from "../../../../model/address";
-import {OfficeService} from "../../../../service/office.service";
-import {OfficeCreateDto} from "../../../../model/rest/request/create/office-create-dto";
+import {OfficeService} from "../../../../service/office/office.service";
+import {OfficeRequest} from "../../../../model/rest/request/office-request";
 
 @Component({
   selector: 'app-office-new',
@@ -9,7 +9,6 @@ import {OfficeCreateDto} from "../../../../model/rest/request/create/office-crea
   styleUrls: ['./office-new.component.scss']
 })
 export class OfficeNewComponent {
-  companyId: number;
   newAddress: Address;
   invalidZipCode: boolean;
   invalidTown: boolean;
@@ -20,8 +19,6 @@ export class OfficeNewComponent {
   addedOfficePath: string;
 
   constructor(private officeService: OfficeService) {
-    //TODO: temporal company id. In next version it would be provided from logged user info
-    this.companyId = 1;
   }
 
   ngOnInit() {
@@ -35,8 +32,8 @@ export class OfficeNewComponent {
   onSubmit() {
     this.validate(this.newAddress);
     if (!this.invalidZipCode && !this.invalidTown && !this.invalidStreet && !this.invalidHouseNumber) {
-      let newOffice: OfficeCreateDto = {address: this.newAddress, companyId: this.companyId}
-      this.officeService.save(newOffice).subscribe(data=>{
+      let newOffice: OfficeRequest = new OfficeRequest(this.newAddress)
+      this.officeService.save(newOffice).subscribe(data => {
         this.addedOfficePath = '/admin/office/' + data.id;
       });
       this.successModalVisible = true;
@@ -45,7 +42,7 @@ export class OfficeNewComponent {
     }
   }
 
-  addNextOffice(){
+  addNextOffice() {
     this.newAddress = {zipCode: '', town: '', street: '', houseNumber: ''};
     this.successModalVisible = false;
   }

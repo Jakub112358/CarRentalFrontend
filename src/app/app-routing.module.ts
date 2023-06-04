@@ -26,6 +26,11 @@ const routes: Routes = [
       {path: 'employee/:id', loadChildren: () => import('./views/admin-views/employee/employee-detail/employee-detail.module').then(m => m.EmployeeDetailModule)},
       {path: 'client', loadChildren: () => import('./views/admin-views/client/client-list/client-list.module').then(m => m.ClientListModule)},
       {path: 'client/:id', loadChildren: () => import('./views/admin-views/client/client-detail/client-detail.module').then(m => m.ClientDetailModule)},
+      {path: 'price-list', loadChildren: () => import('./views/admin-views/price-list/price-list-list/price-list-list.module').then(m => m.PriceListListModule)},
+      {path: 'price-list/new', loadChildren: () => import('./views/admin-views/price-list/price-list-new/price-list-new.module').then(m => m.PriceListNewModule)},
+      {path: 'price-list/:id', loadChildren: () => import('./views/admin-views/price-list/price-list-detail/price-list-detail.module').then(m => m.PriceListDetailModule)},
+      {path: 'reservation', loadChildren: () => import('./views/admin-views/reservation/reservation-list/reservation-list.module').then(m => m.ReservationListModule)},
+      {path: 'reservation/:id', loadChildren: () => import('./views/admin-views/reservation/reservation-detail/reservation-detail.module').then(m => m.ReservationDetailModule)},
       {path: 'notfound', component: NotFoundComponent},
       {path: '**', redirectTo: 'notfound'}
     ]

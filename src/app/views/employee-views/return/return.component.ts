@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {CarReturn} from "../../../model/car-return";
-import {ReturnService} from "../../../service/return.service";
+import {ReturnService} from "../../../service/return/return.service";
 
 @Component({
   selector: 'app-return',
@@ -15,11 +15,8 @@ export class ReturnComponent {
   constructor(private returnService: ReturnService) {
   }
 
-  //TODO: branch office id should be provided by logged employee
-  //TODO: how to refactor this style to css?
-
   ngOnInit() {
-    this.returnService.findAllByOffice_Id(1).subscribe(data => {
+    this.returnService.findAll().subscribe(data => {
       this.carReturns = data;
     })
   }

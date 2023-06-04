@@ -1,0 +1,43 @@
+<!--price list information-->
+<div class="surface-section md:w-6">
+  <div class="font-medium text-3xl text-900 my-3" >Price list details</div>
+  <ul class="list-none p-0 m-0">
+    <li *ngFor="let element of elements"
+        class="flex align-items-center py-1 px-2 border-top-1 surface-border flex-wrap">
+      <div class="text-500 w-6 md:w-2 font-medium">{{element.title}} </div>
+      <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">{{element.value}}</div>
+      <div class="w-6 md:w-2 flex justify-content-end">
+        <!--        ngIf to hide edit button for non-editable elements-->
+        <button *ngIf="element.displayEditButton" pButton pRipple label="Edit" icon="pi pi-pencil" class="p-button-text"
+                (click)="showEditModal(element)"></button>
+      </div>
+    </li>
+  </ul>
+  <button pButton pRipple label="delete price list" class="p-button-danger m-2" icon="pi pi-trash" (click)="showDeleteModal()"></button>
+</div>
+
+<!--edit modal-->
+
+<p-dialog *ngIf="updateElement" header="{{modalHeader}}" [(visible)]="updateModalVisible" [style]="{width: '50vw'}" [modal]="true">
+  <form (ngSubmit)="onSubmit()" class="grid justify-content-center py-2">
+    <input class="w-12" type="text" pInputText [(ngModel)]="updateElement.value" [ngModelOptions]="{standalone: true}"/>
+    <button type="submit" pButton pRipple label="Save changes" class="p-button-success w-5 m-2"></button>
+    <button type="button" pButton pRipple label="Back" class="p-button-danger w-5 m-2"
+            (click)="updateModalVisible=false"></button>
+  </form>
+</p-dialog>
+
+<!--delete modal-->
+
+<p-dialog header="delete price list" [(visible)]="deleteModalVisible" [style]="{width: '50vw'}" [modal]="true">
+  <div class="grid justify-content-center py-2">
+    <h3 class="w-12">Are you sure? Delete action is irreversible.</h3>
+    <button type="button" pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger w-5 m-2" (click)="deletePriceList()"></button>
+    <button type="button" pButton pRipple label="Back" icon="pi pi-arrow-left" class="p-button-success w-5 m-2"
+            (click)="deleteModalVisible=false"></button>
+  </div>
+</p-dialog>
+
+<p-dialog header="Fail" [(visible)]="failModalVisible" [style]="{width: '50vw'}" [modal]="true">
+  Something went wrong, please try again.
+</p-dialog>

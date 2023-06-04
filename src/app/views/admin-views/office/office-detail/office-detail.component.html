@@ -7,7 +7,7 @@
       <div class="text-500 w-6 md:w-2 font-medium">{{element.title}} </div>
       <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">{{element.value}}</div>
       <div class="w-6 md:w-2 flex justify-content-end">
-        <!--        ngIf to hide edit button for id element-->
+        <!--        ngIf to hide edit button for non-editable elements-->
         <button *ngIf="element.displayEditButton" pButton pRipple label="Edit" icon="pi pi-pencil" class="p-button-text"
                 (click)="showEditModal(element)"></button>
       </div>
@@ -20,7 +20,7 @@
 <!--edit modal-->
 
 
-<p-dialog *ngIf="updateElement" header="{{editModalHeader}}" [(visible)]="editModalVisible" [style]="{width: '50vw'}">
+<p-dialog *ngIf="updateElement" header="{{editModalHeader}}" [(visible)]="editModalVisible" [style]="{width: '50vw'}" [modal]="true">
   <form (ngSubmit)="onSubmit()" class="grid justify-content-center py-2">
     <input class="w-12" type="text" pInputText [(ngModel)]="updateElement.value" [ngModelOptions]="{standalone: true}"/>
     <button type="submit" pButton pRipple label="Save changes" class="p-button-success w-5 m-2"></button>
@@ -33,7 +33,7 @@
 <!--delete modal-->
 
 
-<p-dialog header="delete office" [(visible)]="deleteModalVisible" [style]="{width: '50vw'}">
+<p-dialog header="delete office" [(visible)]="deleteModalVisible" [style]="{width: '50vw'}" [modal]="true">
   <div class="grid justify-content-center py-2">
 
 
@@ -55,7 +55,7 @@
         <th pSortableColumn="firstName" style="width:20%">First name  <p-sortIcon field="firstName"></p-sortIcon></th>
         <th pSortableColumn="lastName" style="width:20%">Last name <p-sortIcon field="lastName"></p-sortIcon></th>
         <th pSortableColumn="jobPosition" style="width:20%">Job position <p-sortIcon field="jobPosition"></p-sortIcon></th>
-        <th pSortableColumn="branchOfficeId" style="width:20%">Office id <p-sortIcon field="branchOfficeId"></p-sortIcon></th>
+        <th pSortableColumn="branchOfficeId" style="width:20%">Office id <p-sortIcon field="officeId"></p-sortIcon></th>
         <th style="width: 10%">Details</th>
       </tr>
     </ng-template>
@@ -65,7 +65,7 @@
         <td>{{employee.firstName}}</td>
         <td>{{employee.lastName}}</td>
         <td>{{employee.jobPosition}}</td>
-        <td>{{employee.branchOfficeId}}</td>
+        <td>{{employee.officeId}}</td>
         <td><button pButton pRipple label="Details" icon="pi pi-search" class="p-button-text" routerLink="{{'/admin/employee/' + employee.id}}"></button></td>
       </tr>
     </ng-template>
@@ -84,7 +84,7 @@
         <th pSortableColumn="make" style="width:20%">Make  <p-sortIcon field="make"></p-sortIcon></th>
         <th pSortableColumn="model" style="width:20%">Model <p-sortIcon field="model"></p-sortIcon></th>
         <th pSortableColumn="status" style="width:20%">Status <p-sortIcon field="status"></p-sortIcon></th>
-        <th pSortableColumn="currentBranchOfficeId" style="width:20%">Current office id <p-sortIcon field="currentBranchOfficeId"></p-sortIcon></th>
+        <th pSortableColumn="currentOfficeId" style="width:20%">Current office id <p-sortIcon field="currentOfficeId"></p-sortIcon></th>
         <th style="width: 10%">Details</th>
       </tr>
     </ng-template>
@@ -94,10 +94,14 @@
         <td>{{car.make}}</td>
         <td>{{car.model}}</td>
         <td>{{car.status}}</td>
-        <td>{{car.currentBranchOfficeId}}</td>
+        <td>{{car.currentOfficeId}}</td>
         <td><button pButton pRipple label="Details" icon="pi pi-search" class="p-button-text" routerLink="{{'/admin/car/' + car.id}}"></button></td>
       </tr>
     </ng-template>
   </p-table>
   <button pButton pRipple label="add new car" class="p-button-success m-2" icon="pi pi-plus" routerLink='/admin/car/new'></button>
 </div>
+
+<p-dialog header="Fail" [(visible)]="failModalVisible" [style]="{width: '50vw'}" [modal]="true">
+  Something went wrong, please try again.
+</p-dialog>

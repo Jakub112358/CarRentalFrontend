@@ -33,8 +33,8 @@
         <th pSortableColumn="carId" style="width:10%; text-align:center"><p>Car id</p>
           <p-sortIcon field="carId"></p-sortIcon>
         </th>
-        <th pSortableColumn="branchOfficeId" style="width:10%; text-align:center"><p>Branch office id</p>
-          <p-sortIcon field="branchOfficeId"></p-sortIcon>
+        <th pSortableColumn="officeId" style="width:10%; text-align:center"><p>Branch office id</p>
+          <p-sortIcon field="officeId"></p-sortIcon>
         </th>
         <th pSortableColumn="extraCharge" style="width:10%; text-align:center"><p>Extra charge</p>
           <p-sortIcon field="extraCharge"></p-sortIcon>
@@ -52,7 +52,7 @@
         <td style="text-align: center">{{carReturn.employeeId}}</td>
         <td style="text-align: center">{{carReturn.reservationId}}</td>
         <td style="text-align: center">{{carReturn.carId}}</td>
-        <td style="text-align: center">{{carReturn.branchOfficeId}}</td>
+        <td style="text-align: center">{{carReturn.officeId}}</td>
         <td style="text-align: center">{{carReturn.extraCharge}}</td>
         <td style="text-align:center">
           <button pButton pRipple label="Edit" icon="pi pi-pencil" class="p-button-text" (click)="onSelectEdit(carReturn)"></button>

@@ -1,15 +1,15 @@
 import {Component} from '@angular/core';
 import {CreateFormElement} from "../../../../model/template-elements/create-form-element";
-import {OfficeService} from "../../../../service/office.service";
+import {OfficeService} from "../../../../service/office/office.service";
 import {Office} from "../../../../model/office";
 import {Car} from "../../../../model/car";
-import {CarService} from "../../../../service/car.service";
+import {CarService} from "../../../../service/car/car.service";
 import {ReservationValidator} from "../../../../util/validator/reservation-validator";
-import {CarRentDto} from "../../../../model/rest/request/car-rent-dto";
-import {ReservationCreateDto} from "../../../../model/rest/request/create/reservation-create-dto";
+import {ReservationCreateRequest} from "../../../../model/rest/request/reservation-create-request";
 import {BasicListElement} from "../../../../model/template-elements/basic-list-element";
-import {ReservationService} from "../../../../service/reservation.service";
-import {Reservation} from "../../../../model/reservation";
+import {ReservationService} from "../../../../service/reservation/reservation.service";
+import {CarSearch} from "../../../../model/car-search";
+import {JwtTokenService} from "../../../../auth/jwt-token.service";
 
 @Component({
   selector: 'app-reservation-new',
@@ -18,22 +18,26 @@ import {Reservation} from "../../../../model/reservation";
 })
 export class ReservationNewComponent {
   dateAndOfficeElements: CreateFormElement[];
-  cars: Car[];
+  carSearches: CarSearch[];
   confirmReservationElements: BasicListElement[];
   showCars: boolean;
   showConfirmReservation: boolean;
-  reservationCreateDto: ReservationCreateDto;
+  reservationCreateDto: ReservationCreateRequest;
   offices: Office[];
-  reservation: Reservation;
+  failModalVisible: boolean;
+  successModalVisible: boolean;
+  reservationListPath: string;
 
 
   constructor(private officeService: OfficeService,
               private carService: CarService,
               private reservationValidator: ReservationValidator,
-              private reservationService: ReservationService) {
+              private reservationService: ReservationService,
+              private tokenService: JwtTokenService) {
   }
 
   ngOnInit() {
+    this.reservationListPath = '/client/reservation/';
     this.loadFormElements();
   }
 
@@ -42,6 +46,13 @@ export class ReservationNewComponent {
       this.showCars = true;
       this.loadCars();
     }
+  }
+
+  addNextReservation() {
+    this.loadFormElements();
+    this.showConfirmReservation = false;
+    this.successModalVisible = false;
+    this.carSearches = [];
   }
 
   private createFormElements(branchOfficeOptions: any[][]) {
@@ -67,7 +78,7 @@ export class ReservationNewComponent {
   }
 
   private officeToString(office: Office): string {
-    return ('id: ' + office.id + ', address: ' + office.address.zipCode + ' ' + office.address.town + ', ' + office.address.street + ' ' + office.address.houseNumber);
+    return ('id: ' + office?.id + ', address: ' + office?.address.zipCode + ' ' + office?.address.town + ', ' + office?.address.street + ' ' + office?.address.houseNumber);
   }
 
   private validateDateAndOfficeForm(): boolean {
@@ -77,46 +88,44 @@ export class ReservationNewComponent {
 
   private loadCars() {
     this.carService.findByAvailableInDatesAndCriteria(this.dateAndOfficeElements).subscribe(data => {
-      this.cars = data
+      this.carSearches = data
     })
   }
 
-  selectCar(car: CarRentDto) {
-    this.createReservation(car);
-    this.createConfirmReservationElements(car);
+  selectCar(carSearch: CarSearch) {
+    this.createReservation(carSearch);
+    this.createConfirmReservationElements(carSearch);
     this.showConfirmReservation = true;
   }
 
-  private createReservation(car: CarRentDto) {
+  private createReservation(car: CarSearch) {
     let dateFromValue = this.dateAndOfficeElements.find(e => e.name == 'dateFrom')?.model
     let dateToValue = this.dateAndOfficeElements.find(e => e.name == 'dateTo')?.model
     let pickUpOfficeId = this.dateAndOfficeElements.find(e => e.name == 'pickUpOfficeId')?.model
     let returnOfficeId = this.dateAndOfficeElements.find(e => e.name == 'returnOfficeId')?.model
     let clientId = this.getClientId();
-    this.reservationCreateDto = new ReservationCreateDto(
-      new Date(),
+    this.reservationCreateDto = new ReservationCreateRequest(
       dateFromValue,
       dateToValue,
       clientId,
-      car.id,
+      car.carResponse.id,
       pickUpOfficeId,
       returnOfficeId,
       car.price
     )
   }
 
-//TODO should return logged client id
   private getClientId() {
-    return 1;
+    return this.tokenService.getUserId();
   }
 
-  private createConfirmReservationElements(car: CarRentDto) {
+  private createConfirmReservationElements(car: CarSearch) {
 
     let pickUpOfficeString = this.officeIdToString(this.reservationCreateDto.pickUpOfficeId);
     let returnOfficeString = this.officeIdToString(this.reservationCreateDto.returnOfficeId);
 
     this.confirmReservationElements = [
-      new BasicListElement('Car', this.carRentDtoToString(car)),
+      new BasicListElement('Car', this.carRentDtoToString(car.carResponse)),
       new BasicListElement('Date from', this.reservationCreateDto.dateFrom.toDateString()),
       new BasicListElement('Date to', this.reservationCreateDto.dateTo.toDateString()),
       new BasicListElement('Pick-up office', pickUpOfficeString),
@@ -125,24 +134,24 @@ export class ReservationNewComponent {
     ]
   }
 
-  private carRentDtoToString(car: CarRentDto) {
-    return (car.make + ' ' + car.model + ', color: ' + car.color + ', year of manufacture: ' + car.yearOfManufacture);
+  private carRentDtoToString(car: Car) {
+    return (car?.make + ' ' + car?.model + ', color: ' + car?.color + ', year of manufacture: ' + car?.yearOfManufacture);
   }
 
   private officeIdToString(officeId: number) {
     let office = this.offices.find(o => o.id === Number(officeId))
-    return  office ? this.officeToString(office) : undefined;
+    return office ? this.officeToString(office) : undefined;
   }
 
   onSubmitReservation() {
     this.reservationCreateDto.dateTo = this.dateToString(this.reservationCreateDto.dateTo);
     this.reservationCreateDto.dateFrom = this.dateToString(this.reservationCreateDto.dateFrom);
-    this.reservationService.save(this.reservationCreateDto).subscribe(data=>{
-      this.reservation = data;
-      console.log(this.reservationCreateDto.dateTo)
-      console.log(this.reservation.dateTo)
-      console.log(this.reservationCreateDto.dateFrom)
-      console.log(this.reservation.dateFrom)
+    this.reservationService.save(this.reservationCreateDto).subscribe(data => {
+      if (data) {
+        this.successModalVisible = true;
+      } else {
+        this.failModalVisible = true;
+      }
     })
   }
 

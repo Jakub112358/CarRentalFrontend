@@ -13,8 +13,12 @@ export class EmployeeValidator {
         return this.validateLastName(model);
       case 'jobPosition':
         return this.validateJobPosition(model);
-      case 'branchOfficeId':
+      case 'officeId':
         return this.validateOfficeId(model);
+      case 'email':
+        return this.validateEmail(model);
+      case 'password':
+        return this.validatePassword(model);
       default:
         return false;
     }
@@ -37,4 +41,11 @@ export class EmployeeValidator {
   }
 
 
+  private validateEmail(model: string) {
+    return model.includes('@');
+  }
+
+  private validatePassword(model: string) {
+    return model.length > 0;
+  }
 }

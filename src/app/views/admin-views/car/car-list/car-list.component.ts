@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {Car} from "../../../../model/car";
-import {CarService} from "../../../../service/car.service";
+import {CarService} from "../../../../service/car/car.service";
 
 @Component({
   selector: 'app-car-list',
