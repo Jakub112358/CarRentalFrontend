@@ -38,11 +38,11 @@ export class ReservationListComponent {
   }
 
   carToString(car: Car) {
-    return car.make + ' ' + car.model;
+    return car?.make + ' ' + car?.model;
   }
 
   officeToString(office: Office) {
-    return office.address.town + ', ' + office.address.street + ' ' + office.address.houseNumber;
+    return office?.address.town + ', ' + office?.address.street + ' ' + office?.address.houseNumber;
   }
 
   loadDetailsComponent(reservation: ReservationClientResponse) {

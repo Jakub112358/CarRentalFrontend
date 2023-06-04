@@ -18,6 +18,6 @@ export class ClientListComponent {
     })
   }
   addressToString(address: Address){
-    return address.street + ' ' + address.houseNumber + ', ' + address.zipCode + ' ' + address.town;
+    return address?.street + ' ' + address?.houseNumber + ', ' + address?.zipCode + ' ' + address?.town;
   }
 }

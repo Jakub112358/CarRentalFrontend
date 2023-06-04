@@ -87,11 +87,11 @@ export class ReservationDetailComponent {
   }
 
   carToString(car: Car) {
-    return car.make + ' ' + car.model + ', car id: ' +car.id;
+    return car?.make + ' ' + car?.model + ', car id: ' +car?.id;
   }
 
   officeToString(office: Office) {
-    return office.address.town + ', ' + office.address.street + ' ' + office.address.houseNumber;
+    return office?.address.town + ', ' + office?.address.street + ' ' + office?.address.houseNumber;
   }
 
   private createUpdateDto() {

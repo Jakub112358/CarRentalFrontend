@@ -9,7 +9,6 @@ import {OfficeCreateDto} from "../../../../model/rest/request/create/office-crea
   styleUrls: ['./office-new.component.scss']
 })
 export class OfficeNewComponent {
-  companyId: number;
   newAddress: Address;
   invalidZipCode: boolean;
   invalidTown: boolean;
@@ -20,8 +19,6 @@ export class OfficeNewComponent {
   addedOfficePath: string;
 
   constructor(private officeService: OfficeService) {
-    //TODO: temporal company id. In next version it would be provided from logged user info
-    this.companyId = 1;
   }
 
   ngOnInit() {
@@ -35,7 +32,7 @@ export class OfficeNewComponent {
   onSubmit() {
     this.validate(this.newAddress);
     if (!this.invalidZipCode && !this.invalidTown && !this.invalidStreet && !this.invalidHouseNumber) {
-      let newOffice: OfficeCreateDto = {address: this.newAddress, companyId: this.companyId}
+      let newOffice: OfficeCreateDto = new OfficeCreateDto(this.newAddress)
       this.officeService.save(newOffice).subscribe(data=>{
         this.addedOfficePath = '/admin/office/' + data.id;
       });

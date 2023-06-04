@@ -58,7 +58,7 @@ export class EmployeeNewComponent {
   }
 
   private officeToString(office: Office): string {
-    return ('id: ' + office.id + ', address: ' + office.address.zipCode + ' ' + office.address.town + ', ' + office.address.street + ' ' + office.address.houseNumber);
+    return ('id: ' + office?.id + ', address: ' + office?.address.zipCode + ' ' + office?.address.town + ', ' + office?.address.street + ' ' + office?.address.houseNumber);
   }
 
   private getBranchOfficeOptions(data: Office[]) {

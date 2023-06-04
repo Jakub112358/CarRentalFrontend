@@ -1,8 +1,11 @@
 import {Address} from "../../../address";
 import {CreateDto} from "./create-dto";
 
-export interface OfficeCreateDto extends CreateDto{
+export class OfficeCreateDto implements CreateDto{
 
   address: Address;
-  companyId: number;
+
+  constructor(address: Address) {
+    this.address = address;
+  }
 }

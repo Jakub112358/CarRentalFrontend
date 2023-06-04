@@ -78,7 +78,7 @@ export class ReservationNewComponent {
   }
 
   private officeToString(office: Office): string {
-    return ('id: ' + office.id + ', address: ' + office.address.zipCode + ' ' + office.address.town + ', ' + office.address.street + ' ' + office.address.houseNumber);
+    return ('id: ' + office?.id + ', address: ' + office?.address.zipCode + ' ' + office?.address.town + ', ' + office?.address.street + ' ' + office?.address.houseNumber);
   }
 
   private validateDateAndOfficeForm(): boolean {
@@ -135,7 +135,7 @@ export class ReservationNewComponent {
   }
 
   private carRentDtoToString(car: Car) {
-    return (car.make + ' ' + car.model + ', color: ' + car.color + ', year of manufacture: ' + car.yearOfManufacture);
+    return (car?.make + ' ' + car?.model + ', color: ' + car?.color + ', year of manufacture: ' + car?.yearOfManufacture);
   }
 
   private officeIdToString(officeId: number) {

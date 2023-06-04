@@ -91,11 +91,11 @@ export class CarNewComponent {
   }
 
   private officeToString(office: Office): string {
-    return ('id: ' + office.id + ', address: ' + office.address.zipCode + ' ' + office.address.town + ', ' + office.address.street + ' ' + office.address.houseNumber);
+    return ('id: ' + office?.id + ', address: ' + office?.address.zipCode + ' ' + office?.address.town + ', ' + office?.address.street + ' ' + office?.address.houseNumber);
   }
 
   private priceListToString(priceList: PriceList): string {
-    return ('id: ' + priceList.id + ', short term price: ' + priceList.shortTermPrice + ', medium term price: ' + priceList.mediumTermPrice + ', long term price: ' + priceList.longTermPrice)
+    return ('id: ' + priceList?.id + ', short term price: ' + priceList?.shortTermPrice + ', medium term price: ' + priceList?.mediumTermPrice + ', long term price: ' + priceList?.longTermPrice)
   }
 
   private createFormElements(bodyTypeOptions: any[][], colorOptions: any[][], statusOptions: any[][], priceListOptions: any[][], currentOfficeOptions: any[][]) {
