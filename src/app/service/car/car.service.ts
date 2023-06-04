@@ -6,6 +6,7 @@ import {catchError, Observable} from "rxjs";
 import {CreateFormElement} from "../../model/template-elements/create-form-element";
 import {CarRentDto} from "../../model/rest/request/car-rent-dto";
 import {ApiConstraints} from "../../config/apiConstraints";
+import {CarSearch} from "../../model/car-search";
 
 @Injectable({
   providedIn: 'root'
@@ -40,9 +41,9 @@ export class CarService extends CrudService<Car> {
       .append('pickUpOfficeId', pickUpOfficeId)
       .append('returnOfficeId', returnOfficeId);
 
-    return this.http.post<Car[]>(ApiConstraints.CAR_SEARCH_URL, {}, {params: queryParams})
+    return this.http.post<CarSearch[]>(ApiConstraints.CAR_SEARCH_URL, {}, {params: queryParams})
       .pipe(
-        catchError(this.handleError<Car[]>())
+        catchError(this.handleError<CarSearch[]>())
       )
   }
 

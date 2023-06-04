@@ -21,6 +21,7 @@ export class ClientDetailComponent {
   modalHeader: string;
   elements: DetailElement[];
   newPassword: string;
+  failModalVisible: boolean;
 
   constructor(private activatedRoute: ActivatedRoute,
               private clientService: ClientService,
@@ -116,7 +117,12 @@ export class ClientDetailComponent {
     let id = this.getId()
     this.clientService.update(id, dto).subscribe(
       data => {
-        this.createElements(data);
+        if (data) {
+          this.createElements(data);
+        } else {
+          this.loadElements();
+          this.failModalVisible = true;
+        }
       }
     );
   }

@@ -18,6 +18,7 @@ export class CarDetailComponent {
   updateElement: UpdateFormElement;
   updateModalVisible: boolean;
   deleteModalVisible: boolean;
+  failModalVisible: boolean;
   modalHeader: string;
   elements: DetailElement[];
 
@@ -65,8 +66,13 @@ export class CarDetailComponent {
 
   private getCarAndCreateElements(id: number) {
     this.carService.findById(id).subscribe(data => {
-      this.car = data;
-      this.createElements(data);
+      if(data){
+        this.car = data;
+        this.createElements(data);
+      } else {
+        this.failModalVisible = true;
+      }
+
     })
   }
 
@@ -101,7 +107,12 @@ export class CarDetailComponent {
     let id = this.getId()
     this.carService.update(id, dto).subscribe(
       data => {
-        this.createElements(data);
+        if(data){
+          this.createElements(data);
+        } else {
+          this.loadElements();
+          this.failModalVisible = true;
+        }
       }
     );
   }

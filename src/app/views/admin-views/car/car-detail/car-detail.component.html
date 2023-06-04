@@ -37,3 +37,7 @@
             (click)="deleteModalVisible=false"></button>
   </div>
 </p-dialog>
+
+<p-dialog header="Fail" [(visible)]="failModalVisible" [style]="{width: '50vw'}" [modal]="true">
+  Something went wrong, please try again.
+</p-dialog>

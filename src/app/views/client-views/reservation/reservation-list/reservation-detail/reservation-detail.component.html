@@ -23,3 +23,7 @@
     <button type="button" pButton pRipple label="Back" class="p-button-info w-5 m-2" icon="pi pi-arrow-left" (click)="deletePopUpVisible=false"></button>
   </div>
 </p-dialog>
+
+<p-dialog header="Fail" [(visible)]="failModalVisible" [style]="{width: '50vw'}" [modal]="true">
+  Something went wrong, please try again.
+</p-dialog>

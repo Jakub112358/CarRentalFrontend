@@ -21,6 +21,7 @@ export class PriceListDetailComponent {
   deleteModalVisible: boolean;
   modalHeader: string;
   elements: DetailElement[];
+  failModalVisible: boolean;
 
   constructor(private activatedRoute: ActivatedRoute,
               private priceListService: PriceListService,
@@ -95,7 +96,12 @@ export class PriceListDetailComponent {
     let id = this.getId()
     this.priceListService.update(id, dto).subscribe(
       data => {
-        this.createElements(data);
+        if (data) {
+          this.createElements(data);
+        } else {
+          this.loadElements();
+          this.failModalVisible = true;
+        }
       }
     );
   }

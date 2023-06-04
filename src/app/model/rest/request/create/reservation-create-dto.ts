@@ -11,8 +11,7 @@ export class ReservationCreateDto implements CreateDto{
   price: number;
 
 
-  constructor(reservationDate: Date, dateFrom: Date, DateTo: Date, clientId: number, carId: number, pickUpOfficeId: number, returnOfficeId: number, price: number) {
-    this.reservationDate = reservationDate;
+  constructor(dateFrom: Date, DateTo: Date, clientId: number, carId: number, pickUpOfficeId: number, returnOfficeId: number, price: number) {
     this.dateFrom = dateFrom;
     this.dateTo = DateTo;
     this.clientId = clientId;

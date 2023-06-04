@@ -87,7 +87,11 @@ export class EmployeeNewComponent {
   private saveNewEmployee() {
     let employee: EmployeeRequestDto = this.mapFormElementsToEmployeeDto();
     this.employeeService.save(employee).subscribe(data => {
-      this.addedEmployeePath = '/admin/employee/' + data.id;
+      if (data) {
+        this.addedEmployeePath = '/admin/employee/' + data.id;
+      } else {
+        this.failModalVisible = true;
+      }
     })
   }
 

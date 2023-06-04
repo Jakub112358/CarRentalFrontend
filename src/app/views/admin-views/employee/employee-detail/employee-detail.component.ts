@@ -20,6 +20,7 @@ export class EmployeeDetailComponent {
   modalHeader: string;
   elements: DetailElement[];
   newPassword: string;
+  failModalVisible: boolean;
 
   constructor(private activatedRoute: ActivatedRoute,
               private employeeService: EmployeeService,
@@ -103,7 +104,12 @@ export class EmployeeDetailComponent {
     let id = this.getId()
     this.employeeService.update(id, dto).subscribe(
       data => {
-        this.createElements(data);
+        if (data) {
+          this.createElements(data);
+        } else {
+          this.loadElements();
+          this.failModalVisible = true;
+        }
       }
     );
   }

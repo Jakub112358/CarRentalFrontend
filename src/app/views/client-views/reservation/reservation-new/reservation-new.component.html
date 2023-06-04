@@ -31,49 +31,49 @@
 
 <div *ngIf="showCars" class="surface-section w-12">
   <div class="font-medium text-3xl text-900 my-3">Cars</div>
-  <p-table styleClass="p-datatable-sm" [value]="cars" [tableStyle]="{'min-width': '30rem'}">
+  <p-table styleClass="p-datatable-sm" [value]="carSearches" [tableStyle]="{'min-width': '30rem'}">
     <ng-template pTemplate="header">
       <tr>
-        <th pSortableColumn="id" style="width:5%">Id
-          <p-sortIcon field="id"></p-sortIcon>
+        <th pSortableColumn="carResponse.id" style="width:5%">Id
+          <p-sortIcon field="carResponse.id"></p-sortIcon>
         </th>
-        <th pSortableColumn="make" style="width:10%">Make
-          <p-sortIcon field="make"></p-sortIcon>
+        <th pSortableColumn="carResponse.make" style="width:10%">Make
+          <p-sortIcon field="carResponse.make"></p-sortIcon>
         </th>
-        <th pSortableColumn="model" style="width:10%">Model
-          <p-sortIcon field="model"></p-sortIcon>
+        <th pSortableColumn="carResponse.model" style="width:10%">Model
+          <p-sortIcon field="carResponse.model"></p-sortIcon>
         </th>
-        <th pSortableColumn="mileage" style="width:10%">Mileage
-          <p-sortIcon field="mileage"></p-sortIcon>
+        <th pSortableColumn="carResponse.mileage" style="width:10%">Mileage
+          <p-sortIcon field="carResponse.mileage"></p-sortIcon>
         </th>
-        <th pSortableColumn="yearOfManufacture" style="width:15%">Year of manufacture
-          <p-sortIcon field="yearOfManufacture"></p-sortIcon>
+        <th pSortableColumn="carResponse.yearOfManufacture" style="width:15%">Year of manufacture
+          <p-sortIcon field="carResponse.yearOfManufacture"></p-sortIcon>
         </th>
-        <th pSortableColumn="bodyType" style="width:10%">Body type
-          <p-sortIcon field="bodyType"></p-sortIcon>
+        <th pSortableColumn="carResponse.bodyType" style="width:10%">Body type
+          <p-sortIcon field="carResponse.bodyType"></p-sortIcon>
         </th>
-        <th pSortableColumn="color" style="width:10%">Color
-          <p-sortIcon field="color"></p-sortIcon>
+        <th pSortableColumn="carResponse.color" style="width:10%">Color
+          <p-sortIcon field="carResponse.color"></p-sortIcon>
         </th>
-        <th pSortableColumn="price" style="width:10%">Price
-          <p-sortIcon field="price"></p-sortIcon>
+        <th pSortableColumn="carResponse.price" style="width:10%">Price
+          <p-sortIcon field="carResponse.price"></p-sortIcon>
         </th>
         <th style="width: 10%">Select</th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-car>
+    <ng-template pTemplate="body" let-carSearch>
       <tr>
-        <td>{{car.id}}</td>
-        <td>{{car.make}}</td>
-        <td>{{car.model}}</td>
-        <td>{{car.mileage}}</td>
-        <td>{{car.yearOfManufacture}}</td>
-        <td>{{car.bodyType}}</td>
-        <td>{{car.color}}</td>
-        <td>{{car.price}}</td>
+        <td>{{carSearch.carResponse.id}}</td>
+        <td>{{carSearch.carResponse.make}}</td>
+        <td>{{carSearch.carResponse.model}}</td>
+        <td>{{carSearch.carResponse.mileage}}</td>
+        <td>{{carSearch.carResponse.yearOfManufacture}}</td>
+        <td>{{carSearch.carResponse.bodyType}}</td>
+        <td>{{carSearch.carResponse.color}}</td>
+        <td>{{carSearch.price}}</td>
         <td>
           <button type="button" pButton pRipple label="Select" icon="pi pi-check" class="p-button-success"
-                  (click)="selectCar(car)"></button>
+                  (click)="selectCar(carSearch)"></button>
         </td>
       </tr>
     </ng-template>
@@ -85,7 +85,7 @@
 
 
 <p-dialog *ngIf="reservationCreateDto" header="Confirm Reservation" [(visible)]="showConfirmReservation"
-          [style]="{width: '50vw'}">
+          [style]="{width: '50vw'}" [modal]="true">
 
   <ul class="list-none p-1 m-1">
     <li *ngFor="let confirmElement of confirmReservationElements" class="flex align-items-center py-1 px-2 border-top-1 surface-border flex-wrap">
@@ -96,5 +96,22 @@
   <button type="button" pButton pRipple label="Confirm reservation" class="p-button-success w-5 m-2" (click)="onSubmitReservation()"></button>
   <button type="button" pButton pRipple label="Cancel" class="p-button-danger w-5 m-2" (click)="showConfirmReservation=false"></button>
 
+</p-dialog>
+
+<!--reservation success-->
+
+<p-dialog header="Success!" [(visible)]="successModalVisible" [style]="{width: '50vw'}" [modal]="true" [closable]="false" >
+  <div class="grid justify-content-center py-2">
+    <button type="button" pButton pRipple label="Add another reservation" class="p-button-success w-5 m-2"
+            (click)="addNextReservation()"></button>
+    <button type="button" pButton pRipple label="Go to reservation list" class="p-button-success w-5 m-2"
+            [routerLink]="reservationListPath"></button>
+  </div>
+</p-dialog>
+
+<!--reservation failed-->
+
+<p-dialog header="Fail" [(visible)]="failModalVisible" [style]="{width: '50vw'}" [modal]="true">
+  Adding reservation failed, please try again.
 </p-dialog>
 

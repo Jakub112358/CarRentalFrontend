@@ -101,3 +101,7 @@
   </p-table>
   <button pButton pRipple label="add new car" class="p-button-success m-2" icon="pi pi-plus" routerLink='/admin/car/new'></button>
 </div>
+
+<p-dialog header="Fail" [(visible)]="failModalVisible" [style]="{width: '50vw'}" [modal]="true">
+  Something went wrong, please try again.
+</p-dialog>

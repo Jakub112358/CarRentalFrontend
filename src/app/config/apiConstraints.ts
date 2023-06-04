@@ -1,7 +1,7 @@
 export enum ApiConstraints {
   OFFICE_URL = 'http://localhost:8080/api/v1/offices',
   CAR_URL = 'http://localhost:8080/api/v1/cars',
-  CAR_SEARCH_URL = 'http://localhost:8080/api/v1/cars/search',
+  CAR_SEARCH_URL = 'http://localhost:8080/api/v1/car-search',
   COMPANY_URL = 'http://localhost:8080/api/v1/companies',
   EMPLOYEE_URL = 'http://localhost:8080/api/v1/employees',
   NOTIFICATION_URL = 'http://localhost:8080/api/v1/notifications',

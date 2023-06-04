@@ -46,6 +46,7 @@ export class ReservationListComponent {
   }
 
   loadDetailsComponent(reservation: ReservationClientResponse) {
+    this.scrollUp();
     this.showDetails = true;
     this.selectedReservation = reservation;
   }

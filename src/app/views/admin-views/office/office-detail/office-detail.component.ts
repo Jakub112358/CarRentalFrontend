@@ -25,6 +25,7 @@ export class OfficeDetailComponent {
   deleteModalVisible: boolean;
   cars: Car[];
   employees: Employee[];
+  failModalVisible: boolean;
 
   constructor(private activatedRoute: ActivatedRoute,
               private service: OfficeService,
@@ -106,7 +107,12 @@ export class OfficeDetailComponent {
     let id = this.getObjectId()
     this.service.update(id, dto).subscribe(
       data => {
-        this.createElements(data);
+        if (data) {
+          this.createElements(data);
+        } else {
+          this.loadElements();
+          this.failModalVisible = true;
+        }
       }
     );
   }

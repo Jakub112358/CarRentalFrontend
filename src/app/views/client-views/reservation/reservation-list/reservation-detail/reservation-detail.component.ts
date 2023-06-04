@@ -17,6 +17,7 @@ export class ReservationDetailComponent {
   deletePopUpVisible: boolean;
   @Input() reservation: ReservationClientResponse;
   @Output() cancelReservationEvent = new EventEmitter<number>()
+  failModalVisible: boolean;
 
 
   constructor(private reservationService: ReservationService) {
@@ -60,9 +61,13 @@ export class ReservationDetailComponent {
   cancelReservation() {
     let updateDto = this.getCancelledStatusDto();
     this.reservationService.update(this.reservation.id, updateDto).subscribe(data => {
-      this.cancelReservationEvent.emit(data.id);
-      this.deletePopUpVisible = false;
-      this.refreshView();
+      if (data) {
+        this.cancelReservationEvent.emit(data.id);
+        this.deletePopUpVisible = false;
+        this.refreshView();
+      } else {
+        this.failModalVisible = true;
+      }
     })
   }
 

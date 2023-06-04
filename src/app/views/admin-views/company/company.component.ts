@@ -17,6 +17,7 @@ export class CompanyComponent {
   modalVisible: boolean;
   modalHeader: string;
   company: Company;
+  failModalVisible: boolean;
 
   constructor(private companyService: CompanyService,
               private sanitizer: DomSanitizer) {
@@ -95,7 +96,12 @@ export class CompanyComponent {
   private updateCompanyAndRefreshDisplay(dto: CompanyUpdateDto) {
     this.companyService.update(dto).subscribe(
       data => {
-        this.createElements(data);
+        if (data) {
+          this.createElements(data);
+        } else {
+          this.loadElements();
+          this.failModalVisible = true;
+        }
       }
     );
   }

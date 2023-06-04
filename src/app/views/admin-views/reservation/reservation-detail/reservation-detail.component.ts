@@ -21,6 +21,7 @@ export class ReservationDetailComponent {
   deleteModalVisible: boolean;
   modalHeader: string;
   elements: DetailElement[];
+  failModalVisible: boolean;
 
   constructor(private activatedRoute: ActivatedRoute,
               private reservationService: ReservationService,
@@ -101,7 +102,12 @@ export class ReservationDetailComponent {
     let id = this.getId()
     this.reservationService.update(id, dto).subscribe(
       data => {
-        this.createElements(data);
+        if (data) {
+          this.createElements(data);
+        } else {
+          this.loadElements();
+          this.failModalVisible = true;
+        }
       }
     );
   }
