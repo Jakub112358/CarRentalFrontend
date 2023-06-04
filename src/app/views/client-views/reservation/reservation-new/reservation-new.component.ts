@@ -5,7 +5,7 @@ import {Office} from "../../../../model/office";
 import {Car} from "../../../../model/car";
 import {CarService} from "../../../../service/car/car.service";
 import {ReservationValidator} from "../../../../util/validator/reservation-validator";
-import {ReservationCreateDto} from "../../../../model/rest/request/create/reservation-create-dto";
+import {ReservationCreateRequest} from "../../../../model/rest/request/reservation-create-request";
 import {BasicListElement} from "../../../../model/template-elements/basic-list-element";
 import {ReservationService} from "../../../../service/reservation/reservation.service";
 import {CarSearch} from "../../../../model/car-search";
@@ -22,7 +22,7 @@ export class ReservationNewComponent {
   confirmReservationElements: BasicListElement[];
   showCars: boolean;
   showConfirmReservation: boolean;
-  reservationCreateDto: ReservationCreateDto;
+  reservationCreateDto: ReservationCreateRequest;
   offices: Office[];
   failModalVisible: boolean;
   successModalVisible: boolean;
@@ -104,7 +104,7 @@ export class ReservationNewComponent {
     let pickUpOfficeId = this.dateAndOfficeElements.find(e => e.name == 'pickUpOfficeId')?.model
     let returnOfficeId = this.dateAndOfficeElements.find(e => e.name == 'returnOfficeId')?.model
     let clientId = this.getClientId();
-    this.reservationCreateDto = new ReservationCreateDto(
+    this.reservationCreateDto = new ReservationCreateRequest(
       dateFromValue,
       dateToValue,
       clientId,

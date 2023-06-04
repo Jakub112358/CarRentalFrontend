@@ -4,8 +4,8 @@ import {CarService} from "../../../../service/car/car.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {DetailElement} from "../../../../model/template-elements/detail-element";
 import {UpdateFormElement} from "../../../../model/template-elements/update-form-element";
-import {CarRequestDto} from "../../../../model/rest/request/car-request-dto";
-import {UpdateDto} from "../../../../model/rest/request/update-dto/UpdateDto";
+import {CarRequest} from "../../../../model/rest/request/car-request";
+import {UpdateDto} from "../../../../model/rest/request/update-dto";
 
 @Component({
   selector: 'app-car-detail',
@@ -43,7 +43,7 @@ export class CarDetailComponent {
   }
 
   onSubmit() {
-    let carUpdateDto: CarRequestDto = this.createUpdateDto();
+    let carUpdateDto: CarRequest = this.createUpdateDto();
     this.updateCarAndRefreshDisplay(carUpdateDto);
     this.updateModalVisible = false;
   }
@@ -93,7 +93,7 @@ export class CarDetailComponent {
   }
 
   private createUpdateDto() {
-    let updateDto = this.car as CarRequestDto;
+    let updateDto = this.car as CarRequest;
     let changedField = Object.defineProperty({}, this.updateElement.name, {
       value: this.updateElement.value,
       writable: true,

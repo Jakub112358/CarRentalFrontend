@@ -2,10 +2,10 @@ import {Component} from '@angular/core';
 import {UpdateFormElement} from "../../../../model/template-elements/update-form-element";
 import {DetailElement} from "../../../../model/template-elements/detail-element";
 import {ActivatedRoute, Router} from "@angular/router";
-import {UpdateDto} from "../../../../model/rest/request/update-dto/UpdateDto";
+import {UpdateDto} from "../../../../model/rest/request/update-dto";
 import {PriceList} from "../../../../model/price-list";
 import {PriceListService} from "../../../../service/priceList/price-list.service";
-import {PriceListRequestDto} from "../../../../model/rest/request/price-list-request-dto";
+import {PriceListRequest} from "../../../../model/rest/request/price-list-request";
 
 @Component({
   selector: 'app-price-list-detail',
@@ -44,14 +44,14 @@ export class PriceListDetailComponent {
   }
 
   onSubmit() {
-    let priceListUpdateDto: PriceListRequestDto = this.createUpdateDto();
+    let priceListUpdateDto: PriceListRequest = this.createUpdateDto();
     this.updatePriceListAndRefreshDisplay(priceListUpdateDto);
     this.updateModalVisible = false;
   }
 
   deletePriceList() {
     this.priceListService.delete(this.getId()).subscribe(() =>
-      this.router.navigateByUrl('/admin/car')
+      this.router.navigateByUrl('/admin/price-list')
     );
   }
 
@@ -82,7 +82,7 @@ export class PriceListDetailComponent {
   }
 
   private createUpdateDto() {
-    let updateDto = this.priceList as PriceListRequestDto;
+    let updateDto = this.priceList as PriceListRequest;
     let changedField = Object.defineProperty({}, this.updateElement.name, {
       value: this.updateElement.value,
       writable: true,

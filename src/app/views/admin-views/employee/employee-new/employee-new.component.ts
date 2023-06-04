@@ -5,7 +5,7 @@ import {EmployeeValidator} from "../../../../util/validator/employee-validator";
 import {Office} from "../../../../model/office";
 import {OfficeService} from "../../../../service/office/office.service";
 import {EmployeeService} from "../../../../service/employee/employee.service";
-import {EmployeeRequestDto} from "../../../../model/rest/request/employee-request-dto";
+import {EmployeeRequest} from "../../../../model/rest/request/employee-request";
 
 @Component({
   selector: 'app-employee-new',
@@ -85,7 +85,7 @@ export class EmployeeNewComponent {
   }
 
   private saveNewEmployee() {
-    let employee: EmployeeRequestDto = this.mapFormElementsToEmployeeDto();
+    let employee: EmployeeRequest = this.mapFormElementsToEmployeeDto();
     this.employeeService.save(employee).subscribe(data => {
       if (data) {
         this.addedEmployeePath = '/admin/employee/' + data.id;
@@ -103,6 +103,6 @@ export class EmployeeNewComponent {
     let email = this.elements.find(e => e.name === 'email')?.model;
     let password = this.elements.find(e => e.name === 'password')?.model;
 
-    return new EmployeeRequestDto(firstName, lastName, jobPosition, officeId, email, password);
+    return new EmployeeRequest(firstName, lastName, jobPosition, officeId, email, password);
   }
 }

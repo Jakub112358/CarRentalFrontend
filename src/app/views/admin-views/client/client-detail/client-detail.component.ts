@@ -2,10 +2,10 @@ import {Component} from '@angular/core';
 import {UpdateFormElement} from "../../../../model/template-elements/update-form-element";
 import {DetailElement} from "../../../../model/template-elements/detail-element";
 import {ActivatedRoute, Router} from "@angular/router";
-import {UpdateDto} from "../../../../model/rest/request/update-dto/UpdateDto";
+import {UpdateDto} from "../../../../model/rest/request/update-dto";
 import {Client} from "../../../../model/client";
 import {ClientService} from "../../../../service/client/client.service";
-import {ClientRequestDto} from "../../../../model/rest/request/client-request-dto";
+import {ClientRequest} from "../../../../model/rest/request/client-request";
 
 @Component({
   selector: 'app-client-detail',
@@ -44,7 +44,7 @@ export class ClientDetailComponent {
   }
 
   onSubmit() {
-    let clientUpdateDto: ClientRequestDto = this.createUpdateDto();
+    let clientUpdateDto: ClientRequest = this.createUpdateDto();
     this.updateClientAndRefreshDisplay(clientUpdateDto);
     this.updateModalVisible = false;
   }
@@ -86,7 +86,7 @@ export class ClientDetailComponent {
 
   private createUpdateDto() {
 
-    let clientUpdateRequest: ClientRequestDto = new ClientRequestDto(
+    let clientUpdateRequest: ClientRequest = new ClientRequest(
       this.client.email,
       this.newPassword,
       this.client.firstName,

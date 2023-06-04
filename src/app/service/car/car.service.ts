@@ -4,7 +4,6 @@ import {CrudService} from "../crud-service";
 import {Car} from "../../model/car";
 import {catchError, Observable} from "rxjs";
 import {CreateFormElement} from "../../model/template-elements/create-form-element";
-import {CarRentDto} from "../../model/rest/request/car-rent-dto";
 import {ApiConstraints} from "../../config/apiConstraints";
 import {CarSearch} from "../../model/car-search";
 
@@ -18,12 +17,12 @@ export class CarService extends CrudService<Car> {
     super(ApiConstraints.CAR_URL, http);
   }
 
-  findByCurrentBranchOfficeId(officeId: number): Observable<CarRentDto[]> {
+  findByCurrentBranchOfficeId(officeId: number): Observable<Car[]> {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('officeId', officeId);
-    return this.http.get<CarRentDto[]>(ApiConstraints.CAR_URL, {params: queryParams})
+    return this.http.get<Car[]>(ApiConstraints.CAR_URL, {params: queryParams})
       .pipe(
-        catchError(this.handleError<CarRentDto[]>())
+        catchError(this.handleError<Car[]>())
       )
   }
 

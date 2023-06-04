@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {ApiConstraints} from "../../config/apiConstraints";
 import {catchError, Observable, of} from "rxjs";
 import {Company} from "../../model/company";
-import {CompanyUpdateDto} from "../../model/rest/request/update-dto/CompanyUpdateDto";
+import {CompanyUpdateRequest} from "../../model/rest/request/company-update-request";
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,7 @@ export class CompanyService {
       )
   }
 
-  public update(updateRequest: CompanyUpdateDto): Observable<Company> {
+  public update(updateRequest: CompanyUpdateRequest): Observable<Company> {
     return this.http.patch<Company>(ApiConstraints.COMPANY_URL, updateRequest)
       .pipe(
         catchError(this.handleError<Company>())

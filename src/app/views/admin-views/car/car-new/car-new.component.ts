@@ -8,7 +8,7 @@ import {Color} from "../../../../model/enumeration/color";
 import {Status} from "../../../../model/enumeration/status";
 import {PriceListService} from "../../../../service/priceList/price-list.service";
 import {PriceList} from "../../../../model/price-list";
-import {CarRequestDto} from "../../../../model/rest/request/car-request-dto";
+import {CarRequest} from "../../../../model/rest/request/car-request";
 
 
 @Component({
@@ -44,7 +44,7 @@ export class CarNewComponent {
   }
 
   private saveNewCar() {
-    let car: CarRequestDto = this.mapFormElementsToCarDto();
+    let car: CarRequest = this.mapFormElementsToCarDto();
     this.carService.save(car).subscribe(data => {
       if (data) {
         this.successModalVisible = true;
@@ -125,7 +125,7 @@ export class CarNewComponent {
     let priceListId = this.elements.find(e => e.name === 'priceListId')?.model;
     let currentOfficeId = this.elements.find(e => e.name === 'currentOfficeId')?.model;
 
-    return new CarRequestDto(make, model, mileage, minRentalTime, yearOfManufacture, bodyType, color, status, priceListId, currentOfficeId);
+    return new CarRequest(make, model, mileage, minRentalTime, yearOfManufacture, bodyType, color, status, priceListId, currentOfficeId);
   }
 
 }

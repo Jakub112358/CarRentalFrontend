@@ -1,4 +1,4 @@
-import {UpdateDto} from "./update-dto/UpdateDto";
+import {UpdateDto} from "./update-dto";
 
 export class ReservationUpdateRequest implements UpdateDto {
   status: string;

@@ -1,7 +1,7 @@
-import {UpdateDto} from "./update-dto/UpdateDto";
-import {CreateDto} from "./create/create-dto";
+import {UpdateDto} from "./update-dto";
+import {CreateDto} from "./create-dto";
 
-export class CarRequestDto implements UpdateDto, CreateDto {
+export class CarRequest implements UpdateDto, CreateDto {
   make: string;
   model: string;
   mileage: number;

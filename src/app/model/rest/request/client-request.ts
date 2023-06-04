@@ -1,7 +1,6 @@
-import {AddressCreateRequest} from "./create/address-create-request";
 import {Address} from "../../address";
 
-export class ClientRequestDto {
+export class ClientRequest {
   email: string;
   password: string
   firstName: string;
@@ -9,7 +8,7 @@ export class ClientRequestDto {
   address: Address;
 
 
-  constructor(email: string, password: string, firstName: string, lastName: string, address: AddressCreateRequest) {
+  constructor(email: string, password: string, firstName: string, lastName: string, address: Address) {
     this.email = email;
     this.password = password;
     this.firstName = firstName;

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {CreateFormElement} from "../../../../model/template-elements/create-form-element";
 import {PriceListService} from "../../../../service/priceList/price-list.service";
-import {PriceListRequestDto} from "../../../../model/rest/request/price-list-request-dto";
+import {PriceListRequest} from "../../../../model/rest/request/price-list-request";
 
 @Component({
   selector: 'app-price-list-new',
@@ -34,7 +34,7 @@ export class PriceListNewComponent {
   }
 
   private saveNewPriceList() {
-    let priceList: PriceListRequestDto = this.mapFormElementsToPriceListDto();
+    let priceList: PriceListRequest = this.mapFormElementsToPriceListDto();
     this.priceListService.save(priceList).subscribe(data => {
       if (data) {
         this.successModalVisible = true;
@@ -61,7 +61,7 @@ export class PriceListNewComponent {
     let mediumTermPrice = this.elements.find(e => e.name === 'mediumTermPrice')?.model;
     let longTermPrice = this.elements.find(e => e.name === 'longTermPrice')?.model;
 
-    return new PriceListRequestDto(shortTermPrice, mediumTermPrice, longTermPrice);
+    return new PriceListRequest(shortTermPrice, mediumTermPrice, longTermPrice);
   }
 
 }

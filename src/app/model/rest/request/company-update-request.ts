@@ -1,7 +1,7 @@
-import {Address} from "../../../address";
-import {UpdateDto} from "./UpdateDto";
+import {Address} from "../../address";
+import {UpdateDto} from "./update-dto";
 
-export interface CompanyUpdateDto extends UpdateDto{
+export interface CompanyUpdateRequest extends UpdateDto{
   name: string;
   domain: string;
   logotype: Int8Array;

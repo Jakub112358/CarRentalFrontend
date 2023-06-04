@@ -1,10 +1,11 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {BasicListElement} from "../../../../../model/template-elements/basic-list-element";
-import {ReservationClientResponse} from "../../../../../model/rest/response/reservation-client-response";
+
 import {Car} from "../../../../../model/car";
 import {Office} from "../../../../../model/office";
 import {ReservationStatus} from "../../../../../model/enumeration/reservation-status";
 import {ReservationService} from "../../../../../service/reservation/reservation.service";
+import {Reservation} from "../../../../../model/reservation";
 
 @Component({
   selector: 'app-reservation-detail',
@@ -15,7 +16,7 @@ export class ReservationDetailComponent {
   reservationElements: BasicListElement[];
   deleteButtonVisible: boolean;
   deletePopUpVisible: boolean;
-  @Input() reservation: ReservationClientResponse;
+  @Input() reservation: Reservation;
   @Output() cancelReservationEvent = new EventEmitter<number>()
   failModalVisible: boolean;
 

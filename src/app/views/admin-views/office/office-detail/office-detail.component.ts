@@ -5,11 +5,11 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {EmployeeService} from "../../../../service/employee/employee.service";
 import {Employee} from "../../../../model/employee";
 import {OfficeService} from "../../../../service/office/office.service";
-import {UpdateDto} from "../../../../model/rest/request/update-dto/UpdateDto";
+import {UpdateDto} from "../../../../model/rest/request/update-dto";
 import {Office} from "../../../../model/office";
 import {Car} from "../../../../model/car";
 import {CarService} from "../../../../service/car/car.service";
-import {OfficeRequestDto} from "../../../../model/rest/request/office-request-dto";
+import {OfficeRequest} from "../../../../model/rest/request/office-request";
 
 @Component({
   selector: 'app-office-detail',
@@ -53,7 +53,7 @@ export class OfficeDetailComponent {
   }
 
   onSubmit() {
-    let updateDto: OfficeRequestDto = this.createUpdateDto();
+    let updateDto: OfficeRequest = this.createUpdateDto();
     this.updateObjectAndRefreshDisplay(updateDto);
     this.editModalVisible = false;
   }
@@ -91,7 +91,7 @@ export class OfficeDetailComponent {
   }
 
   private createUpdateDto() {
-    let updateDto = this.office as OfficeRequestDto;
+    let updateDto = this.office as OfficeRequest;
     let changedField = Object.defineProperty({}, this.updateElement.name, {
       value: this.updateElement.value,
       writable: true,

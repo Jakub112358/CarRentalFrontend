@@ -1,6 +1,6 @@
-import {UpdateDto} from "./update-dto/UpdateDto";
+import {UpdateDto} from "./update-dto";
 
-export class EmployeeRequestDto implements UpdateDto {
+export class EmployeeRequest implements UpdateDto {
   firstName: string;
   lastName: string;
   jobPosition: string;

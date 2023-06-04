@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {Address} from "../../../../model/address";
 import {OfficeService} from "../../../../service/office/office.service";
-import {OfficeCreateDto} from "../../../../model/rest/request/create/office-create-dto";
+import {OfficeRequest} from "../../../../model/rest/request/office-request";
 
 @Component({
   selector: 'app-office-new',
@@ -32,8 +32,8 @@ export class OfficeNewComponent {
   onSubmit() {
     this.validate(this.newAddress);
     if (!this.invalidZipCode && !this.invalidTown && !this.invalidStreet && !this.invalidHouseNumber) {
-      let newOffice: OfficeCreateDto = new OfficeCreateDto(this.newAddress)
-      this.officeService.save(newOffice).subscribe(data=>{
+      let newOffice: OfficeRequest = new OfficeRequest(this.newAddress)
+      this.officeService.save(newOffice).subscribe(data => {
         this.addedOfficePath = '/admin/office/' + data.id;
       });
       this.successModalVisible = true;
@@ -42,7 +42,7 @@ export class OfficeNewComponent {
     }
   }
 
-  addNextOffice(){
+  addNextOffice() {
     this.newAddress = {zipCode: '', town: '', street: '', houseNumber: ''};
     this.successModalVisible = false;
   }

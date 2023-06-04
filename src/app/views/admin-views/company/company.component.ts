@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {Company} from "../../../model/company";
 import {CompanyService} from "../../../service/company/company.service";
 import {DomSanitizer} from '@angular/platform-browser';
-import {CompanyUpdateDto} from "../../../model/rest/request/update-dto/CompanyUpdateDto";
+import {CompanyUpdateRequest} from "../../../model/rest/request/company-update-request";
 import {DetailElement} from "../../../model/template-elements/detail-element";
 import {UpdateFormElement} from "../../../model/template-elements/update-form-element";
 
@@ -35,7 +35,7 @@ export class CompanyComponent {
   }
 
   onSubmit() {
-    let companyUpdateDto: CompanyUpdateDto = this.createUpdateDto();
+    let companyUpdateDto: CompanyUpdateRequest = this.createUpdateDto();
     this.updateCompanyAndRefreshDisplay(companyUpdateDto);
     this.modalVisible = false;
   }
@@ -74,7 +74,7 @@ export class CompanyComponent {
   }
 
   private createUpdateDto() {
-    let updateDto = this.company as CompanyUpdateDto;
+    let updateDto = this.company as CompanyUpdateRequest;
     let changedField = Object.defineProperty({}, this.updateElement.name, {
       value: this.updateElement.value,
       writable: true,
@@ -93,7 +93,7 @@ export class CompanyComponent {
     return updateDto;
   }
 
-  private updateCompanyAndRefreshDisplay(dto: CompanyUpdateDto) {
+  private updateCompanyAndRefreshDisplay(dto: CompanyUpdateRequest) {
     this.companyService.update(dto).subscribe(
       data => {
         if (data) {

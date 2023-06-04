@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
 import {ReservationService} from "../../../../service/reservation/reservation.service";
-import {ReservationClientResponse} from "../../../../model/rest/response/reservation-client-response";
 import {Car} from "../../../../model/car";
 import {Office} from "../../../../model/office";
 import {ReservationStatus} from "../../../../model/enumeration/reservation-status";
 import {JwtTokenService} from "../../../../auth/jwt-token.service";
+import {Reservation} from "../../../../model/reservation";
 
 @Component({
   selector: 'app-reservation-list',
@@ -12,9 +12,9 @@ import {JwtTokenService} from "../../../../auth/jwt-token.service";
   styleUrls: ['./reservation-list.component.scss']
 })
 export class ReservationListComponent {
-  reservations: ReservationClientResponse[]
+  reservations: Reservation[]
   showDetails: boolean;
-  selectedReservation: ReservationClientResponse;
+  selectedReservation: Reservation;
 
 
   constructor(private reservationService: ReservationService,
@@ -45,7 +45,7 @@ export class ReservationListComponent {
     return office?.address.town + ', ' + office?.address.street + ' ' + office?.address.houseNumber;
   }
 
-  loadDetailsComponent(reservation: ReservationClientResponse) {
+  loadDetailsComponent(reservation: Reservation) {
     this.scrollUp();
     this.showDetails = true;
     this.selectedReservation = reservation;

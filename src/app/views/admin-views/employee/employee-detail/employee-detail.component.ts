@@ -4,8 +4,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {EmployeeService} from "../../../../service/employee/employee.service";
 import {Employee} from "../../../../model/employee";
 import {UpdateFormElement} from "../../../../model/template-elements/update-form-element";
-import {UpdateDto} from "../../../../model/rest/request/update-dto/UpdateDto";
-import {EmployeeRequestDto} from "../../../../model/rest/request/employee-request-dto";
+import {UpdateDto} from "../../../../model/rest/request/update-dto";
+import {EmployeeRequest} from "../../../../model/rest/request/employee-request";
 
 @Component({
   selector: 'app-employee-detail',
@@ -82,7 +82,7 @@ export class EmployeeDetailComponent {
   }
 
   private createUpdateDto() {
-    let employeeUpdateRequest: EmployeeRequestDto = new EmployeeRequestDto(
+    let employeeUpdateRequest: EmployeeRequest = new EmployeeRequest(
       this.employee.firstName,
       this.employee.lastName,
       this.employee.jobPosition,

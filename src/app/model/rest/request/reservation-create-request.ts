@@ -1,6 +1,6 @@
 import {CreateDto} from "./create-dto";
 
-export class ReservationCreateDto implements CreateDto{
+export class ReservationCreateRequest implements CreateDto{
   reservationDate: Date;
   dateFrom: any;
   dateTo: any;

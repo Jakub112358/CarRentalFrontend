@@ -1,7 +1,7 @@
-import {UpdateDto} from "./update-dto/UpdateDto";
-import {CreateDto} from "./create/create-dto";
+import {UpdateDto} from "./update-dto";
+import {CreateDto} from "./create-dto";
 
-export class PriceListRequestDto implements UpdateDto, CreateDto {
+export class PriceListRequest implements UpdateDto, CreateDto {
   shortTermPrice: number;
   mediumTermPrice: number;
   longTermPrice: number;

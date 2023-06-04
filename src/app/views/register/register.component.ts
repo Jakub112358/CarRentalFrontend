@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ClientRequestDto} from "../../model/rest/request/client-request-dto";
+import {ClientRequest} from "../../model/rest/request/client-request";
 import {ClientService} from "../../service/client/client.service";
 import {AuthService} from "../../auth/auth.service";
 import {AuthRequest} from "../../model/rest/request/auth-request";
@@ -13,7 +13,7 @@ import {Address} from "../../model/address";
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
-  client: ClientRequestDto;
+  client: ClientRequest;
   incorrectRegister: boolean;
 
 
@@ -21,7 +21,7 @@ export class RegisterComponent {
               private authService: AuthService,
               private tokenService: JwtTokenService,
               private router: Router) {
-    this.client = new ClientRequestDto('','','','',new Address());
+    this.client = new ClientRequest('','','','',new Address());
   }
 
   ngOnInit() {

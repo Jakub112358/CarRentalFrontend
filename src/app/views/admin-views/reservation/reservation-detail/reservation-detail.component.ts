@@ -7,7 +7,7 @@ import {ReservationService} from "../../../../service/reservation/reservation.se
 import {Car} from "../../../../model/car";
 import {Office} from "../../../../model/office";
 import {ReservationUpdateRequest} from "../../../../model/rest/request/reservation-update-request";
-import {UpdateDto} from "../../../../model/rest/request/update-dto/UpdateDto";
+import {UpdateDto} from "../../../../model/rest/request/update-dto";
 
 @Component({
   selector: 'app-reservation-detail',
