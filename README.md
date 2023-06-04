@@ -7,7 +7,7 @@ Backend part of the application: https://github.com/Jakub112358/CarRentalBackend
 
 ### Running application:
 - Run backend application: [instructions](https://github.com/Jakub112358/CarRentalBackend/blob/dev/README.md#running-application)
-- Follow the instructions to run [Angular application](README.md#angular-project-info)
+- Follow the instructions to run locally [Angular application](https://angular.io/start/start-deployment)
 
 ### General app description:
 The main purpose of the application is to solve the problem of managing car rental company that has branch offices in various cities. 
