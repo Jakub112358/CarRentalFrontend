@@ -21,8 +21,42 @@
         <p *ngIf="!element.valid" class="text-red-500">{{element.invalidMessage}}</p>
       </div>
     </ul>
+
+  <div class="font-medium text-3xl text-900 my-3">Additional criteria:</div>
+
+    <ul class="list-none p-0 m-0">
+
+        <li class="flex align-items-center py-1 px-2 border-top-1 surface-border flex-wrap">
+          <div class="text-500 w-6 md:w-3 font-medium">make </div>
+          <div class="text-900 w-full md:w-9 md:flex-order-0 flex-order-1">
+            <select [(ngModel)]="criteria.makeOf" name="make" class="w-12" multiple>
+              <option *ngFor="let make of makes" value="{{make}}">{{make}}</option>
+            </select>
+          </div>
+        </li>
+
+      <li class="flex align-items-center py-1 px-2 border-top-1 surface-border flex-wrap">
+        <div class="text-500 w-6 md:w-3 font-medium">make </div>
+        <div class="text-900 w-full md:w-9 md:flex-order-0 flex-order-1">
+          <select [(ngModel)]="criteria.colorOf" name="colorOf" class="w-12" multiple>
+            <option *ngFor="let color of colors" value="{{color}}">{{color}}</option>
+          </select>
+        </div>
+      </li>
+
+      <li class="flex align-items-center py-1 px-2 border-top-1 surface-border flex-wrap">
+        <div class="text-500 w-6 md:w-3 font-medium">max mileage </div>
+        <div class="text-900 w-full md:w-9 md:flex-order-0 flex-order-1">
+          <input  type="number" [(ngModel)]="criteria.maxMileage" name="maxMileage" class="w-12">
+        </div>
+      </li>
+
+
+    </ul>
     <button type="submit" pButton pRipple label="find cars" icon="pi pi-search" class="p-button-info w-5 m-2"></button>
   </form>
+
+
 </div>
 
 

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {JwtTokenService} from "../jwt-token.service";
-import {Role} from "../../model/enumeration/Role";
+import {Role} from "../../model/enumeration/role";
 
 @Injectable({
   providedIn: 'root'

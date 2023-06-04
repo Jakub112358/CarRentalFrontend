@@ -6,6 +6,7 @@ import {catchError, Observable} from "rxjs";
 import {CreateFormElement} from "../../model/template-elements/create-form-element";
 import {ApiConstraints} from "../../config/apiConstraints";
 import {CarSearch} from "../../model/car-search";
+import {CarSearchCriteria} from "../../model/rest/request/car-search-criteria";
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class CarService extends CrudService<Car> {
   }
 
 
-  findByAvailableInDatesAndCriteria(elements: CreateFormElement[]) {
+  findByAvailableInDatesAndCriteria(elements: CreateFormElement[], criteria?: CarSearchCriteria) {
     let queryParams = new HttpParams();
     let dateFromValue: Date = elements.find(e => e.name == 'dateFrom')?.model
     let dateToValue: Date = elements.find(e => e.name == 'dateTo')?.model
@@ -40,10 +41,20 @@ export class CarService extends CrudService<Car> {
       .append('pickUpOfficeId', pickUpOfficeId)
       .append('returnOfficeId', returnOfficeId);
 
-    return this.http.post<CarSearch[]>(ApiConstraints.CAR_SEARCH_URL, {}, {params: queryParams})
-      .pipe(
-        catchError(this.handleError<CarSearch[]>())
-      )
+    if(criteria){
+      return this.http.post<CarSearch[]>(ApiConstraints.CAR_SEARCH_URL, criteria, {params: queryParams})
+        .pipe(
+          catchError(this.handleError<CarSearch[]>())
+        )
+    } else {
+      return this.http.post<CarSearch[]>(ApiConstraints.CAR_SEARCH_URL, {}, {params: queryParams})
+        .pipe(
+          catchError(this.handleError<CarSearch[]>())
+        )
+    }
+
+
+
   }
 
   private dateFromString(d: Date): string {

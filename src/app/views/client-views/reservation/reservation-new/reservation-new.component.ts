@@ -10,6 +10,9 @@ import {BasicListElement} from "../../../../model/template-elements/basic-list-e
 import {ReservationService} from "../../../../service/reservation/reservation.service";
 import {CarSearch} from "../../../../model/car-search";
 import {JwtTokenService} from "../../../../auth/jwt-token.service";
+import {Make} from "../../../../model/enumeration/make";
+import {CarSearchCriteria} from "../../../../model/rest/request/car-search-criteria";
+import {Color} from "../../../../model/enumeration/color";
 
 @Component({
   selector: 'app-reservation-new',
@@ -27,6 +30,9 @@ export class ReservationNewComponent {
   failModalVisible: boolean;
   successModalVisible: boolean;
   reservationListPath: string;
+  makes: string[];
+  colors: string[];
+  criteria: CarSearchCriteria;
 
 
   constructor(private officeService: OfficeService,
@@ -38,13 +44,16 @@ export class ReservationNewComponent {
 
   ngOnInit() {
     this.reservationListPath = '/client/reservation/';
+    this.loadEnumsOptions();
     this.loadFormElements();
+    this.criteria = new CarSearchCriteria();
   }
 
   onSubmitFindCars() {
     if (this.validateDateAndOfficeForm()) {
       this.showCars = true;
-      this.loadCars();
+      this.nullEmptyArraysInCriteria();
+      this.loadCars(this.criteria);
     }
   }
 
@@ -86,8 +95,8 @@ export class ReservationNewComponent {
     return this.dateAndOfficeElements.every(e => e.valid);
   }
 
-  private loadCars() {
-    this.carService.findByAvailableInDatesAndCriteria(this.dateAndOfficeElements).subscribe(data => {
+  private loadCars(criteria?: CarSearchCriteria) {
+    this.carService.findByAvailableInDatesAndCriteria(this.dateAndOfficeElements, criteria).subscribe(data => {
       this.carSearches = data
     })
   }
@@ -159,4 +168,19 @@ export class ReservationNewComponent {
     return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2);
   }
 
+  private loadEnumsOptions() {
+    this.makes = Object.values(Make);
+    this.colors = Object.values(Color);
+  }
+
+  private nullEmptyArraysInCriteria() {
+    if (this.criteria.colorOf?.length == 0){
+      this.criteria.colorOf = undefined;
+    }
+
+    if (this.criteria.makeOf?.length == 0){
+      this.criteria.makeOf = undefined;
+    }
+
+  }
 }
