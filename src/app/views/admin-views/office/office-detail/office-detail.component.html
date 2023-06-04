@@ -1,0 +1,107 @@
+<!--office information-->
+<div class="surface-section md:w-6">
+  <div class="font-medium text-3xl text-900 my-3" >Office details</div>
+  <ul class="list-none p-0 m-0">
+    <li *ngFor="let element of elements"
+        class="flex align-items-center py-1 px-2 border-top-1 surface-border flex-wrap">
+      <div class="text-500 w-6 md:w-2 font-medium">{{element.title}} </div>
+      <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1">{{element.value}}</div>
+      <div class="w-6 md:w-2 flex justify-content-end">
+        <!--        ngIf to hide edit button for non-editable elements-->
+        <button *ngIf="element.displayEditButton" pButton pRipple label="Edit" icon="pi pi-pencil" class="p-button-text"
+                (click)="showEditModal(element)"></button>
+      </div>
+    </li>
+  </ul>
+  <button pButton pRipple label="delete office" class="p-button-danger m-2" icon="pi pi-trash" (click)="showDeleteModal()"></button>
+</div>
+
+
+<!--edit modal-->
+
+
+<p-dialog *ngIf="updateElement" header="{{editModalHeader}}" [(visible)]="editModalVisible" [style]="{width: '50vw'}" [modal]="true">
+  <form (ngSubmit)="onSubmit()" class="grid justify-content-center py-2">
+    <input class="w-12" type="text" pInputText [(ngModel)]="updateElement.value" [ngModelOptions]="{standalone: true}"/>
+    <button type="submit" pButton pRipple label="Save changes" class="p-button-success w-5 m-2"></button>
+    <button type="button" pButton pRipple label="Back" class="p-button-danger w-5 m-2"
+            (click)="editModalVisible=false"></button>
+  </form>
+</p-dialog>
+
+
+<!--delete modal-->
+
+
+<p-dialog header="delete office" [(visible)]="deleteModalVisible" [style]="{width: '50vw'}" [modal]="true">
+  <div class="grid justify-content-center py-2">
+
+
+    <h3 class="w-12">Are you sure? Delete action is irreversible.</h3>
+    <button type="button" pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger w-5 m-2" (click)="deleteOffice()"></button>
+    <button type="button" pButton pRipple label="Back" icon="pi pi-arrow-left" class="p-button-success w-5 m-2"
+            (click)="deleteModalVisible=false"></button>
+  </div>
+</p-dialog>
+
+<!--employees-->
+
+<div class="surface-section md:w-8">
+  <div class="font-medium text-3xl text-900 my-3" >Employees</div>
+  <p-table styleClass="p-datatable-sm" [value]="employees" [tableStyle]="{'min-width': '50rem'}">
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="id" style="width:10%">Id <p-sortIcon field="id"></p-sortIcon></th>
+        <th pSortableColumn="firstName" style="width:20%">First name  <p-sortIcon field="firstName"></p-sortIcon></th>
+        <th pSortableColumn="lastName" style="width:20%">Last name <p-sortIcon field="lastName"></p-sortIcon></th>
+        <th pSortableColumn="jobPosition" style="width:20%">Job position <p-sortIcon field="jobPosition"></p-sortIcon></th>
+        <th pSortableColumn="branchOfficeId" style="width:20%">Office id <p-sortIcon field="officeId"></p-sortIcon></th>
+        <th style="width: 10%">Details</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-employee>
+      <tr>
+        <td>{{employee.id}}</td>
+        <td>{{employee.firstName}}</td>
+        <td>{{employee.lastName}}</td>
+        <td>{{employee.jobPosition}}</td>
+        <td>{{employee.officeId}}</td>
+        <td><button pButton pRipple label="Details" icon="pi pi-search" class="p-button-text" routerLink="{{'/admin/employee/' + employee.id}}"></button></td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <button pButton pRipple label="add new employee" class="p-button-success m-2" icon="pi pi-plus" routerLink='/admin/employee/new'></button>
+</div>
+
+<!--available cars-->
+
+<div class="surface-section md:w-8">
+  <div class="font-medium text-3xl text-900 my-3" >Cars</div>
+  <p-table styleClass="p-datatable-sm" [value]="cars" [tableStyle]="{'min-width': '30rem'}">
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="id" style="width:10%">Id <p-sortIcon field="id"></p-sortIcon></th>
+        <th pSortableColumn="make" style="width:20%">Make  <p-sortIcon field="make"></p-sortIcon></th>
+        <th pSortableColumn="model" style="width:20%">Model <p-sortIcon field="model"></p-sortIcon></th>
+        <th pSortableColumn="status" style="width:20%">Status <p-sortIcon field="status"></p-sortIcon></th>
+        <th pSortableColumn="currentOfficeId" style="width:20%">Current office id <p-sortIcon field="currentOfficeId"></p-sortIcon></th>
+        <th style="width: 10%">Details</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-car>
+      <tr>
+        <td>{{car.id}}</td>
+        <td>{{car.make}}</td>
+        <td>{{car.model}}</td>
+        <td>{{car.status}}</td>
+        <td>{{car.currentOfficeId}}</td>
+        <td><button pButton pRipple label="Details" icon="pi pi-search" class="p-button-text" routerLink="{{'/admin/car/' + car.id}}"></button></td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <button pButton pRipple label="add new car" class="p-button-success m-2" icon="pi pi-plus" routerLink='/admin/car/new'></button>
+</div>
+
+<p-dialog header="Fail" [(visible)]="failModalVisible" [style]="{width: '50vw'}" [modal]="true">
+  Something went wrong, please try again.
+</p-dialog>

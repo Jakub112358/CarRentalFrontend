@@ -1,0 +1,31 @@
+<div class="w-6">
+  <ul class="list-none p-1 m-1">
+    <li *ngFor="let element of unchangeableElements"
+        class="flex align-items-center py-1 px-2 border-top-1 surface-border flex-wrap">
+      <div class="text-500 w-6 md:w-3 font-medium">{{element.title}} </div>
+      <div class="text-900 w-full md:w-9 md:flex-order-0 flex-order-1">{{element.value}}</div>
+    </li>
+
+    <form (ngSubmit)="onSubmitUpdate()">
+      <li *ngFor="let element of formElements" class="flex align-items-center py-1 px-2 border-top-1 surface-border flex-wrap">
+        <div class="text-500 w-6 md:w-3 font-medium">{{element.title}}</div>
+        <div class="text-900 w-full md:w-9 md:flex-order-0 flex-order-1">
+          <input *ngIf="element.type==='text' || element.type==='number'" type="{{element.type}}"
+                 [(ngModel)]="element.model" name="{{element.name}}" class="w-12">
+          <select *ngIf="element.type==='select'" [(ngModel)]="element.model" name="{{element.name}}" class="w-12">
+            <option *ngFor="let option of element.options" value="{{option[0]}}">{{option[1]}}</option>
+          </select>
+          <p-calendar *ngIf="element.type==='date'" [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}"
+                      [(ngModel)]="element.model"
+                      [showIcon]="true" name="{{element.name}}" [minDate]="element.minDate"></p-calendar>
+        </div>
+      </li>
+      <button type="submit" pButton pRipple label="Submit update" class="p-button-info w-5 m-2"></button>
+    </form>
+
+  </ul>
+</div>
+
+<p-dialog header="Fail" [(visible)]="failModalVisible" [style]="{width: '50vw'}" [modal]="true">
+  Editing pick up failed, please check if input is correct.
+</p-dialog>

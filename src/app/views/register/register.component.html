@@ -1,0 +1,42 @@
+<div class="flex justify-content-center">
+  <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
+    <div class="text-center mb-5">
+      <div class="text-900 text-3xl font-medium mb-3">Register new account in Car Rental App!</div>
+      <span class="text-600 font-medium line-height-3">Already have an account?</span>
+      <a class="font-medium no-underline ml-2 text-blue-500 cursor-pointer" [href]="'/login'">log-in</a>
+    </div>
+
+    <form (ngSubmit)="onSubmit()">
+      <div>
+        <label for="email" class="block text-900 font-medium mb-2">Email</label>
+        <input id="email" type="text" placeholder="Email" pInputText class="w-full mb-3" [(ngModel)]="client.email" name="email">
+
+        <label for="password" class="block text-900 font-medium mb-2">Password</label>
+        <input id="password" type="password" placeholder="Password" pInputText class="w-full mb-3" [(ngModel)]="client.password" name="password">
+
+        <label for="firstName" class="block text-900 font-medium mb-2">First name</label>
+        <input id="firstName" type="text" placeholder="first name" pInputText class="w-full mb-3" [(ngModel)]="client.firstName" name="firstName">
+
+        <label for="lastName" class="block text-900 font-medium mb-2">Last name</label>
+        <input id="lastName" type="text" placeholder="last name" pInputText class="w-full mb-3" [(ngModel)]="client.lastName" name="lastName">
+
+        <label for="zipCode" class="block text-900 font-medium mb-2">Zip code</label>
+        <input id="zipCode" type="text" placeholder="00-000" pInputText class="w-full mb-3" [(ngModel)]="client.address.zipCode" name="zipCode">
+
+        <label for="town" class="block text-900 font-medium mb-2">Town</label>
+        <input id="town" type="text" placeholder="town" pInputText class="w-full mb-3" [(ngModel)]="client.address.town" name="town">
+
+        <label for="street" class="block text-900 font-medium mb-2">Street</label>
+        <input id="street" type="text" placeholder="street" pInputText class="w-full mb-3" [(ngModel)]="client.address.street" name="street">
+
+        <label for="houseNumber" class="block text-900 font-medium mb-2">House number</label>
+        <input id="houseNumber" type="text" placeholder="0" pInputText class="w-full mb-3" [(ngModel)]="client.address.houseNumber" name="houseNumber">
+
+        <div *ngIf="incorrectRegister" class="text-red-600 text-xl my-3">incorrect register data</div>
+
+        <button type="submit" pButton pRipple label="Register" icon="pi pi-user" class="w-full"></button>
+      </div>
+    </form>
+
+  </div>
+</div>

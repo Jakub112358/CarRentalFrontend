@@ -1,0 +1,29 @@
+<div class="w-6">
+  <ul class="list-none p-1 m-1">
+    <li *ngFor="let element of reservationElements"
+        class="flex align-items-center py-1 px-2 border-top-1 surface-border flex-wrap">
+      <div class="text-500 w-6 md:w-3 font-medium">{{element.title}} </div>
+      <div class="text-900 w-full md:w-9 md:flex-order-0 flex-order-1">{{element.value}}</div>
+    </li>
+  </ul>
+  <button *ngIf="deleteButtonVisible" type="button" pButton pRipple label="Cancel reservation" class="p-button-danger w-5 m-2" (click)="displayDeletePopUp()"></button>
+</div>
+
+<p-dialog header="cancel reservation" [(visible)]="deletePopUpVisible" [style]="{width: '50vw'}" [modal]="true">
+  <div class="grid justify-content-center py-2">
+    <div class="w-12">
+    <p>Are you sure? For cancellation you will be charged:</p>
+    <ul>
+      <li>0 if you cancel 11+ days before start date</li>
+      <li>10% if you cancel 3-10 days before start date</li>
+      <li>50% if you cancel 0-2 days before start date</li>
+    </ul>
+    </div>
+    <button type="submit" pButton pRipple label="cancel reservation" class="p-button-danger w-5 m-2" icon="pi pi-trash" (click)="cancelReservation()"></button>
+    <button type="button" pButton pRipple label="Back" class="p-button-info w-5 m-2" icon="pi pi-arrow-left" (click)="deletePopUpVisible=false"></button>
+  </div>
+</p-dialog>
+
+<p-dialog header="Fail" [(visible)]="failModalVisible" [style]="{width: '50vw'}" [modal]="true">
+  Something went wrong, please try again.
+</p-dialog>

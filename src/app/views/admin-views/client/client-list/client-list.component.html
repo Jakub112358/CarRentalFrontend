@@ -1,0 +1,25 @@
+<div class="surface-section md:w-8">
+  <div class="font-medium text-3xl text-900 my-3" >Clients</div>
+  <p-table styleClass="p-datatable-sm" [value]="clients" [tableStyle]="{'min-width': '50rem'}">
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="id" style="width:10%">Id <p-sortIcon field="id"></p-sortIcon></th>
+        <th pSortableColumn="firstName" style="width:15%">First name  <p-sortIcon field="firstName"></p-sortIcon></th>
+        <th pSortableColumn="lastName" style="width:15%">Last name <p-sortIcon field="lastName"></p-sortIcon></th>
+        <th pSortableColumn="email" style="width:15%">Email <p-sortIcon field="email"></p-sortIcon></th>
+        <th pSortableColumn="address.town" style="width:35%">Address <p-sortIcon field="address.town"></p-sortIcon></th>
+        <th style="width: 10%">Details</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-client>
+      <tr>
+        <td>{{client.id}}</td>
+        <td>{{client.firstName}}</td>
+        <td>{{client.lastName}}</td>
+        <td>{{client.email}}</td>
+        <td>{{addressToString(client.address)}}</td>
+        <td><button pButton pRipple label="Details" icon="pi pi-search" class="p-button-text" routerLink="{{'/admin/client/' + client.id}}"></button></td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

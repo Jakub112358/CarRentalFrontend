@@ -1,0 +1,24 @@
+<div class="surface-section md:w-8">
+<div class="font-medium text-3xl text-900 my-3" >Offices</div>
+<p-table styleClass="p-datatable-sm" [value]="offices" [tableStyle]="{'min-width': '30rem'}">
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="id" style="width:10%">Id <p-sortIcon field="id"></p-sortIcon></th>
+      <th pSortableColumn="address.zipCode" style="width:20%">Zip code  <p-sortIcon field="address.zipCode"></p-sortIcon></th>
+      <th pSortableColumn="address.town" style="width:20%">Town <p-sortIcon field="address.town"></p-sortIcon></th>
+      <th pSortableColumn="address.street" style="width:20%">Street <p-sortIcon field="address.street"></p-sortIcon></th>
+      <th style="width: 10%">Details</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-office>
+    <tr>
+      <td>{{office.id}}</td>
+      <td>{{office.address.zipCode}}</td>
+      <td>{{office.address.town}}</td>
+      <td>{{this.office.address.street}} {{office.address.houseNumber}}</td>
+      <td><button pButton pRipple label="Details" icon="pi pi-search" class="p-button-text" routerLink="{{'/admin/office/' + office.id}}"></button></td>
+    </tr>
+  </ng-template>
+</p-table>
+  <button pButton pRipple label="add new branch office" class="p-button-success m-2" icon="pi pi-plus" routerLink='/admin/office/new'></button>
+</div>

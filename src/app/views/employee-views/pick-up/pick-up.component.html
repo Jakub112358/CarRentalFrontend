@@ -1,0 +1,58 @@
+<app-pick-up-edit
+*ngIf="selectedPickUp"
+[pickUp]="selectedPickUp"
+(editedPickUpEvent)="updatePickUp($event)"
+></app-pick-up-edit>
+<div class="surface-section w-12">
+  <div class="font-medium text-3xl text-900 my-3">Pick-ups</div>
+  <p-table styleClass="p-datatable-sm" [value]="pickUps" [tableStyle]="{'min-width': '50rem'}">
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="id" style="width:5%; text-align:center"><p>Id</p>
+          <p-sortIcon field="id"></p-sortIcon>
+        </th>
+        <th pSortableColumn="comments" style="width:15%; text-align:center"><p>Comments</p>
+          <p-sortIcon field="comments"></p-sortIcon>
+        </th>
+        <th pSortableColumn="pickUpDate" style="width:10%; text-align:center"><p>Pick up date</p>
+          <p-sortIcon field="pickUpDate"></p-sortIcon>
+        </th>
+        <th pSortableColumn="plannedPickUpDate" style="width:10%; text-align:center"><p>Planned pick up date</p>
+          <p-sortIcon field="plannedPickUpDate"></p-sortIcon>
+        </th>
+        <th pSortableColumn="status" style="width:10%; text-align:center"><p>Status</p>
+          <p-sortIcon field="status"></p-sortIcon>
+        </th>
+        <th pSortableColumn="employeeId" style="width:10%; text-align:center"><p>Employee id</p>
+          <p-sortIcon field="employeeId"></p-sortIcon>
+        </th>
+        <th pSortableColumn="reservationId" style="width:10%; text-align:center"><p>Reservation id</p>
+          <p-sortIcon field="reservationId"></p-sortIcon>
+        </th>
+        <th pSortableColumn="carId" style="width:10%; text-align:center"><p>Car id</p>
+          <p-sortIcon field="carId"></p-sortIcon>
+        </th>
+        <th pSortableColumn="officeId" style="width:10%; text-align:center"><p>Office id</p>
+          <p-sortIcon field="officeId"></p-sortIcon>
+        </th>
+        <th style="width: 5%; text-align:center">Edit</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-pickUp>
+      <tr>
+        <td style="text-align: center">{{pickUp.id}}</td>
+        <td style="text-align: center">{{pickUp.comments}}</td>
+        <td style="text-align: center">{{pickUp.pickUpDate}}</td>
+        <td style="text-align: center">{{pickUp.plannedPickUpDate}}</td>
+        <td style="text-align: center">{{pickUp.status}}</td>
+        <td style="text-align: center">{{pickUp.employeeId}}</td>
+        <td style="text-align: center">{{pickUp.reservationId}}</td>
+        <td style="text-align: center">{{pickUp.carId}}</td>
+        <td style="text-align: center">{{pickUp.officeId}}</td>
+        <td style="text-align:center">
+          <button pButton pRipple label="Edit" icon="pi pi-pencil" class="p-button-text" (click)="onSelectEdit(pickUp)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

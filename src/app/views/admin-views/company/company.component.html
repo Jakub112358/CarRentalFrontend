@@ -1,0 +1,35 @@
+<div class="surface-section md:w-6">
+  <div class="font-medium text-3xl text-900 my-3">Company details</div>
+  <ul class="list-none p-0 m-0">
+
+    <li *ngFor="let element of elements"
+        class="flex align-items-center py-1 px-2 border-top-1 surface-border flex-wrap">
+      <div class="text-500 w-6 md:w-4 font-medium">{{element.title}} </div>
+      <div class="text-900 w-full md:w-6 md:flex-order-0 flex-order-1">
+        <div *ngIf="!element.picture">{{ element.value}}</div>
+        <img *ngIf="element.picture" [src]='element.value' alt="" width="100"/>
+      </div>
+      <div class="w-6 md:w-2 flex justify-content-end">
+        <button *ngIf="element.displayEditButton" pButton pRipple label="Edit" icon="pi pi-pencil" class="p-button-text"
+                (click)="showEditModal(element)"></button>
+      </div>
+    </li>
+
+  </ul>
+</div>
+
+<p-dialog *ngIf="updateElement" header="{{modalHeader}}" [(visible)]="modalVisible" [style]="{width: '50vw'}">
+  <form (ngSubmit)="onSubmit()" class="grid justify-content-center py-2">
+    <input class="w-12" type="text" pInputText [(ngModel)]="updateElement.value" [ngModelOptions]="{standalone: true}"/>
+    <button type="submit" pButton pRipple label="Save changes" class="p-button-success w-5 m-2"></button>
+    <button type="button" pButton pRipple label="Back" class="p-button-danger w-5 m-2"
+            (click)="modalVisible=false"></button>
+  </form>
+</p-dialog>
+
+<p-dialog header="Fail" [(visible)]="failModalVisible" [style]="{width: '50vw'}" [modal]="true">
+  Something went wrong, please try again.
+</p-dialog>
+
+
+

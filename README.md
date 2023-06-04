@@ -5,6 +5,11 @@ Backend part of the application: https://github.com/Jakub112358/CarRentalBackend
 ### Developer:
 - Jakub Szymański, 
 
+### Running application:
+- Run backend application: [instructions](https://github.com/Jakub112358/CarRentalBackend/blob/dev/README.md#running-application)
+- Follow the instructions to run locally [Angular application](https://angular.io/start/start-deployment)
+
+
 ### General app description:
 The main purpose of the application is to solve the problem of managing car rental company that has branch offices in various cities. 
 The solution will be to create a personalized web application.
@@ -12,49 +17,52 @@ The solution will be to create a personalized web application.
 ### Technical description: 
 
 **Backend:**
-Spring Boot REST application. The application meets all the requirements of level 2 of the Richardson Maturity Model. 
-I use tools such as e.g. Lombok. I focus on creating clean code and using appropriate design patters.
+Spring Boot REST application. More info in Backend Part [Readme](https://github.com/Jakub112358/CarRentalBackend/blob/dev/README.md)
+
 
 **Frontend:**
 Angular application with PrimeNG library.
 
-### Tech Stack:
-**Backend:**
-- Java 17
-- Spring Boot 3
-- JUnit 5
-
-**DataBase:**
-- H2 for development
-
-**Frontend:**
-- Angular 15
-
 ### App features: 
 
 **As Admin:**
-
+- login to the system
 - configuring company details
-- crud operations on branch offices
-- managing employees
-- managing cars
-- managing company finances (system is auto-updated with each reservation, cancellation or extra fee)
-- browsing statistics about cars, employees, incomes, cancellations, popular routes
+- managing clients (full CRUD operations)
+- managing employees (full CRUD operations)
+- managing cars (full CRUD operations)
+- managing price lists (full CRUD operations)
+- managing offices (full CRUD operations)
 
 
  **As Client:**
- 
+- register an account
+- login to the system
 - making reservations
-  - selecting available cars,
+  - setting specification of searching car that could include any of following:
+     - list of desired makes,
+     - list of desired models,
+     - maximum mileage
+     - minimum year of manufacture
+     - list of desired body types
+     - list of desired colors,
   - selecting pick-up and return dates 
-  - selecting pick-up and return branch offices,
-  - price calculation
+  - selecting pick-up and return offices,
+
+  - based on the given data application would return the list of available cars with calculated prices(taking into account interfering with other reservations, car specification, place of car pick-up and return)
+  - selecting one of the proposals and making reservation that automatically generates company income.
 - cancelling reservations
+  - cancelling reservation auto-generate company expense 
+  - based on the date of cancellation and the date of rental beginning app cashback may be reduced by late-cancelling extra charge
 
 **As Employee**
 
-- confirming pick-ups and returns
-- charging additional fees
+- login to the system
+- reading and updating pick-ups and returns
+  - changing pick up/return status
+  - charging additional fees
+  - adding comments
+
 
 ### Version control: 
 - system: GIT

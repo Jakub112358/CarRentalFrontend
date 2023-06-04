@@ -1,0 +1,28 @@
+<div class="surface-section md:w-8">
+  <div class="font-medium text-3xl text-900 my-3" >Cars</div>
+  <p-table styleClass="p-datatable-sm" [value]="cars" [tableStyle]="{'min-width': '30rem'}">
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="id" style="width:10%">Id <p-sortIcon field="id"></p-sortIcon></th>
+        <th pSortableColumn="make" style="width:20%">Make  <p-sortIcon field="make"></p-sortIcon></th>
+        <th pSortableColumn="model" style="width:20%">Model <p-sortIcon field="model"></p-sortIcon></th>
+        <th pSortableColumn="status" style="width:20%">Status <p-sortIcon field="status"></p-sortIcon></th>
+        <th pSortableColumn="currentOfficeId" style="width:20%">Current office id <p-sortIcon field="currentOfficeId"></p-sortIcon></th>
+        <th pSortableColumn="priceListId" style="width:20%">Price list id <p-sortIcon field="priceListId"></p-sortIcon></th>
+        <th style="width: 15%">Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-car>
+      <tr>
+        <td>{{car.id}}</td>
+        <td>{{car.make}}</td>
+        <td>{{car.model}}</td>
+        <td>{{car.status}}</td>
+        <td>{{car.currentOfficeId}}</td>
+        <td>{{car.priceListId}}</td>
+        <td><button pButton pRipple label="Details" icon="pi pi-search" class="p-button-text" routerLink="{{'/admin/car/' + car.id}}"></button></td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <button pButton pRipple label="add new car" class="p-button-success m-2" icon="pi pi-plus" routerLink='/admin/car/new'></button>
+</div>

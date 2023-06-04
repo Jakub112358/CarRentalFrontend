@@ -1,0 +1,151 @@
+<!--date and office selection form-->
+
+<div class="surface-section md:w-9 xl:w-6">
+  <div class="font-medium text-3xl text-900 my-3">New reservation</div>
+  <form (ngSubmit)="onSubmitFindCars()">
+    <ul class="list-none p-0 m-0">
+      <div *ngFor="let element of dateAndOfficeElements">
+        <li class="flex align-items-center py-1 px-2 border-top-1 surface-border flex-wrap">
+          <div class="text-500 w-6 md:w-3 font-medium">{{element.title}}</div>
+          <div class="text-900 w-full md:w-9 md:flex-order-0 flex-order-1">
+            <input *ngIf="element.type==='text' || element.type==='number'" type="{{element.type}}"
+                   [(ngModel)]="element.model" name="{{element.name}}" class="w-12">
+            <select *ngIf="element.type==='select'" [(ngModel)]="element.model" name="{{element.name}}" class="w-12">
+              <option *ngFor="let option of element.options" value="{{option[0]}}">{{option[1]}}</option>
+            </select>
+            <p-calendar [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}" *ngIf="element.type==='date'"
+                        [(ngModel)]="element.model"
+                        [showIcon]="true" name="{{element.name}}" [minDate]="element.minDate"></p-calendar>
+          </div>
+        </li>
+        <p *ngIf="!element.valid" class="text-red-500">{{element.invalidMessage}}</p>
+      </div>
+    </ul>
+
+  <div class="font-medium text-3xl text-900 my-3">Additional criteria:</div>
+
+    <ul class="list-none p-0 m-0">
+
+        <li class="flex align-items-center py-1 px-2 border-top-1 surface-border flex-wrap">
+          <div class="text-500 w-6 md:w-3 font-medium">make </div>
+          <div class="text-900 w-full md:w-9 md:flex-order-0 flex-order-1">
+            <select [(ngModel)]="criteria.makeOf" name="make" class="w-12" multiple>
+              <option *ngFor="let make of makes" value="{{make}}">{{make}}</option>
+            </select>
+          </div>
+        </li>
+
+      <li class="flex align-items-center py-1 px-2 border-top-1 surface-border flex-wrap">
+        <div class="text-500 w-6 md:w-3 font-medium">make </div>
+        <div class="text-900 w-full md:w-9 md:flex-order-0 flex-order-1">
+          <select [(ngModel)]="criteria.colorOf" name="colorOf" class="w-12" multiple>
+            <option *ngFor="let color of colors" value="{{color}}">{{color}}</option>
+          </select>
+        </div>
+      </li>
+
+      <li class="flex align-items-center py-1 px-2 border-top-1 surface-border flex-wrap">
+        <div class="text-500 w-6 md:w-3 font-medium">max mileage </div>
+        <div class="text-900 w-full md:w-9 md:flex-order-0 flex-order-1">
+          <input  type="number" [(ngModel)]="criteria.maxMileage" name="maxMileage" class="w-12">
+        </div>
+      </li>
+
+
+    </ul>
+    <button type="submit" pButton pRipple label="find cars" icon="pi pi-search" class="p-button-info w-5 m-2"></button>
+  </form>
+
+
+</div>
+
+
+<!--available cars list-->
+
+
+<div *ngIf="showCars" class="surface-section w-12">
+  <div class="font-medium text-3xl text-900 my-3">Cars</div>
+  <p-table styleClass="p-datatable-sm" [value]="carSearches" [tableStyle]="{'min-width': '30rem'}">
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="carResponse.id" style="width:5%">Id
+          <p-sortIcon field="carResponse.id"></p-sortIcon>
+        </th>
+        <th pSortableColumn="carResponse.make" style="width:10%">Make
+          <p-sortIcon field="carResponse.make"></p-sortIcon>
+        </th>
+        <th pSortableColumn="carResponse.model" style="width:10%">Model
+          <p-sortIcon field="carResponse.model"></p-sortIcon>
+        </th>
+        <th pSortableColumn="carResponse.mileage" style="width:10%">Mileage
+          <p-sortIcon field="carResponse.mileage"></p-sortIcon>
+        </th>
+        <th pSortableColumn="carResponse.yearOfManufacture" style="width:15%">Year of manufacture
+          <p-sortIcon field="carResponse.yearOfManufacture"></p-sortIcon>
+        </th>
+        <th pSortableColumn="carResponse.bodyType" style="width:10%">Body type
+          <p-sortIcon field="carResponse.bodyType"></p-sortIcon>
+        </th>
+        <th pSortableColumn="carResponse.color" style="width:10%">Color
+          <p-sortIcon field="carResponse.color"></p-sortIcon>
+        </th>
+        <th pSortableColumn="carResponse.price" style="width:10%">Price
+          <p-sortIcon field="carResponse.price"></p-sortIcon>
+        </th>
+        <th style="width: 10%">Select</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-carSearch>
+      <tr>
+        <td>{{carSearch.carResponse.id}}</td>
+        <td>{{carSearch.carResponse.make}}</td>
+        <td>{{carSearch.carResponse.model}}</td>
+        <td>{{carSearch.carResponse.mileage}}</td>
+        <td>{{carSearch.carResponse.yearOfManufacture}}</td>
+        <td>{{carSearch.carResponse.bodyType}}</td>
+        <td>{{carSearch.carResponse.color}}</td>
+        <td>{{carSearch.price}}</td>
+        <td>
+          <button type="button" pButton pRipple label="Select" icon="pi pi-check" class="p-button-success"
+                  (click)="selectCar(carSearch)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+
+<!--reservation confirm-->
+
+
+<p-dialog *ngIf="reservationCreateDto" header="Confirm Reservation" [(visible)]="showConfirmReservation"
+          [style]="{width: '50vw'}" [modal]="true">
+
+  <ul class="list-none p-1 m-1">
+    <li *ngFor="let confirmElement of confirmReservationElements" class="flex align-items-center py-1 px-2 border-top-1 surface-border flex-wrap">
+      <div class="text-500 w-6 md:w-3 font-medium">{{confirmElement.title}} </div>
+      <div class="text-900 w-full md:w-9 md:flex-order-0 flex-order-1">{{confirmElement.value}}</div>
+    </li>
+  </ul>
+  <button type="button" pButton pRipple label="Confirm reservation" class="p-button-success w-5 m-2" (click)="onSubmitReservation()"></button>
+  <button type="button" pButton pRipple label="Cancel" class="p-button-danger w-5 m-2" (click)="showConfirmReservation=false"></button>
+
+</p-dialog>
+
+<!--reservation success-->
+
+<p-dialog header="Success!" [(visible)]="successModalVisible" [style]="{width: '50vw'}" [modal]="true" [closable]="false" >
+  <div class="grid justify-content-center py-2">
+    <button type="button" pButton pRipple label="Add another reservation" class="p-button-success w-5 m-2"
+            (click)="addNextReservation()"></button>
+    <button type="button" pButton pRipple label="Go to reservation list" class="p-button-success w-5 m-2"
+            [routerLink]="reservationListPath"></button>
+  </div>
+</p-dialog>
+
+<!--reservation failed-->
+
+<p-dialog header="Fail" [(visible)]="failModalVisible" [style]="{width: '50vw'}" [modal]="true">
+  Adding reservation failed, please try again.
+</p-dialog>
+
