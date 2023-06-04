@@ -9,6 +9,7 @@ Backend part of the application: https://github.com/Jakub112358/CarRentalBackend
 - Run backend application: [instructions](https://github.com/Jakub112358/CarRentalBackend/blob/dev/README.md#running-application)
 - Follow the instructions to run locally [Angular application](https://angular.io/start/start-deployment)
 
+
 ### General app description:
 The main purpose of the application is to solve the problem of managing car rental company that has branch offices in various cities. 
 The solution will be to create a personalized web application.
@@ -17,6 +18,7 @@ The solution will be to create a personalized web application.
 
 **Backend:**
 Spring Boot REST application. More info in Backend Part [Readme](https://github.com/Jakub112358/CarRentalBackend/blob/dev/README.md)
+
 
 **Frontend:**
 Angular application with PrimeNG library.
@@ -60,6 +62,7 @@ Angular application with PrimeNG library.
   - changing pick up/return status
   - charging additional fees
   - adding comments
+
 
 ### Version control: 
 - system: GIT
