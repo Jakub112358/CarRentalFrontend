@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {AuthRequest} from "../../model/rest/request/auth-request";
 import {AuthService} from "../../auth/auth.service";
 import {JwtTokenService} from "../../auth/jwt-token.service";
-import {Role} from "../../model/enumeration/Role";
+import {Role} from "../../model/enumeration/role";
 import {Router} from "@angular/router";
 
 @Component({

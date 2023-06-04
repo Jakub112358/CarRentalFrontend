@@ -9,28 +9,30 @@ import {CalendarModule} from "primeng/calendar";
 import {TableModule} from "primeng/table";
 import {DialogModule} from "primeng/dialog";
 import {InputTextModule} from "primeng/inputtext";
+import {MultiSelectModule} from "primeng/multiselect";
 
 
 @NgModule({
   declarations: [
     ReservationNewComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: ReservationNewComponent
-      }]
-    ),
-    FormsModule,
-    ButtonModule,
-    RippleModule,
-    CalendarModule,
-    TableModule,
-    DialogModule,
-    InputTextModule
-  ]
+    imports: [
+        CommonModule,
+        RouterModule.forChild([
+            {
+                path: '',
+                component: ReservationNewComponent
+            }]
+        ),
+        FormsModule,
+        ButtonModule,
+        RippleModule,
+        CalendarModule,
+        TableModule,
+        DialogModule,
+        InputTextModule,
+        MultiSelectModule
+    ]
 })
 export class ReservationNewModule {
 }
