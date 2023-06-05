@@ -6,8 +6,12 @@ Backend part of the application: https://github.com/Jakub112358/CarRentalBackend
 - Jakub Szymański, 
 
 ### Running application:
-- Run backend application: [instructions](https://github.com/Jakub112358/CarRentalBackend/blob/dev/README.md#running-application)
+- Run backend application with active profile dev: [instructions](https://github.com/Jakub112358/CarRentalBackend/blob/dev/README.md#running-application)
 - Follow the instructions to run locally [Angular application](https://angular.io/start/start-deployment)
+- When you run the backend application with the dev profile, the database is populated with initial data. Then you can use following data to login:
+  - email: "client@mail.com", password: "123" to login as client,
+  - email: "employee@mail.com", password: "123" to login as employee,
+  - email: "admin@mail.com", password: "123" to login as admin,
 
 
 ### General app description:
